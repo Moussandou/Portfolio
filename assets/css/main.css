@@ -106,3 +106,54 @@ header, main, footer { position: relative; z-index: 1; }
 /* garde le layout bien centré et cohérent sur toutes les pages */
 :root { --container: 980px; }        /* ajustable */
 .container { width: min(100%, var(--container)); margin: 0 auto; padding: 0 12px; }
+
+/* ==== Footer – fix overflow + wrap ==== */
+.footer{
+  width: 100%;
+  padding: 20px 0 32px;
+  border-top: 1px solid rgba(255,255,255,.1);
+  overflow-x: clip;           /* empêche toute barre horizontale */
+  contain: content;           /* isole le footer des calculs de largeur */
+}
+
+.footer-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;            /* autorise le retour à la ligne */
+  min-width: 0;               /* évite les flex-items “incompressibles” */
+}
+
+.footer-cta{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;            /* boutons sur 2 lignes si besoin */
+  min-width: 0;
+}
+
+.footer-cta .btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: normal;        /* au lieu de nowrap */
+  min-width: 0;               /* peut se réduire dans un flex container */
+  max-width: 100%;
+}
+
+/* si un élément interne dépasse quand même, on casse les mots longs */
+.footer .muted, .footer .small{
+  overflow-wrap: anywhere;
+}
+
+/* Sécurité: neutralise toute largeur 100vw qui créerait un débordement */
+.footer, .footer *{
+  box-sizing: border-box;
+}
+
+/* Optionnel: garder le footer contenu dans la largeur du site */
+.footer .container{
+  width: min(100%, var(--container, 980px));
+  margin: 0 auto;
+  padding: 0 12px;
+}
