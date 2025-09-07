@@ -81,3 +81,28 @@ a{ color:inherit; text-decoration:none }
 .pill--js{ background: #f7df1e; color:#161616 }
 .pill--wp{ background: #21759b; }
 .pill--automation{ background: #22c55e; color:#092615 }
+
+/* === Fix affichage global (overflow, glow) === */
+html, body { overflow-x: clip; } /* évite toute barre de défilement horizontale */
+
+/* remplace l'ancien body::before (halo) par une version centrée et sans débordement */
+body::before{
+  content:'';
+  position: fixed;
+  top: -10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120vw;           /* large mais centré, pas de débordement latéral */
+  height: 42vh;
+  pointer-events: none;
+  background: radial-gradient(ellipse at top, rgba(120,137,255,.25), transparent 60%);
+  filter: blur(40px);
+  z-index: 0;
+}
+
+/* s’assurer que le contenu passe au-dessus du halo */
+header, main, footer { position: relative; z-index: 1; }
+
+/* garde le layout bien centré et cohérent sur toutes les pages */
+:root { --container: 980px; }        /* ajustable */
+.container { width: min(100%, var(--container)); margin: 0 auto; padding: 0 12px; }
