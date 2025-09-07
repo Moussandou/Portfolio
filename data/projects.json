@@ -1,0 +1,46 @@
+[
+  {
+    "title": "Jetpack Multiplayer Game",
+    "period": "Projet Epitech — C++ / SFML",
+    "description": "Jeu 2D multijoueur inspiré de Jetpack Joyride. Client/serveur perso, protocole de synchro, physique, collisions, boucle de jeu.",
+    "tags": ["cpp"],
+    "image": "assets/img/projects/jetpack.jpg",
+    "repo": "",
+    "link": ""
+  },
+  {
+    "title": "Minishell",
+    "period": "Projet Epitech — C (3 semaines)",
+    "description": "Shell Unix minimaliste: parsing de commandes, exécution, gestion des erreurs/redirections.",
+    "tags": ["cpp"],
+    "image": "assets/img/projects/minishell.jpg",
+    "repo": "",
+    "link": ""
+  },
+  {
+    "title": "Epytodo",
+    "period": "Projet Epitech — JS/SQL (3 semaines)",
+    "description": "Site de gestion de tâches en JavaScript avec backend SQL (CRUD, auth, routing minimal).",
+    "tags": ["js"],
+    "image": "assets/img/projects/epytodo.jpg",
+    "repo": "",
+    "link": ""
+  },
+  {
+    "title": "Site WordPress — autonomie-numerique.fr",
+    "period": "Icom’Provence",
+    "description": "Intégration, structure, contenus et mise en ligne. Collaboration avec l’équipe pour adapter aux besoins utilisateurs.",
+    "tags": ["wp"],
+    "image": "assets/img/projects/wp-autonomie.jpg",
+    "link": "https://autonomie-numerique.fr"
+  },
+  {
+    "title": "Hackathon Agent IA — Hacktogone",
+    "period": "Mai 2025 — N8n",
+    "description": "Développement d’agents IA via N8n. Certif. ID: bf1ccad0-62b9-4c5a-abf1-2c8ef6adacfd.",
+    "tags": ["automation","js"],
+    "image": "assets/img/projects/hacktogone.jpg",
+    "repo": "",
+    "link": ""
+  }
+]
