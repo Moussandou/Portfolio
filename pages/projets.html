@@ -1,29 +1,29 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="stylesheet" href="../assets/css/fonts.css">
-    <link rel="stylesheet" href="../assets/css/main.css">
-    <title>Projets — <!--AUTHOR_NAME--></title>
-  </head>
-  <body>
-    <header data-include="../partials/header.html" data-base="../"></header>
-    <main class="container">
-      <section class="reveal">
-        <h1 class="h2 mb-l">Mes projets</h1>
-        <div class="filters">
-          <button class="chip is-active" data-filter="all">Tous</button>
-          <button class="chip" data-filter="cpp">C/C++</button>
-          <button class="chip" data-filter="js">JavaScript</button>
-          <button class="chip" data-filter="wp">WordPress</button>
-          <button class="chip" data-filter="automation">Automation</button>
-        </div>
-        <div id="projects-grid" class="cards mt-l"></div>
-      </section>
-    </main>
-    <footer data-include="../partials/footer.html" data-base="../"></footer>
-    <script src="../assets/js/base.js"></script>
-    <script src="../assets/js/projects.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <title>Mroivili Moussandou — Portfolio — Projets</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+  (function(){
+    var ROOT = location.pathname.indexOf("/pages/")>-1 ? ".." : ".";
+    ["assets/css/fonts.css","assets/css/main.css"].forEach(function(h){
+      var l=document.createElement("link"); l.rel="stylesheet"; l.href=ROOT+"/"+h; document.head.appendChild(l);
+    });
+    var s=document.createElement("script"); s.src=ROOT+"/assets/js/base.js"; s.defer=true; document.head.appendChild(s);
+    var sp=document.createElement("script"); sp.src=ROOT+"/assets/js/projects.js"; sp.defer=true; document.head.appendChild(sp);
+  })();
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="container" style="padding-top:28px">
+    <h1 class="h2">Projets</h1>
+    <p class="muted">Sélection de projets Epitech, associatifs et personnels.</p>
+    <div id="projects-grid" class="grid"></div>
+  </main>
+
+  <div id="site-footer"></div>
+</body>
 </html>

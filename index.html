@@ -1,55 +1,52 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="description" content="Portfolio — développement web et logiciel" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="assets/css/fonts.css">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <title><!--SITE_TITLE--></title>
-  </head>
-  <body>
-    <header data-include="partials/header.html"></header>
+<head>
+  <meta charset="utf-8">
+  <title>Mroivili Moussandou — Portfolio — Accueil</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+  (function(){
+    var ROOT = ".";
+    ["assets/css/fonts.css","assets/css/main.css"].forEach(function(h){
+      var l=document.createElement("link"); l.rel="stylesheet"; l.href=ROOT+"/"+h; document.head.appendChild(l);
+    });
+    var s=document.createElement("script"); s.src=ROOT+"/assets/js/base.js"; s.defer=true; document.head.appendChild(s);
+  })();
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
 
-    <main class="container">
-      <section class="hero reveal">
-        <h1 class="hero__title"><!--AUTHOR_NAME--></h1>
-        <p class="hero__role"><!--ROLE--></p>
-        <p class="hero__tagline"><!--TAGLINE--></p>
-        <div class="hero__cta">
-          <a class="btn btn--primary" href="pages/projets.html">Voir mes projets</a>
-          <a class="btn" href="pages/cursus.html">Mon cursus</a>
-        </div>
-      </section>
+  <main class="container hero">
+    <div class="kicker">Développeur Web & Logiciel – Étudiant à Epitech</div>
+    <h1 class="h1">Mroivili Moussandou</h1>
+    <p class="lead">Étudiant en informatique passionné par le développement web, l'innovation numérique et les projets à impact.</p>
+    <div class="hero-cta">
+      <a class="btn" href="pages/projets.html">Voir mes projets</a>
+      <a class="btn outline" href="pages/cursus.html">Mon cursus</a>
+    </div>
 
-      <section class="grid-2 gap-xl mt-xxl">
-        <div class="card reveal">
-          <h2 class="h3">Ce que je fais</h2>
-          <ul class="list">
-            <li>Création et refonte de sites (WordPress, HTML/CSS/JS)</li>
-            <li>Développement d’applications et scripts</li>
-            <li>Automatisation (API, N8n) et intégrations</li>
-            <li>Optimisation, maintenance et formation</li>
-          </ul>
+    <section style="margin-top:28px" class="grid">
+      <article class="card reveal">
+        <h3 class="h4">À propos</h3>
+        <p>Développeur web et logiciel à Epitech, je conçois des sites, applications et automatisations sur mesure. Polyvalent et curieux, je m’adapte rapidement à vos besoins.</p>
+        <div class="hero-cta">
+          <a class="btn" href="pages/liens.html">Me contacter</a>
+          <a class="btn outline" href="mailto:moussandou.mroivili@epitech.eu">Email</a>
         </div>
-        <div class="card reveal">
-          <h2 class="h3">Compétences</h2>
-          <p>C, C++, Python, JavaScript, SQL, HTML/CSS, Haskell, Assembleur. Git, Linux/Windows, WordPress, Node.js (basique), CSFML, N8n.</p>
-        </div>
-      </section>
+      </article>
+      <article class="card reveal">
+        <h3 class="h4">Compétences</h3>
+        <p class="muted small">Langages</p>
+        <p>C, C++, Python, JavaScript, SQL, HTML/CSS, Haskell, Assembleur</p>
+        <p class="muted small">Outils & Frameworks</p>
+        <p>CSFML, Node.js (basique), WordPress, N8n, Git, Trello, VS Code</p>
+        <p class="muted small">Systèmes & Méthodo</p>
+        <p>Linux, Windows • Agile, travail en équipe</p>
+      </article>
+    </section>
+  </main>
 
-      <section class="mt-xxl reveal">
-        <h2 class="h3 mb-m">Sélection de projets</h2>
-        <div id="projects-home" class="cards"></div>
-        <div class="mt-m">
-          <a class="btn" href="pages/projets.html">Tous les projets</a>
-        </div>
-      </section>
-    </main>
-
-    <footer data-include="partials/footer.html"></footer>
-    <script src="assets/js/base.js"></script>
-    <script src="assets/js/projects.js"></script>
-  </body>
+  <div id="site-footer"></div>
+</body>
 </html>

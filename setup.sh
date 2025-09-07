@@ -471,4 +471,637 @@ import readline from 'node:readline';
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 const ask = q => new Promise(res=> rl.question(q, a => res(a.trim())));
 
-const file = path.join(process.cwd
+const file = path.join(process.cwd(), 'data', 'projects.json');
+const projects = JSON.parse(fs.readFileSync(file, 'utf8'));
+
+function slugify(s){
+  return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+}
+
+(async ()=>{
+  console.log('\n=== Ajouter un projet au portfolio ===\n');
+  const title = await ask('Titre: ');
+  const period = await ask('Période (ex: "Projet Epitech — C++ / SFML"): ');
+  const description = await ask('Description courte: ');
+  const tags = (await ask('Tags (séparés par des virgules, ex: cpp,js,wp,automation): '))
+    .split(',').map(s=>s.trim()).filter(Boolean);
+  let image = await ask('Image (URL HTTP(S) OU chemin local, facultatif): ');
+  const repo = await ask('Lien code (GitHub, facultatif): ');
+  const link = await ask('Lien démo/site (facultatif): ');
+  const at = (await ask('Position (1 = en tête, vide = fin): '));
+
+  // Gérer une image locale: copie vers assets/img/projects
+  if(image && !/^https?:\/\//i.test(image)){
+    const src = path.resolve(image);
+    if(fs.existsSync(src) && fs.statSync(src).isFile()){
+      const ext = path.extname(src) || '.png';
+      const name = slugify(title) + ext;
+      const destDir = path.join(process.cwd(), 'assets', 'img', 'projects');
+      fs.mkdirSync(destDir, { recursive: true });
+      const dest = path.join(destDir, name);
+      fs.copyFileSync(src, dest);
+      image = `assets/img/projects/${name}`;
+      console.log('→ Image copiée vers', image);
+    } else {
+      console.log('! Image locale introuvable, champ ignoré.');
+      image = '';
+    }
+  }
+
+  const p = { title, period, description, tags };
+  if(image) p.image = image;
+  if(repo) p.repo = repo;
+  if(link) p.link = link;
+
+  if(at && Number(at) === 1){
+    projects.unshift(p);
+  } else {
+    projects.push(p);
+  }
+  fs.writeFileSync(file, JSON.stringify(projects, null, 2));
+  console.log('\n✅ Projet ajouté à data/projects.json');
+  rl.close();
+})();
+NODE
+
+chmod +x scripts/add-project.mjs
+
+# ---------- scripts/serve.sh ----------
+cat > scripts/serve.sh <<'BASH'
+#!/usr/bin/env bash
+set -euo pipefail
+PORT="${1:-8080}"
+echo "Serving on http://localhost:${PORT}"
+if command -v python3 >/dev/null 2>&1; then
+  python3 -m http.server "$PORT" -d .
+elif command -v python >/dev/null 2>&1; then
+  python -m SimpleHTTPServer "$PORT"
+else
+  echo "Installez Python pour servir localement, ou utilisez npx serve ."
+  exit 1
+fi
+BASH
+chmod +x scripts/serve.sh
+
+# ---------- Assets: images placeholders (SVG) ----------
+mkdir -p assets/img/projects
+cat > assets/img/projects/jetpack.svg <<'SVG'
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1f2330"/><stop offset="1" stop-color="#2a2f3f"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/><text x="50%" y="55%" font-family="Inter, Arial, sans-serif" font-size="42" fill="#e6e6e6" text-anchor="middle">Jetpack Multiplayer</text></svg>
+SVG
+cat > assets/img/projects/minishell.svg <<'SVG'
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1f2330"/><stop offset="1" stop-color="#2a2f3f"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/><text x="50%" y="55%" font-family="Inter, Arial, sans-serif" font-size="42" fill="#e6e6e6" text-anchor="middle">Minishell</text></svg>
+SVG
+cat > assets/img/projects/epytodo.svg <<'SVG'
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1f2330"/><stop offset="1" stop-color="#2a2f3f"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/><text x="50%" y="55%" font-family="Inter, Arial, sans-serif" font-size="42" fill="#e6e6e6" text-anchor="middle">Epytodo</text></svg>
+SVG
+cat > assets/img/projects/wp-autonomie.svg <<'SVG'
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1f2330"/><stop offset="1" stop-color="#2a2f3f"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/><text x="50%" y="55%" font-family="Inter, Arial, sans-serif" font-size="42" fill="#e6e6e6" text-anchor="middle">WordPress</text></svg>
+SVG
+cat > assets/img/projects/hacktogone.svg <<'SVG'
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#1f2330"/><stop offset="1" stop-color="#2a2f3f"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#g)"/><text x="50%" y="55%" font-family="Inter, Arial, sans-serif" font-size="42" fill="#e6e6e6" text-anchor="middle">Hackathon</text></svg>
+SVG
+
+# Adapter data/projects.json pour .svg
+tmpjson="data/projects.json.tmp"
+sed -e 's|jetpack\.jpg|jetpack.svg|g' \
+    -e 's|minishell\.jpg|minishell.svg|g' \
+    -e 's|epytodo\.jpg|epytodo.svg|g' \
+    -e 's|wp-autonomie\.jpg|wp-autonomie.svg|g' \
+    -e 's|hacktogone\.jpg|hacktogone.svg|g' \
+    data/projects.json > "$tmpjson" && mv "$tmpjson" data/projects.json
+
+# ---------- GitHub Pages (.nojekyll) ----------
+: > .nojekyll
+
+# ---------- README ----------
+cat > README.md <<'MD'
+# Portfolio statique (GitHub Pages)
+
+Aperçu local:
+- ./scripts/serve.sh 8080
+- Ouvrir http://localhost:8080
+
+Déploiement GitHub Pages:
+1) Créer un dépôt et pousser le contenu (branche main).
+2) Dans Settings > Pages:
+   - Source: Deploy from a branch
+   - Branch: main / root (/) puis Save
+3) Votre site sera servi sur https://<votre_user>.github.io/<nom_repo>/
+
+Ajouter un projet:
+- node scripts/add-project.mjs
+- Les images locales seront copiées dans assets/img/projects
+
+Changer la police:
+- Modifier assets/css/fonts.css (les deux @import + variables --font-sans / --font-mono)
+
+Changer la couleur d’accent:
+- Relancer ./scripts/setup.sh ou éditez assets/css/main.css (variable --accent)
+
+MD
+
+# ---------- Remplacements dynamiques (placeholders) ----------
+esc(){ printf '%s' "$1" | sed -e 's/[\/&]/\\&/g'; }
+
+A=$(esc "$AUTHOR_NAME")
+R=$(esc "$ROLE")
+T=$(esc "$TAGLINE")
+S=$(esc "$SITE_TITLE")
+E=$(esc "$EMAIL")
+P=$(esc "$PHONE")
+L=$(esc "$LINKEDIN")
+G=$(esc "$GITHUB")
+
+# phone URI (format FR -> +33)
+RAW=$(printf '%s' "$PHONE" | tr -d ' .-')
+if [[ "$RAW" =~ ^0[1-9][0-9]{8}$ ]]; then
+  PHONE_URI="+33${RAW:1}"
+else
+  PHONE_URI="$RAW"
+fi
+U=$(esc "$PHONE_URI")
+
+# GITHUB card
+if [ -n "$GITHUB" ]; then
+  GITHUB_CARD="<a class=\"card link-card\" href=\"$GITHUB\" target=\"_blank\" rel=\"noopener\">GitHub → Profil</a>"
+else
+  GITHUB_CARD=""
+fi
+GC=$(esc "$GITHUB_CARD")
+
+# fichiers à traiter
+FILES=("index.html" "pages/cursus.html" "pages/projets.html" "pages/liens.html" "partials/header.html" "partials/footer.html" "assets/css/main.css" "assets/css/fonts.css")
+
+# ---------- Partials ----------
+cat > partials/header.html <<'HTML'
+<header class="container">
+  <div class="nav">
+    <a class="brand" data-href="index.html">__AUTHOR_NAME__</a>
+    <nav class="links">
+      <a id="nav-home" class="nav-link" data-href="index.html">Accueil</a>
+      <a id="nav-cursus" class="nav-link" data-href="pages/cursus.html">Cursus</a>
+      <a id="nav-projets" class="nav-link" data-href="pages/projets.html">Projets</a>
+      <a id="nav-liens" class="nav-link" data-href="pages/liens.html">Liens</a>
+    </nav>
+  </div>
+</header>
+HTML
+
+cat > partials/footer.html <<'HTML'
+<footer class="container footer">
+  <div class="footer-top">
+    <div>
+      <div class="h4">__AUTHOR_NAME__</div>
+      <div class="muted">__ROLE__</div>
+    </div>
+    <div class="footer-cta">
+      <a class="btn" href="mailto:__EMAIL__">Me contacter</a>
+      <a class="btn outline" href="tel:__PHONE_URI__">__PHONE__</a>
+    </div>
+  </div>
+  <div class="muted small">© <span id="year"></span> • Fait à la main • Minimal & rapide</div>
+</footer>
+HTML
+
+# ---------- Pages ----------
+mkdir -p pages
+
+# Pages: injecte CSS/JS via bootstrap inline pour gérer les chemins relatifs (root / pages/)
+bootstrap_head='
+<script>
+(function(){
+  var ROOT = location.pathname.indexOf("/pages/")>-1 ? ".." : ".";
+  ["assets/css/fonts.css","assets/css/main.css"].forEach(function(h){
+    var l=document.createElement("link"); l.rel="stylesheet"; l.href=ROOT+"/"+h; document.head.appendChild(l);
+  });
+  var s=document.createElement("script"); s.src=ROOT+"/assets/js/base.js"; s.defer=true; document.head.appendChild(s);
+})();
+</script>
+'
+
+cat > pages/cursus.html <<HTML
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>__SITE_TITLE__ — Cursus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  ${bootstrap_head}
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="container" style="padding-top:28px">
+    <h1 class="h2">Mon cursus</h1>
+    <section class="timeline">
+      <article class="card reveal">
+        <h3 class="h4">Programme Grande École — Informatique</h3>
+        <p class="muted">Epitech — Marseille • 2023 – 2028</p>
+        <p>Modules: C, C++, Shell, Systèmes, Réseaux, Web, Architecture, Git, ASM.</p>
+      </article>
+
+      <article class="card reveal">
+        <h3 class="h4">Baccalauréat Général</h3>
+        <p class="muted">Lycée Saint‑Exupéry — Marseille • 2020 – 2023</p>
+        <p>Spécialités: Numérique & Sciences Informatiques, Anglais.</p>
+      </article>
+
+      <article class="card reveal">
+        <h3 class="h4">Cambridge English Certificate (B2)</h3>
+        <p class="muted">2020 – 2023</p>
+      </article>
+
+      <h2 class="h3" style="margin-top:24px">Expériences</h2>
+
+      <article class="card reveal">
+        <h3 class="h4">Stagiaire Développeur Web — Icom’Provence</h3>
+        <p class="muted">Marseille • Août 2024 – Novembre 2024</p>
+        <ul class="list">
+          <li>Découverte des métiers et fonctionnement de l’entreprise.</li>
+          <li>Accompagnement salarié et réalisation de tâches.</li>
+          <li>Gestion d’une plateforme CMS, création de sites WordPress.</li>
+        </ul>
+      </article>
+
+      <article class="card reveal">
+        <h3 class="h4">Équipier Polyvalent — Quick Grand Littoral</h3>
+        <p class="muted">Marseille • Mai – Septembre 2023</p>
+        <ul class="list">
+          <li>Accueil, prise de commandes, informations produits.</li>
+          <li>Préparation rapide, précise, normes hygiène/qualité.</li>
+          <li>Collaboration équipe, gestion stock et réassort.</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+</body>
+</html>
+HTML
+
+cat > pages/projets.html <<'HTML'
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>__SITE_TITLE__ — Projets</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+  (function(){
+    var ROOT = location.pathname.indexOf("/pages/")>-1 ? ".." : ".";
+    ["assets/css/fonts.css","assets/css/main.css"].forEach(function(h){
+      var l=document.createElement("link"); l.rel="stylesheet"; l.href=ROOT+"/"+h; document.head.appendChild(l);
+    });
+    var s=document.createElement("script"); s.src=ROOT+"/assets/js/base.js"; s.defer=true; document.head.appendChild(s);
+    var sp=document.createElement("script"); sp.src=ROOT+"/assets/js/projects.js"; sp.defer=true; document.head.appendChild(sp);
+  })();
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="container" style="padding-top:28px">
+    <h1 class="h2">Projets</h1>
+    <p class="muted">Sélection de projets Epitech, associatifs et personnels.</p>
+    <div id="projects-grid" class="grid"></div>
+  </main>
+
+  <div id="site-footer"></div>
+</body>
+</html>
+HTML
+
+cat > pages/liens.html <<HTML
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>__SITE_TITLE__ — Liens</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  ${bootstrap_head}
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="container" style="padding-top:28px">
+    <h1 class="h2">Liens</h1>
+    <section class="grid">
+      <a class="card link-card reveal" href="__LINKEDIN__" target="_blank" rel="noopener">LinkedIn → Profil</a>
+      __GITHUB_CARD__
+      <a class="card link-card reveal" href="mailto:__EMAIL__">Email → __EMAIL__</a>
+      <a class="card link-card reveal" href="tel:__PHONE_URI__">Téléphone → __PHONE__</a>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+</body>
+</html>
+HTML
+
+# ---------- CSS ----------
+mkdir -p assets/css
+
+cat > assets/css/fonts.css <<'CSS'
+/* Modifiez facilement la police ici:
+   - Changez les @import ci-dessous
+   - Ajustez les variables --font-sans et --font-mono
+*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root{
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+body{ font-family: var(--font-sans); }
+code, pre, kbd, samp{ font-family: var(--font-mono); }
+CSS
+
+cat > assets/css/main.css <<'CSS'
+:root{
+  --bg: #0f1220;
+  --surface: #14182b;
+  --card: #171b2e;
+  --text: #e6e6e6;
+  --muted: #a9afc1;
+  --accent: __ACCENT__;
+  --radius: 12px;
+  --shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+*{ box-sizing:border-box }
+html,body{ height:100% }
+body{
+  margin:0; color:var(--text); background:radial-gradient(1200px 800px at 10% -10%, #1b2040 0%, #0f1220 55%, #0b0e19 100%);
+  line-height:1.6;
+}
+img{ max-width:100%; display:block }
+a{ color:inherit; text-decoration:none }
+.container{ width:min(1100px, calc(100% - 32px)); margin-inline:auto; }
+
+.h1{ font-size:42px; line-height:1.15; margin:0 0 8px }
+.h2{ font-size:32px; line-height:1.2; margin:0 0 10px }
+.h3{ font-size:24px; line-height:1.25; margin:0 0 8px }
+.h4{ font-size:18px; line-height:1.35; margin:0 0 6px }
+.small{ font-size:13px }
+.muted{ color:var(--muted) }
+
+.nav{
+  display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 0;
+}
+.brand{ font-weight:700; letter-spacing:.3px }
+.links{ display:flex; gap:10px; flex-wrap:wrap }
+.nav-link{ padding:8px 12px; border-radius:999px; color:var(--muted); transition:.2s ease }
+.nav-link[aria-current="page"], .nav-link:hover{ color:#fff; background:rgba(255,255,255,.06) }
+
+.grid{
+  display:grid; gap:16px; grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
+  align-items:stretch;
+}
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0)), var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding:14px; border:1px solid rgba(255,255,255,.06);
+}
+.card img{ border-radius:10px; margin-bottom:10px; aspect-ratio: 16/10; object-fit:cover; }
+
+.btn{
+  display:inline-block; padding:10px 14px; border-radius:10px; background:var(--accent);
+  color:white; font-weight:600; box-shadow:0 4px 12px rgba(0,0,0,.25); transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover{ transform: translateY(-1px); box-shadow:0 6px 16px rgba(0,0,0,.3) }
+.btn.outline{ background:transparent; color:#fff; border:1px solid rgba(255,255,255,.18) }
+
+.footer{ margin:40px 0; padding:16px 0; border-top:1px solid rgba(255,255,255,.08) }
+.footer-top{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:8px; flex-wrap:wrap }
+
+.link-card{ display:flex; align-items:center; justify-content:center; min-height:80px; font-weight:600; border:1px dashed rgba(255,255,255,.1) }
+.link-card:hover{ border-color: rgba(255,255,255,.22) }
+
+.list{ margin:8px 0 0 18px; padding:0 }
+.list li{ margin:6px 0 }
+
+.hero{
+  padding: 24px 0 4px;
+}
+.hero .kicker{ color: var(--accent); font-weight:700; letter-spacing:.4px; text-transform: uppercase; font-size:12px }
+.hero .lead{ font-size:18px }
+.hero-cta{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px }
+
+.reveal{ opacity:0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease }
+.reveal.visible{ opacity:1; transform:none }
+
+/* Tags */
+.pill{
+  display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px; font-weight:700; letter-spacing:.2px;
+  background:rgba(255,255,255,.08); color:#e8ecff; border:1px solid rgba(255,255,255,.1)
+}
+.pill--cpp{ background: #264de4; }
+.pill--js{ background: #f7df1e; color:#161616 }
+.pill--wp{ background: #21759b; }
+.pill--automation{ background: #22c55e; color:#092615 }
+CSS
+
+# ---------- JS ----------
+mkdir -p assets/js
+
+cat > assets/js/base.js <<'JS'
+(function(){
+  const ROOT = location.pathname.includes('/pages/') ? '..' : '.';
+
+  // Charge header et footer
+  async function loadPartials(){
+    const [h,f] = await Promise.all([
+      fetch(ROOT + '/partials/header.html').then(r=>r.text()),
+      fetch(ROOT + '/partials/footer.html').then(r=>r.text())
+    ]);
+    const headerEl = document.getElementById('site-header');
+    const footerEl = document.getElementById('site-footer');
+    if(headerEl){ headerEl.innerHTML = h; wireHeaderLinks(headerEl); setActiveNav(); }
+    if(footerEl){
+      footerEl.innerHTML = f;
+      const y = footerEl.querySelector('#year'); if(y) y.textContent = new Date().getFullYear();
+    }
+  }
+
+  function wireHeaderLinks(scope){
+    scope.querySelectorAll('[data-href]').forEach(a=>{
+      a.setAttribute('href', ROOT + '/' + a.dataset.href);
+    });
+  }
+
+  function setActiveNav(){
+    const p = location.pathname;
+    const map = [
+  [/\/(index\.html)?$/, 'nav-home'],
+  [/\/pages\/cursus\.html$/, 'nav-cursus'],
+  [/\/pages\/projets\.html$/, 'nav-projets'],
+  [/\/pages\/liens\.html$/, 'nav-liens'],
+    ];
+    const id = (map.find(([re])=> re.test(p))||[])[1];
+    if(!id) return;
+    const link = document.getElementById(id);
+    if(link) link.setAttribute('aria-current','page');
+  }
+
+  // Animations "reveal"
+  function attachReveal(){
+    const els = document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)){
+      els.forEach(e=> e.classList.add('visible'));
+      return;
+    }
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting){
+          en.target.classList.add('visible');
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
+    els.forEach(e=> io.observe(e));
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    loadPartials().then(attachReveal);
+  });
+
+  // Expose ROOT if needed elsewhere
+  window.__ROOT__ = ROOT;
+})();
+JS
+
+# ---------- assets/js/projects.js ----------
+cat > assets/js/projects.js <<'JS'
+(async function(){
+  const ROOT = window.__ROOT__ || (location.pathname.includes('/pages/') ? '..' : '.');
+  const grid = document.getElementById('projects-grid');
+  if(!grid) return;
+
+  function pillClass(tag){
+    const t = (tag||'').toLowerCase();
+    if(['c++','cpp','sfml'].includes(t)) return 'pill pill--cpp';
+    if(['js','javascript','node','n8n'].includes(t)) return 'pill pill--js';
+    if(['wp','wordpress'].includes(t)) return 'pill pill--wp';
+    if(['automation','auto','bot'].includes(t)) return 'pill pill--automation';
+    return 'pill';
+  }
+
+  try{
+    const res = await fetch(ROOT + '/data/projects.json', {cache:'no-store'});
+    const data = await res.json();
+
+    const frag = document.createDocumentFragment();
+    data.forEach(p=>{
+      const card = document.createElement('article');
+      card.className = 'card reveal';
+      const img = p.image ? `<img src="${p.image}" alt="${p.title}">` : '';
+      const tags = (p.tags||[]).map(t=> `<span class="${pillClass(t)}">${t}</span>`).join(' ');
+      const repo = p.repo ? `<a class="btn outline" href="${p.repo}" target="_blank" rel="noopener">Code</a>` : '';
+      const link = p.link ? `<a class="btn" href="${p.link}" target="_blank" rel="noopener">Voir</a>` : '';
+      card.innerHTML = `
+        ${img}
+        <h3 class="h4">${p.title}</h3>
+        <p class="muted small">${p.period||''}</p>
+        <p>${p.description||''}</p>
+        <div style="display:flex; gap:6px; flex-wrap:wrap; margin:10px 0">${tags}</div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap">${repo}${link}</div>
+      `;
+      frag.appendChild(card);
+    });
+    grid.appendChild(frag);
+
+    // relancer l'animation reveal pour les nouvelles cartes
+    setTimeout(()=>{
+      document.querySelectorAll('.reveal').forEach(el=> el.classList.add('visible'));
+    }, 0);
+  }catch(e){
+    grid.innerHTML = '<p class="muted">Impossible de charger les projets pour le moment.</p>';
+    console.error(e);
+  }
+})();
+JS
+
+# ---------- index.html ----------
+cat > index.html <<'HTML'
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>__SITE_TITLE__ — Accueil</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+  (function(){
+    var ROOT = ".";
+    ["assets/css/fonts.css","assets/css/main.css"].forEach(function(h){
+      var l=document.createElement("link"); l.rel="stylesheet"; l.href=ROOT+"/"+h; document.head.appendChild(l);
+    });
+    var s=document.createElement("script"); s.src=ROOT+"/assets/js/base.js"; s.defer=true; document.head.appendChild(s);
+  })();
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="container hero">
+    <div class="kicker">__ROLE__</div>
+    <h1 class="h1">__AUTHOR_NAME__</h1>
+    <p class="lead">__TAGLINE__</p>
+    <div class="hero-cta">
+      <a class="btn" href="pages/projets.html">Voir mes projets</a>
+      <a class="btn outline" href="pages/cursus.html">Mon cursus</a>
+    </div>
+
+    <section style="margin-top:28px" class="grid">
+      <article class="card reveal">
+        <h3 class="h4">À propos</h3>
+        <p>Développeur web et logiciel à Epitech, je conçois des sites, applications et automatisations sur mesure. Polyvalent et curieux, je m’adapte rapidement à vos besoins.</p>
+        <div class="hero-cta">
+          <a class="btn" href="pages/liens.html">Me contacter</a>
+          <a class="btn outline" href="mailto:__EMAIL__">Email</a>
+        </div>
+      </article>
+      <article class="card reveal">
+        <h3 class="h4">Compétences</h3>
+        <p class="muted small">Langages</p>
+        <p>C, C++, Python, JavaScript, SQL, HTML/CSS, Haskell, Assembleur</p>
+        <p class="muted small">Outils & Frameworks</p>
+        <p>CSFML, Node.js (basique), WordPress, N8n, Git, Trello, VS Code</p>
+        <p class="muted small">Systèmes & Méthodo</p>
+        <p>Linux, Windows • Agile, travail en équipe</p>
+      </article>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+</body>
+</html>
+HTML
+
+# ---------- Appliquer les remplacements ----------
+FILES+=("index.html")
+for f in "${FILES[@]}"; do
+  [ -f "$f" ] || continue
+  sed -i \
+    -e "s|__AUTHOR_NAME__|$A|g" \
+    -e "s|__ROLE__|$R|g" \
+    -e "s|__TAGLINE__|$T|g" \
+    -e "s|__SITE_TITLE__|$S|g" \
+    -e "s|__EMAIL__|$E|g" \
+    -e "s|__PHONE__|$P|g" \
+    -e "s|__PHONE_URI__|$U|g" \
+    -e "s|__LINKEDIN__|$L|g" \
+    -e "s|__GITHUB_CARD__|$GC|g" \
+    -e "s|__ACCENT__|$ACCENT|g" \
+    "$f"
+done
+
+echo
+echo "✅ Portfolio généré."
+echo "• Aperçu: ./scripts/serve.sh 8080  puis http://localhost:8080"
+echo "• Ajoutez un projet: node scripts/add-project.mjs"
+echo "• Déployez sur GitHub Pages: poussez sur main, puis activez Pages (root)."
+
