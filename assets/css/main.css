@@ -157,3 +157,13 @@ header, main, footer { position: relative; z-index: 1; }
   margin: 0 auto;
   padding: 0 12px;
 }
+
+/* Sticky footer */
+html, body { height: 100%; }
+body{
+  min-height: 100svh;        /* 100vh sur iOS peut “sauter”, svh est plus fiable */
+  display: flex;
+  flex-direction: column;
+}
+main{ flex: 1 0 auto; }       /* pousse le footer vers le bas */
+footer{ margin-top: auto; }   /* colle le footer au bas de la page */
