@@ -1,0 +1,6 @@
+/* Pour changer de police:
+   1) Décommente la ligne @import ci-dessous (ex: Inter)
+   2) Mets la variable --font-stack avec le nom choisi
+*/
+/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap'); */
+:root { --font-stack: system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif; }
