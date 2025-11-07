@@ -33,7 +33,7 @@ export function NeofetchSection({ isHackMode = false }: NeofetchSectionProps) {
       <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-4 lg:gap-8">
         {/* Logo ASCII */}
         <div className="flex flex-col items-center lg:items-start">
-          <pre className={`text-lg leading-tight ${isHackMode ? 'text-[#A855F7] hover-glow' : 'text-[#8B7355]'}`}>
+          <pre className={`text-lg leading-tight ${isHackMode ? 'text-[#A855F7] hover-glow' : 'text-[#D2691E]'}`}>
             {asciiLogo}
           </pre>
         </div>
@@ -54,19 +54,19 @@ export function NeofetchSection({ isHackMode = false }: NeofetchSectionProps) {
       {/* Métriques de performance */}
       <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
         <div className={isHackMode ? 'hover-glow' : ''}>
-          <div className={isHackMode ? 'text-[#A855F7]' : 'text-[#8B7355]'}>Projets</div>
+          <div className={isHackMode ? 'text-[#A855F7]' : 'text-[#D2691E] font-semibold'}>Projets</div>
           <div className={isHackMode ? 'text-white' : 'text-[#8B7355]'}>15+ complétés</div>
         </div>
         <div className={isHackMode ? 'hover-glow' : ''}>
-          <div className={isHackMode ? 'text-[#A855F7]' : 'text-[#8B7355]'}>Langages</div>
+          <div className={isHackMode ? 'text-[#A855F7]' : 'text-[#D2691E] font-semibold'}>Langages</div>
           <div className={isHackMode ? 'text-white' : 'text-[#8B7355]'}>8 maîtrisés</div>
         </div>
         <div className={isHackMode ? 'hover-glow' : ''}>
-          <div className={isHackMode ? 'text-[#A855F7]' : 'text-[#8B7355]'}>Experience</div>
+          <div className={isHackMode ? 'text-[#A855F7]' : 'text-[#D2691E] font-semibold'}>Experience</div>
           <div className={isHackMode ? 'text-white' : 'text-[#8B7355]'}>2+ ans</div>
         </div>
         <div className={isHackMode ? 'hover-glow' : ''}>
-          <div className={isHackMode ? 'text-[#A855F7]' : 'text-[#8B7355]'}>Motivation</div>
+          <div className={isHackMode ? 'text-[#A855F7]' : 'text-[#D2691E] font-semibold'}>Motivation</div>
           <div className={isHackMode ? 'text-white' : 'text-[#8B7355]'}>100%</div>
         </div>
       </div>
@@ -74,10 +74,10 @@ export function NeofetchSection({ isHackMode = false }: NeofetchSectionProps) {
       {/* Palette de couleurs */}
       <div className="mt-4 flex justify-center">
         <div className="flex gap-1 text-xs opacity-60">
-          <div className={isHackMode ? 'text-[#A855F7]' : 'text-[#8B7355]'}>{colorBar}</div>
-          <div className="text-[#FFD700]">{colorBar}</div>
+          <div className={isHackMode ? 'text-[#A855F7]' : 'text-[#D2691E]'}>{colorBar}</div>
+          <div className={isHackMode ? 'text-[#FFD700]' : 'text-[#C9A961]'}>{colorBar}</div>
           <div className={isHackMode ? 'text-[#00FFFF]' : 'text-[#8B7355]'}>{colorBar}</div>
-          <div className="text-[#FF0080]">{colorBar}</div>
+          <div className={isHackMode ? 'text-[#FF0080]' : 'text-[#CC7A5C]'}>{colorBar}</div>
         </div>
       </div>
     </div>

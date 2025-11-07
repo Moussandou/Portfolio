@@ -51,6 +51,6 @@ export const getTerminalColors = (isHackMode: boolean, index: number) => {
     border: `${border} border-2`,
     text: 'text-[#5A4A3A]',
     header: `${bg} ${border}`,
-    accent: 'text-[#8B7355]',
+    accent: 'text-[#D2691E]',
   };
 };
