@@ -10,11 +10,12 @@ import { TechIcon } from './components/TechIcon';
 import { DraggableTerminal } from './components/DraggableTerminal';
 import Slider from 'react-slick';
 
-// Images
+// Images & Videos
 const jebImage = '/Portfolio/assets/jeb.png';
 const moocImage1 = '/Portfolio/assets/icom1.png';
 const moocImage2 = '/Portfolio/assets/icom2.png';
 const moocImage3 = '/Portfolio/assets/icom3.png';
+const rtypeVideo = '/Portfolio/assets/rtype.mov';
 
 export default function App() {
   return (
@@ -277,7 +278,7 @@ export default function App() {
                       color: "#00FFFF",
                       role: "Développeur Graphique SFML",
                       icon: "cpp",
-                      video: "https://www.youtube-nocookie.com/embed/WMKcxFbAWHs"
+                      video: rtypeVideo
                     },
                     {
                       name: "Zappy - Jeu Réseau Multijoueur",
