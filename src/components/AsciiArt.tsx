@@ -3,35 +3,31 @@ interface AsciiArtProps {
 }
 
 export function AsciiArt({ isHackMode }: AsciiArtProps) {
-  const nameArt = `
-  ███╗   ███╗ ██████╗ ██╗   ██╗███████╗███████╗ █████╗ ███╗   ██╗██████╗  ██████╗ ██╗   ██╗
-  ████╗ ████║██╔═══██╗██║   ██║██╔════╝██╔════╝██╔══██╗████╗  ██║██╔══██╗██╔═══██╗██║   ██║
-  ██╔████╔██║██║   ██║██║   ██║███████╗███████╗███████║██╔██╗ ██║██║  ██║██║   ██║██║   ██║
-  ██║╚██╔╝██║██║   ██║██║   ██║╚════██║╚════██║██╔══██║██║╚██╗██║██║  ██║██║   ██║██║   ██║
-  ██║ ╚═╝ ██║╚██████╔╝╚██████╔╝███████║███████║██║  ██║██║ ╚████║██████╔╝╚██████╔╝╚██████╔╝
-  ╚═╝     ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝  ╚═════╝ 
-  `;
+  const nameArt = `███╗   ███╗ ██████╗ ██╗   ██╗███████╗███████╗ █████╗ ███╗   ██╗██████╗  ██████╗ ██╗   ██╗
+████╗ ████║██╔═══██╗██║   ██║██╔════╝██╔════╝██╔══██╗████╗  ██║██╔══██╗██╔═══██╗██║   ██║
+██╔████╔██║██║   ██║██║   ██║███████╗███████╗███████║██╔██╗ ██║██║  ██║██║   ██║██║   ██║
+██║╚██╔╝██║██║   ██║██║   ██║╚════██║╚════██║██╔══██║██║╚██╗██║██║  ██║██║   ██║██║   ██║
+██║ ╚═╝ ██║╚██████╔╝╚██████╔╝███████║███████║██║  ██║██║ ╚████║██████╔╝╚██████╔╝╚██████╔╝
+╚═╝     ╚═╝ ╚═════╝  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝  ╚═════╝  ╚═════╝`;
 
 
   return (
     <div className="ascii-art float overflow-hidden">
       {/* ASCII Art MOUSSANDOU - Responsive sur toutes les tailles */}
       <div className="w-full flex justify-center">
-        <pre className={`${isHackMode ? 'text-[#A855F7] opacity-40' : 'text-[#D2691E] opacity-80'} text-[5px] sm:text-[7px] md:text-[9px] lg:text-xs whitespace-pre select-none ${isHackMode ? 'hover-glow' : ''} leading-[0.9] scale-x-[0.95] sm:scale-x-100 font-bold`}>
+        <pre className={`${isHackMode ? 'text-[#A855F7] opacity-40' : 'text-[#D2691E] opacity-80'} text-[6px] sm:text-[8px] md:text-[10px] lg:text-xs whitespace-pre select-none ${isHackMode ? 'hover-glow' : ''} leading-tight font-mono font-bold tracking-tighter`}>
           {nameArt}
         </pre>
       </div>
 
       <div className="flex justify-center mt-4 overflow-hidden">
-        <pre className={`text-[7px] sm:text-[9px] md:text-xs whitespace-pre select-none ${isHackMode ? 'glitch-text opacity-40' : 'text-[#D2691E] opacity-80'} leading-tight scale-x-[0.9] sm:scale-x-95 md:scale-x-100 font-semibold`}>
-{`
-    ███╗   ███╗██████╗  ██████╗ ██╗██╗   ██╗██╗██╗     ██╗
-    ████╗ ████║██╔══██╗██╔═══██╗██║██║   ██║██║██║     ██║
-    ██╔████╔██║██████╔╝██║   ██║██║██║   ██║██║██║     ██║
-    ██║╚██╔╝██║██╔══██╗██║   ██║██║╚██╗ ██╔╝██║██║     ██║
-    ██║ ╚═╝ ██║██║  ██║╚██████╔╝██║ ╚████╔╝ ██║███████╗██║
-    ╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝  ╚═╝╚══════╝╚═╝
-`}
+        <pre className={`text-[7px] sm:text-[9px] md:text-[11px] lg:text-xs whitespace-pre select-none ${isHackMode ? 'glitch-text opacity-40' : 'text-[#D2691E] opacity-80'} leading-tight font-mono font-semibold tracking-tighter`}>
+{`███╗   ███╗██████╗  ██████╗ ██╗██╗   ██╗██╗██╗     ██╗
+████╗ ████║██╔══██╗██╔═══██╗██║██║   ██║██║██║     ██║
+██╔████╔██║██████╔╝██║   ██║██║██║   ██║██║██║     ██║
+██║╚██╔╝██║██╔══██╗██║   ██║██║╚██╗ ██╔╝██║██║     ██║
+██║ ╚═╝ ██║██║  ██║╚██████╔╝██║ ╚████╔╝ ██║███████╗██║
+╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═══╝  ╚═╝╚══════╝╚═╝`}
         </pre>
       </div>
     </div>
