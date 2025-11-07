@@ -275,7 +275,7 @@ export default function App() {
                       color: "#00FFFF",
                       role: "Développeur Graphique SFML",
                       icon: "cpp",
-                      video: "https://www.youtube.com/embed/WMKcxFbAWHs"
+                      video: "https://www.youtube-nocookie.com/embed/WMKcxFbAWHs"
                     },
                     {
                       name: "Zappy - Jeu Réseau Multijoueur",
