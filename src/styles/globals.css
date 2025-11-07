@@ -608,14 +608,29 @@ html {
   bottom: 10px !important;
 }
 
-.slick-dots li button:before {
+/* Slick carousel dots - Hack mode (purple) */
+.crt-screen .slick-dots li button:before,
+.vhs-noise .slick-dots li button:before {
   color: #A855F7 !important;
   font-size: 10px !important;
   opacity: 0.5 !important;
 }
 
-.slick-dots li.slick-active button:before {
+.crt-screen .slick-dots li.slick-active button:before,
+.vhs-noise .slick-dots li.slick-active button:before {
   color: #A855F7 !important;
+  opacity: 1 !important;
+}
+
+/* Slick carousel dots - Light mode (terracotta) */
+body:not(.crt-screen):not(.vhs-noise) .slick-dots li button:before {
+  color: #D2691E !important;
+  font-size: 10px !important;
+  opacity: 0.5 !important;
+}
+
+body:not(.crt-screen):not(.vhs-noise) .slick-dots li.slick-active button:before {
+  color: #D2691E !important;
   opacity: 1 !important;
 }
 
@@ -633,15 +648,36 @@ html {
   right: 10px !important;
 }
 
-.slick-prev:before, .slick-next:before {
+/* Slick carousel arrows - Hack mode (purple) */
+.crt-screen .slick-prev:before,
+.crt-screen .slick-next:before,
+.vhs-noise .slick-prev:before,
+.vhs-noise .slick-next:before {
   font-size: 30px !important;
   color: #A855F7 !important;
   opacity: 0.8 !important;
 }
 
-.slick-prev:hover:before, .slick-next:hover:before {
+.crt-screen .slick-prev:hover:before,
+.crt-screen .slick-next:hover:before,
+.vhs-noise .slick-prev:hover:before,
+.vhs-noise .slick-next:hover:before {
   opacity: 1 !important;
   text-shadow: 0 0 10px #A855F7;
+}
+
+/* Slick carousel arrows - Light mode (terracotta) */
+body:not(.crt-screen):not(.vhs-noise) .slick-prev:before,
+body:not(.crt-screen):not(.vhs-noise) .slick-next:before {
+  font-size: 30px !important;
+  color: #D2691E !important;
+  opacity: 0.8 !important;
+}
+
+body:not(.crt-screen):not(.vhs-noise) .slick-prev:hover:before,
+body:not(.crt-screen):not(.vhs-noise) .slick-next:hover:before {
+  opacity: 1 !important;
+  text-shadow: 0 0 8px #D2691E;
 }
 
 .slick-slide img {
