@@ -29,7 +29,7 @@ export function NeofetchSection() {
       <div className="grid grid-cols-1 lg:grid-cols-[auto_1fr] gap-4 lg:gap-8">
         {/* Logo ASCII */}
         <div className="flex flex-col items-center lg:items-start">
-          <pre className="text-[#9333EA] text-lg leading-tight hover-glow">
+          <pre className="text-[#A855F7] text-lg leading-tight hover-glow">
             {asciiLogo}
           </pre>
         </div>
@@ -50,19 +50,19 @@ export function NeofetchSection() {
       {/* Métriques de performance */}
       <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4 text-xs">
         <div className="hover-glow">
-          <div className="text-[#9333EA]">Projets</div>
+          <div className="text-[#A855F7]">Projets</div>
           <div className="text-white">15+ complétés</div>
         </div>
         <div className="hover-glow">
-          <div className="text-[#9333EA]">Langages</div>
+          <div className="text-[#A855F7]">Langages</div>
           <div className="text-white">8 maîtrisés</div>
         </div>
         <div className="hover-glow">
-          <div className="text-[#9333EA]">Experience</div>
+          <div className="text-[#A855F7]">Experience</div>
           <div className="text-white">2+ ans</div>
         </div>
         <div className="hover-glow">
-          <div className="text-[#9333EA]">Motivation</div>
+          <div className="text-[#A855F7]">Motivation</div>
           <div className="text-white">100%</div>
         </div>
       </div>
@@ -70,7 +70,7 @@ export function NeofetchSection() {
       {/* Palette de couleurs */}
       <div className="mt-4 flex justify-center">
         <div className="flex gap-1 text-xs opacity-60">
-          <div className="text-[#9333EA]">{colorBar}</div>
+          <div className="text-[#A855F7]">{colorBar}</div>
           <div className="text-[#FFD700]">{colorBar}</div>
           <div className="text-[#00FFFF]">{colorBar}</div>
           <div className="text-[#FF0080]">{colorBar}</div>

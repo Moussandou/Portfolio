@@ -37,7 +37,7 @@ export function TypewriterEffect({ text, speed = 50, delay = 0, onComplete, clas
   return (
     <span className={className}>
       {displayedText}
-      {showCursor && (currentIndex <= text.length) && <span className="animate-pulse text-[#9333EA]">_</span>}
+      {showCursor && (currentIndex <= text.length) && <span className="animate-pulse text-[#A855F7]">_</span>}
     </span>
   );
 }

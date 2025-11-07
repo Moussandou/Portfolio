@@ -81,7 +81,7 @@ export function DraggableTerminal({
     >
       {/* Drag handle */}
       <div
-        className="absolute top-0 left-0 right-0 h-6 bg-[#9333EA]/10 border border-[#9333EA]/30 rounded-t-lg cursor-grab active:cursor-grabbing flex items-center justify-center hover:bg-[#9333EA]/20 transition-colors"
+        className="absolute top-0 left-0 right-0 h-6 bg-[#A855F7]/10 border border-[#A855F7]/30 rounded-t-lg cursor-grab active:cursor-grabbing flex items-center justify-center hover:bg-[#A855F7]/20 transition-colors"
         onMouseDown={handleMouseDown}
       >
         <div className="flex gap-1">
@@ -89,7 +89,7 @@ export function DraggableTerminal({
           <div className="w-2 h-2 bg-[#FFD700] rounded-full"></div>
           <div className="w-2 h-2 bg-[#00FFFF] rounded-full"></div>
         </div>
-        <div className="absolute right-2 text-xs text-[#9333EA]/60">
+        <div className="absolute right-2 text-xs text-[#A855F7]/60">
           {'///'} 
         </div>
       </div>

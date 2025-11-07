@@ -25,7 +25,7 @@ export default function App() {
         {/* Header with boot sequence */}
         <ScrollReveal delay={0}>
           <div className="mb-12">
-            <div className="text-[#9333EA] mb-4">
+            <div className="text-[#A855F7] mb-4">
               <TypewriterEffect 
                 text="moussandou@localhost:~$ ./lancer_portfolio.sh"
                 speed={80}
@@ -63,39 +63,39 @@ export default function App() {
                   <div>
                     <span className="text-[#FFD700]">Langages :</span>
                     <div className="ml-4 flex flex-wrap gap-2 mt-2">
-                      <span className="px-3 py-1 bg-[#1a1a1a] border border-[#9333EA]/30 text-sm hover-glow pulse-purple flex items-center gap-2 text-[#9333EA]">
+                      <span className="px-3 py-1 bg-[#1a1a1a] border border-[#A855F7]/30 text-sm hover-glow pulse-purple flex items-center gap-2 text-[#A855F7]">
                         <TechIcon name="c" size={14} />
                         C
                       </span>
-                      <span className="px-3 py-1 bg-[#1a1a1a] border border-[#9333EA]/30 text-sm hover-glow pulse-purple flex items-center gap-2 text-[#9333EA]">
+                      <span className="px-3 py-1 bg-[#1a1a1a] border border-[#A855F7]/30 text-sm hover-glow pulse-purple flex items-center gap-2 text-[#A855F7]">
                         <TechIcon name="cpp" size={14} />
                         C++
                       </span>
-                      <span className="px-3 py-1 bg-[#1a1a1a] border border-[#9333EA]/30 text-sm hover-glow pulse-purple flex items-center gap-2 text-[#9333EA]">
+                      <span className="px-3 py-1 bg-[#1a1a1a] border border-[#A855F7]/30 text-sm hover-glow pulse-purple flex items-center gap-2 text-[#A855F7]">
                         <TechIcon name="python" size={14} />
                         Python
                       </span>
-                      <span className="px-3 py-1 bg-[#1a1a1a] border border-[#9333EA]/30 text-sm hover-glow pulse-purple flex items-center gap-2 text-[#9333EA]">
+                      <span className="px-3 py-1 bg-[#1a1a1a] border border-[#A855F7]/30 text-sm hover-glow pulse-purple flex items-center gap-2 text-[#A855F7]">
                         <TechIcon name="javascript" size={14} />
                         JavaScript
                       </span>
-                      <span className="px-3 py-1 bg-[#1a1a1a] border border-[#9333EA]/30 text-sm hover-glow pulse-purple flex items-center gap-2 text-[#9333EA]">
+                      <span className="px-3 py-1 bg-[#1a1a1a] border border-[#A855F7]/30 text-sm hover-glow pulse-purple flex items-center gap-2 text-[#A855F7]">
                         <TechIcon name="html5" size={14} />
                         HTML5
                       </span>
-                      <span className="px-3 py-1 bg-[#1a1a1a] border border-[#9333EA]/30 text-sm hover-glow pulse-purple flex items-center gap-2 text-[#9333EA]">
+                      <span className="px-3 py-1 bg-[#1a1a1a] border border-[#A855F7]/30 text-sm hover-glow pulse-purple flex items-center gap-2 text-[#A855F7]">
                         <TechIcon name="css3" size={14} />
                         CSS3
                       </span>
-                      <span className="px-3 py-1 bg-[#1a1a1a] border border-[#9333EA]/30 text-sm hover-glow pulse-purple flex items-center gap-2 text-[#9333EA]">
+                      <span className="px-3 py-1 bg-[#1a1a1a] border border-[#A855F7]/30 text-sm hover-glow pulse-purple flex items-center gap-2 text-[#A855F7]">
                         <TechIcon name="database" size={14} />
                         SQL
                       </span>
-                      <span className="px-3 py-1 bg-[#1a1a1a] border border-[#9333EA]/30 text-sm hover-glow pulse-purple flex items-center gap-2 text-[#9333EA]">
+                      <span className="px-3 py-1 bg-[#1a1a1a] border border-[#A855F7]/30 text-sm hover-glow pulse-purple flex items-center gap-2 text-[#A855F7]">
                         <TechIcon name="lambda" size={14} />
                         Haskell
                       </span>
-                      <span className="px-3 py-1 bg-[#1a1a1a] border border-[#9333EA]/30 text-sm hover-glow pulse-purple flex items-center gap-2 text-[#9333EA]">
+                      <span className="px-3 py-1 bg-[#1a1a1a] border border-[#A855F7]/30 text-sm hover-glow pulse-purple flex items-center gap-2 text-[#A855F7]">
                         <TechIcon name="cpu" size={14} />
                         ASM
                       </span>
@@ -152,8 +152,8 @@ export default function App() {
             <ScrollReveal delay={0}>
               <DraggableTerminal command="./experience --dev-only" delay={0} id="experience" index={4}>
                 <div className="space-y-4">
-                  <div className="border-l-2 border-[#9333EA]/50 pl-4 hover-glow">
-                    <div className="text-[#9333EA] flex items-center gap-2">
+                  <div className="border-l-2 border-[#A855F7]/50 pl-4 hover-glow">
+                    <div className="text-[#A855F7] flex items-center gap-2">
                       <TechIcon name="seo" size={16} />
                       <span>Assistant SEO</span>
                     </div>
@@ -190,7 +190,7 @@ export default function App() {
               <DraggableTerminal command="./certifications --valid" delay={0} id="certifications" index={5}>
                 <div className="space-y-3">
                   <div className="flex items-center hover-glow gap-2">
-                    <span className="text-[#9333EA] mr-3">[CERT]</span>
+                    <span className="text-[#A855F7] mr-3">[CERT]</span>
                     <TechIcon name="certificate" size={16} />
                     <span>Cambridge English (B2)</span>
                   </div>
@@ -209,14 +209,14 @@ export default function App() {
                 <div className="space-y-4">
                   <div className="grid grid-cols-1 gap-3">
                     <div className="flex items-center hover-glow gap-2 flex-wrap">
-                      <span className="text-[#9333EA] mr-3 flex-shrink-0">[TEL]</span>
+                      <span className="text-[#A855F7] mr-3 flex-shrink-0">[TEL]</span>
                       <TechIcon name="phone" size={16} />
                       <span className="break-all">07 81 63 32 78</span>
                     </div>
                     <div className="flex items-center hover-glow gap-2 flex-wrap">
                       <span className="text-[#FFD700] mr-3 flex-shrink-0">[MAIL]</span>
                       <TechIcon name="email" size={16} />
-                      <a href="mailto:moussandou.mroivili@epitech.eu" className="text-[#00FFFF] hover:text-[#9333EA] transition-colors break-all text-sm sm:text-base">
+                      <a href="mailto:moussandou.mroivili@epitech.eu" className="text-[#00FFFF] hover:text-[#A855F7] transition-colors break-all text-sm sm:text-base">
                         moussandou.mroivili@epitech.eu
                       </a>
                     </div>
@@ -228,21 +228,21 @@ export default function App() {
                     <div className="flex items-center hover-glow gap-2 flex-wrap">
                       <span className="text-[#00FFFF] mr-3 flex-shrink-0">[NET]</span>
                       <TechIcon name="linkedin" size={16} />
-                      <a href="https://linkedin.com/in/moussandou" className="text-[#FFD700] hover:text-[#9333EA] transition-colors break-all text-sm sm:text-base">
+                      <a href="https://linkedin.com/in/moussandou" className="text-[#FFD700] hover:text-[#A855F7] transition-colors break-all text-sm sm:text-base">
                         linkedin.com/in/moussandou
                       </a>
                     </div>
                     <div className="flex items-center hover-glow gap-2 flex-wrap">
                       <span className="text-[#FF0080] mr-3 flex-shrink-0">[INSTA]</span>
                       <TechIcon name="instagram" size={16} />
-                      <a href="https://www.instagram.com/__takax__" target="_blank" rel="noopener noreferrer" className="text-[#9333EA] hover:text-[#00FFFF] transition-colors">
+                      <a href="https://www.instagram.com/__takax__" target="_blank" rel="noopener noreferrer" className="text-[#A855F7] hover:text-[#00FFFF] transition-colors">
                         @__takax__
                       </a>
                     </div>
                     <div className="flex items-center hover-glow gap-2 flex-wrap">
                       <span className="text-[#00FFFF] mr-3 flex-shrink-0">[PAY]</span>
                       <TechIcon name="paypal" size={16} />
-                      <a href="https://www.paypal.com/paypalme/Moussandou17" target="_blank" rel="noopener noreferrer" className="text-[#FFD700] hover:text-[#9333EA] transition-colors">
+                      <a href="https://www.paypal.com/paypalme/Moussandou17" target="_blank" rel="noopener noreferrer" className="text-[#FFD700] hover:text-[#A855F7] transition-colors">
                         PayPal.me/Moussandou17
                       </a>
                     </div>
@@ -272,7 +272,7 @@ export default function App() {
                       name: "JEB - Plateforme Incubateur",
                       desc: "Full-stack React, API intégration, dashboard admin",
                       tech: "React",
-                      color: "#9333EA",
+                      color: "#A855F7",
                       role: "Développeur Frontend",
                       icon: "react",
                       image: jebImage
@@ -325,9 +325,9 @@ export default function App() {
                     };
                     
                     return (
-                    <div key={index} className="border-l-2 border-[#9333EA]/50 pl-4 hover-glow">
+                    <div key={index} className="border-l-2 border-[#A855F7]/50 pl-4 hover-glow">
                       {project.video && (
-                        <div className="mb-3 rounded-lg overflow-hidden border border-[#9333EA]/30">
+                        <div className="mb-3 rounded-lg overflow-hidden border border-[#A855F7]/30">
                           {project.video.includes('youtube.com') || project.video.includes('youtu.be') ? (
                             <iframe
                               src={project.video}
@@ -345,7 +345,7 @@ export default function App() {
                         </div>
                       )}
                       {project.images && project.images.length > 0 && (
-                        <div className="mb-3 rounded-lg overflow-hidden border border-[#9333EA]/30">
+                        <div className="mb-3 rounded-lg overflow-hidden border border-[#A855F7]/30">
                           <Slider {...carouselSettings}>
                             {project.images.map((img, imgIndex) => (
                               <div key={imgIndex}>
@@ -360,7 +360,7 @@ export default function App() {
                         </div>
                       )}
                       {project.image && (
-                        <div className="mb-3 rounded-lg overflow-hidden border border-[#9333EA]/30">
+                        <div className="mb-3 rounded-lg overflow-hidden border border-[#A855F7]/30">
                           <img 
                             src={project.image} 
                             alt={project.name}
@@ -375,7 +375,7 @@ export default function App() {
                               href={project.link} 
                               target="_blank" 
                               rel="noopener noreferrer"
-                              className="text-white hover:text-[#9333EA] transition-colors flex items-center gap-2"
+                              className="text-white hover:text-[#A855F7] transition-colors flex items-center gap-2"
                             >
                               {project.name} 
                               <TechIcon name="link" size={12} />
@@ -386,13 +386,13 @@ export default function App() {
                         </div>
                         <div className="flex items-center gap-1">
                           <TechIcon name={project.icon} size={12} />
-                          <span className="px-3 py-1 bg-[#1a1a1a] border border-[#9333EA]/30 text-sm hover-glow pulse-purple text-[#9333EA]">
+                          <span className="px-3 py-1 bg-[#1a1a1a] border border-[#A855F7]/30 text-sm hover-glow pulse-purple text-[#A855F7]">
                             {project.tech}
                           </span>
                         </div>
                       </div>
                       <div className="text-gray-400 text-sm">{project.desc}</div>
-                      <div className="text-[#9333EA] text-xs mt-1">Rôle: {project.role}</div>
+                      <div className="text-[#A855F7] text-xs mt-1">Rôle: {project.role}</div>
                     </div>
                   )})}
                 </div>
@@ -404,7 +404,7 @@ export default function App() {
         {/* Easter Egg Footer */}
         <ScrollReveal delay={0}>
           <div className="mt-16 text-center">
-            <div className="text-[#9333EA]/30 text-xs mb-4 float">
+            <div className="text-[#A855F7]/30 text-xs mb-4 float">
               <pre>
 {`[SYSTÈME] Connexion établie... 
 [TERMINAL] Bienvenue dans le réseau, ${new Date().getFullYear()}
