@@ -512,7 +512,8 @@ html {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: -1;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .matrix-text {
@@ -521,9 +522,9 @@ html {
   font-family: 'Share Tech Mono', monospace;
   font-size: 16px;
   color: #A855F7;
-  opacity: 0.25;
+  opacity: 0.35;
   animation: matrix-fall 12s linear infinite;
-  text-shadow: 0 0 5px #A855F7;
+  text-shadow: 0 0 8px #A855F7, 0 0 15px #A855F7;
   letter-spacing: 2px;
 }
 
@@ -533,10 +534,10 @@ html {
     transform: translateY(-100px);
   }
   10% {
-    opacity: 0.25;
+    opacity: 0.35;
   }
   90% {
-    opacity: 0.25;
+    opacity: 0.35;
   }
   100% {
     opacity: 0;
