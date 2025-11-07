@@ -8,6 +8,12 @@ interface DraggableTerminalProps {
   onOrderChange?: (id: string, newIndex: number) => void;
   id: string;
   index: number;
+  colors?: {
+    bg: string;
+    border: string;
+    header: string;
+    accent: string;
+  };
 }
 
 export function DraggableTerminal({
@@ -16,7 +22,8 @@ export function DraggableTerminal({
   children,
   onOrderChange: _onOrderChange,
   id: _id,
-  index: _index
+  index: _index,
+  colors
 }: DraggableTerminalProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
@@ -81,7 +88,7 @@ export function DraggableTerminal({
     >
       {/* Drag handle */}
       <div
-        className="absolute top-0 left-0 right-0 h-6 bg-[#A855F7]/10 border border-[#A855F7]/30 rounded-t-lg cursor-grab active:cursor-grabbing flex items-center justify-center hover:bg-[#A855F7]/20 transition-colors"
+        className={`absolute top-0 left-0 right-0 h-6 ${colors ? colors.header : 'bg-[#A855F7]/10'} border ${colors ? colors.border : 'border-[#A855F7]/30'} rounded-t-lg cursor-grab active:cursor-grabbing flex items-center justify-center hover:opacity-80 transition-all`}
         onMouseDown={handleMouseDown}
       >
         <div className="flex gap-1">
@@ -89,14 +96,14 @@ export function DraggableTerminal({
           <div className="w-2 h-2 bg-[#FFD700] rounded-full"></div>
           <div className="w-2 h-2 bg-[#00FFFF] rounded-full"></div>
         </div>
-        <div className="absolute right-2 text-xs text-[#A855F7]/60">
-          {'///'} 
+        <div className={`absolute right-2 text-xs ${colors ? colors.accent : 'text-[#A855F7]'}/60`}>
+          {'///'}
         </div>
       </div>
-      
+
       {/* Terminal content with margin for drag handle */}
       <div className="mt-6">
-        <TerminalSection command={command} delay={delay}>
+        <TerminalSection command={command} delay={delay} colors={colors}>
           {children}
         </TerminalSection>
       </div>

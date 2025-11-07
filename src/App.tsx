@@ -1,10 +1,11 @@
+import { useState } from 'react';
 import { AsciiArt } from './components/AsciiArt';
-import { MatrixBackground } from './components/MatrixBackground';
 import { TypewriterEffect } from './components/TypewriterEffect';
 import { ScrollReveal } from './components/ScrollReveal';
 import { NeofetchSection } from './components/NeofetchSection';
 import { TechIcon } from './components/TechIcon';
 import { DraggableTerminal } from './components/DraggableTerminal';
+import { ThemeProvider, getTerminalColors } from './components/ThemeProvider';
 import Slider from 'react-slick';
 
 // Images & Videos
@@ -15,32 +16,50 @@ const moocImage3 = '/Portfolio/assets/icom3.png';
 const rtypeVideo = '/Portfolio/assets/rtype.mov';
 
 export default function App() {
+  const [isHackMode, setIsHackMode] = useState(false);
+
   return (
-    <div className="min-h-screen bg-black crt-screen vhs-noise monocraft">
-      <MatrixBackground />
-      
+    <ThemeProvider isHackMode={isHackMode}>
+      <div className={`min-h-screen transition-colors duration-500 monocraft ${
+        isHackMode
+          ? 'bg-black crt-screen vhs-noise'
+          : 'bg-gradient-to-br from-[#F5F1E8] via-[#FAF7F0] to-[#FFF9E8]'
+      }`}>
+
+        {/* Toggle Button - Fixed position */}
+        <button
+        onClick={() => setIsHackMode(!isHackMode)}
+        className={`fixed top-6 right-6 z-50 px-6 py-3 rounded-lg font-bold text-sm transition-all duration-300 transform hover:scale-105 border-2 ${
+          isHackMode
+            ? 'bg-black border-[#A855F7] text-[#A855F7] hover:bg-[#A855F7] hover:text-black shadow-[0_0_20px_rgba(168,85,247,0.5)]'
+            : 'bg-white border-[#8B7355] text-[#8B7355] hover:bg-[#8B7355] hover:text-white shadow-lg'
+        }`}
+      >
+        {isHackMode ? '☀️ Mode Clair' : '💻 Hack Mode'}
+      </button>
+
       {/* Main terminal interface - utilisation de tout l'espace */}
       <div className="relative z-10 w-full px-4 py-8 lg:px-8 xl:px-12">
         
         {/* Header with boot sequence */}
         <ScrollReveal delay={0}>
           <div className="mb-12">
-            <div className="text-[#A855F7] mb-4">
-              <TypewriterEffect 
+            <div className={`${isHackMode ? 'text-[#A855F7]' : 'text-[#8B7355]'} mb-4`}>
+              <TypewriterEffect
                 text="moussandou@localhost:~$ ./lancer_portfolio.sh"
                 speed={80}
                 className="text-lg lg:text-xl"
               />
             </div>
-            <div className="text-[#FFD700] mb-6 pulse-purple px-4 py-2 inline-block rounded">
+            <div className={`${isHackMode ? 'text-[#FFD700]' : 'text-[#8B7355]'} mb-6 px-4 py-2 inline-block rounded ${isHackMode ? 'pulse-purple' : 'bg-white/50'}`}>
               [████████████] 100% - Accès autorisé ✓
             </div>
             <div className="text-center mb-8">
-              <div className="text-[rgb(0,132,255)] text-lg lg:text-xl">
+              <div className={`${isHackMode ? 'text-[rgb(0,132,255)]' : 'text-[#8B7355]'} text-lg lg:text-xl font-semibold`}>
                 // Développeur //
               </div>
             </div>
-            <AsciiArt />
+            <AsciiArt isHackMode={isHackMode} />
           </div>
         </ScrollReveal>
 
@@ -418,5 +437,6 @@ export default function App() {
         </ScrollReveal>
       </div>
     </div>
+    </ThemeProvider>
   );
 }
