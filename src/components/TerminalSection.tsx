@@ -5,6 +5,7 @@ interface TerminalSectionProps {
   command: string;
   children: React.ReactNode;
   delay?: number;
+  isHackMode?: boolean;
   colors?: {
     bg: string;
     border: string;
@@ -14,7 +15,7 @@ interface TerminalSectionProps {
   };
 }
 
-export function TerminalSection({ command, children, delay = 0, colors }: TerminalSectionProps) {
+export function TerminalSection({ command, children, delay = 0, isHackMode = false, colors }: TerminalSectionProps) {
   const [showContent, setShowContent] = useState(false);
 
   const handleCommandComplete = () => {
@@ -47,6 +48,7 @@ export function TerminalSection({ command, children, delay = 0, colors }: Termin
             delay={delay}
             onComplete={handleCommandComplete}
             className={colors ? colors.accent : 'text-[#A855F7]'}
+            isHackMode={isHackMode}
           />
         </div>
 

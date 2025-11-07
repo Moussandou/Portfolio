@@ -8,11 +8,13 @@ interface DraggableTerminalProps {
   onOrderChange?: (id: string, newIndex: number) => void;
   id: string;
   index: number;
+  isHackMode?: boolean;
   colors?: {
     bg: string;
     border: string;
     header: string;
     accent: string;
+    text: string;
   };
 }
 
@@ -23,6 +25,7 @@ export function DraggableTerminal({
   onOrderChange: _onOrderChange,
   id: _id,
   index: _index,
+  isHackMode = false,
   colors
 }: DraggableTerminalProps) {
   const [isDragging, setIsDragging] = useState(false);
@@ -103,7 +106,7 @@ export function DraggableTerminal({
 
       {/* Terminal content with margin for drag handle */}
       <div className="mt-6">
-        <TerminalSection command={command} delay={delay} colors={colors}>
+        <TerminalSection command={command} delay={delay} isHackMode={isHackMode} colors={colors}>
           {children}
         </TerminalSection>
       </div>

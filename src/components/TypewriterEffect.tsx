@@ -6,9 +6,10 @@ interface TypewriterEffectProps {
   delay?: number;
   onComplete?: () => void;
   className?: string;
+  isHackMode?: boolean;
 }
 
-export function TypewriterEffect({ text, speed = 50, delay = 0, onComplete, className = "" }: TypewriterEffectProps) {
+export function TypewriterEffect({ text, speed = 50, delay = 0, onComplete, className = "", isHackMode = false }: TypewriterEffectProps) {
   const [displayedText, setDisplayedText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
@@ -37,7 +38,7 @@ export function TypewriterEffect({ text, speed = 50, delay = 0, onComplete, clas
   return (
     <span className={className}>
       {displayedText}
-      {showCursor && (currentIndex <= text.length) && <span className="animate-pulse text-[#A855F7]">_</span>}
+      {showCursor && (currentIndex <= text.length) && <span className={`animate-pulse ${isHackMode ? 'text-[#A855F7]' : 'text-[#8B7355]'}`}>_</span>}
     </span>
   );
 }
