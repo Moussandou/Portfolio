@@ -152,9 +152,12 @@ export default function App() {
                   </div>
                   <div className={`flex items-center gap-2 ${isHackMode ? 'hover-glow' : ''}`}>
                     <span className={isHackMode ? 'text-[#FFD700]' : 'text-[#D2691E]'}>OS :</span>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 flex-wrap">
                       <TechIcon name="linux" size={16} />
                       <span className="text-[#FF0080]">Linux</span>
+                      <span className={isHackMode ? 'text-white' : 'text-[#8B7355]'}>,</span>
+                      <TechIcon name="apple" size={16} />
+                      <span className="text-[#FF0080]">macOS</span>
                       <span className={isHackMode ? 'text-white' : 'text-[#8B7355]'}>&</span>
                       <TechIcon name="windows" size={16} />
                       <span className="text-[#FF0080]">Windows</span>

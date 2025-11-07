@@ -567,6 +567,28 @@ html {
   transform: scale(1.02);
 }
 
+/* Module glow effects - Hack mode (purple) */
+.crt-screen .terminal-window,
+.vhs-noise .terminal-window {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.15), 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.crt-screen .terminal-window:hover,
+.vhs-noise .terminal-window:hover {
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.25), 0 8px 12px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Module glow effects - Light mode (terracotta) */
+body:not(.crt-screen):not(.vhs-noise) .terminal-window {
+  box-shadow: 0 0 20px rgba(210, 105, 30, 0.12), 0 4px 6px rgba(139, 115, 85, 0.15);
+}
+
+body:not(.crt-screen):not(.vhs-noise) .terminal-window:hover {
+  box-shadow: 0 0 30px rgba(210, 105, 30, 0.2), 0 8px 12px rgba(139, 115, 85, 0.2);
+  transform: translateY(-2px);
+}
+
 /* Pulse animation for important elements */
 .pulse-purple {
   animation: pulse-purple 2s infinite;

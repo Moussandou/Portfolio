@@ -23,7 +23,7 @@ export function AsciiArt({ isHackMode }: AsciiArtProps) {
       </div>
 
       <div className="flex justify-center mt-4 overflow-hidden">
-        <pre className={`text-[7px] sm:text-[9px] md:text-xs whitespace-pre select-none ${isHackMode ? 'glitch-text opacity-40' : 'text-[#D2691E] opacity-80'} leading-[0.9] scale-x-[0.9] sm:scale-x-95 md:scale-x-100 font-semibold`}>
+        <pre className={`text-[7px] sm:text-[9px] md:text-xs whitespace-pre select-none ${isHackMode ? 'glitch-text opacity-40' : 'text-[#D2691E] opacity-80'} leading-tight scale-x-[0.9] sm:scale-x-95 md:scale-x-100 font-semibold`}>
 {`
     ███╗   ███╗██████╗  ██████╗ ██╗██╗   ██╗██╗██╗     ██╗
     ████╗ ████║██╔══██╗██╔═══██╗██║██║   ██║██║██║     ██║

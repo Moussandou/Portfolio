@@ -25,7 +25,7 @@ export function TerminalSection({ command, children, delay = 0, isHackMode = fal
   };
 
   return (
-    <div className={`mb-8 terminal-window border ${colors ? colors.border : 'border-[#A855F7]/30'} ${colors ? colors.bg : 'bg-black/90'} backdrop-blur-sm rounded-lg shadow-lg`}>
+    <div className={`mb-8 terminal-window border ${colors ? colors.border : 'border-[#A855F7]/30'} ${colors ? colors.bg : 'bg-black/90'} backdrop-blur-sm rounded-lg transition-all duration-300`}>
       {/* Terminal header */}
       <div className={`flex items-center justify-between ${colors ? colors.header : 'bg-[#1a1a1a]'} border-b ${colors ? colors.border : 'border-[#A855F7]/30'} px-4 py-2 rounded-t-lg`}>
         <div className="flex items-center space-x-2">
