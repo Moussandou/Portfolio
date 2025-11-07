@@ -8,11 +8,13 @@ import { NeofetchSection } from './components/NeofetchSection';
 import { TechBadge } from './components/TechBadge';
 import { TechIcon } from './components/TechIcon';
 import { DraggableTerminal } from './components/DraggableTerminal';
-import jebImage from 'figma:asset/c88306d1bd1a330ea83e26f654d313e6ca6187ae.png';
-import moocImage1 from 'figma:asset/517e22c7fc152af0d38104577503cd31e2335682.png';
-import moocImage2 from 'figma:asset/64a9690ba638cf0e7f2beb9b8a13c7bdd81b217c.png';
-import moocImage3 from 'figma:asset/ba33fd93f893375e00e9562b866bc2ce0ae2cda1.png';
 import Slider from 'react-slick';
+
+// Images
+const jebImage = '/Portfolio/assets/jeb.png';
+const moocImage1 = '/Portfolio/assets/icom1.png';
+const moocImage2 = '/Portfolio/assets/icom2.png';
+const moocImage3 = '/Portfolio/assets/icom3.png';
 
 export default function App() {
   return (
