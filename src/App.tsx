@@ -70,14 +70,14 @@ export default function App() {
           <div className="space-y-6 lg:space-y-8">
             {/* Neofetch About Section */}
             <ScrollReveal delay={0}>
-              <DraggableTerminal command="neofetch" delay={0} id="neofetch" index={0}>
+              <DraggableTerminal command="neofetch" delay={0} id="neofetch" index={0} colors={getTerminalColors(isHackMode, 0)}>
                 <NeofetchSection />
               </DraggableTerminal>
             </ScrollReveal>
 
             {/* Skills Section */}
             <ScrollReveal delay={0}>
-              <DraggableTerminal command="./competences --list" delay={0} id="skills" index={1}>
+              <DraggableTerminal command="./competences --list" delay={0} id="skills" index={1} colors={getTerminalColors(isHackMode, 1)}>
                 <div className="space-y-4">
                   <div>
                     <span className="text-[#FFD700]">Langages :</span>
@@ -169,7 +169,7 @@ export default function App() {
 
             {/* Experience Section */}
             <ScrollReveal delay={0}>
-              <DraggableTerminal command="./experience --dev-only" delay={0} id="experience" index={4}>
+              <DraggableTerminal command="./experience --dev-only" delay={0} id="experience" index={4} colors={getTerminalColors(isHackMode, 4)}>
                 <div className="space-y-4">
                   <div className="border-l-2 border-[#A855F7]/50 pl-4 hover-glow">
                     <div className="text-[#A855F7] flex items-center gap-2">
@@ -206,7 +206,7 @@ export default function App() {
 
             {/* Certifications Section */}
             <ScrollReveal delay={0}>
-              <DraggableTerminal command="./certifications --valid" delay={0} id="certifications" index={5}>
+              <DraggableTerminal command="./certifications --valid" delay={0} id="certifications" index={5} colors={getTerminalColors(isHackMode, 5)}>
                 <div className="space-y-3">
                   <div className="flex items-center hover-glow gap-2">
                     <span className="text-[#A855F7] mr-3">[CERT]</span>
@@ -224,7 +224,7 @@ export default function App() {
 
             {/* Contact Section */}
             <ScrollReveal delay={0}>
-              <DraggableTerminal command="./contact --all" delay={0} id="contact" index={2}>
+              <DraggableTerminal command="./contact --all" delay={0} id="contact" index={2} colors={getTerminalColors(isHackMode, 2)}>
                 <div className="space-y-4">
                   <div className="grid grid-cols-1 gap-3">
                     <div className="flex items-center hover-glow gap-2 flex-wrap">
@@ -275,7 +275,7 @@ export default function App() {
           <div className="space-y-6 lg:space-y-8">
             {/* Projects Section */}
             <ScrollReveal delay={0}>
-              <DraggableTerminal command="./projets --showcase" delay={0} id="projects" index={3}>
+              <DraggableTerminal command="./projets --showcase" delay={0} id="projects" index={3} colors={getTerminalColors(isHackMode, 3)}>
                 <div className="space-y-5">
                   {[
                     {
@@ -423,14 +423,14 @@ export default function App() {
         {/* Easter Egg Footer */}
         <ScrollReveal delay={0}>
           <div className="mt-16 text-center">
-            <div className="text-[#A855F7]/30 text-xs mb-4 float">
+            <div className={`${isHackMode ? 'text-[#A855F7]/30' : 'text-[#8B7355]/40'} text-xs mb-4 float`}>
               <pre>
-{`[SYSTÈME] Connexion établie... 
+{`[SYSTÈME] Connexion établie...
 [TERMINAL] Bienvenue dans le réseau, ${new Date().getFullYear()}
 [AVERTISSEMENT] Ce portfolio peut contenir des traces de code génial`}
               </pre>
             </div>
-            <div className="text-gray-600 text-xs hover-glow">
+            <div className={`${isHackMode ? 'text-gray-600' : 'text-[#8B7355]'} text-xs hover-glow`}>
               moussandou@localhost:~$ <span className="animate-pulse">_</span>
             </div>
           </div>
