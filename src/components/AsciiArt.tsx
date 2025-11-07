@@ -11,20 +11,13 @@ export function AsciiArt() {
 
   return (
     <div className="ascii-art float">
-      {/* Version Desktop - Caché sur mobile */}
-      <pre className="hidden lg:block text-[#9333EA] text-xs opacity-30 whitespace-pre overflow-hidden select-none hover-glow">
+      {/* ASCII Art MOUSSANDOU - Responsive sur toutes les tailles */}
+      <pre className="text-[#9333EA] text-[6px] sm:text-[8px] md:text-[10px] lg:text-xs opacity-30 whitespace-pre overflow-x-auto select-none hover-glow leading-tight">
         {nameArt}
       </pre>
 
-      {/* Version Mobile - Grande typographie responsive */}
-      <div className="lg:hidden text-center mb-6">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#9333EA] hover-glow">
-          MOUSSANDOU
-        </h1>
-      </div>
-
       <div className="flex justify-center mt-4">
-        <pre className="text-[10px] sm:text-xs opacity-40 whitespace-pre overflow-x-auto select-none glitch-text">
+        <pre className="text-[8px] sm:text-[10px] md:text-xs opacity-40 whitespace-pre overflow-x-auto select-none glitch-text leading-tight">
 {`
     ███╗   ███╗██████╗  ██████╗ ██╗██╗   ██╗██╗██╗     ██╗
     ████╗ ████║██╔══██╗██╔═══██╗██║██║   ██║██║██║     ██║
