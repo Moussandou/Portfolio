@@ -5,31 +5,31 @@ export function MatrixBackground() {
 
   useEffect(() => {
     const createMatrixColumn = (index: number) => {
-      const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+      const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン<>{}[]';
       const column = [];
-      const height = Math.floor(Math.random() * 20) + 10;
-      
+      const height = Math.floor(Math.random() * 15) + 8;
+
       for (let i = 0; i < height; i++) {
         column.push(characters[Math.floor(Math.random() * characters.length)]);
       }
-      
+
       return (
         <div
           key={index}
           className="matrix-text"
           style={{
             left: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 10}s`,
-            animationDuration: `${Math.random() * 10 + 5}s`
+            animationDelay: `${Math.random() * 8}s`,
+            animationDuration: `${Math.random() * 8 + 10}s`
           }}
         >
-          {column.join('')}
+          {column.join('\n')}
         </div>
       );
     };
 
     const columns = [];
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 80; i++) {
       columns.push(createMatrixColumn(i));
     }
     setMatrixColumns(columns);

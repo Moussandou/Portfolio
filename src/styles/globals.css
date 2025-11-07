@@ -519,14 +519,27 @@ html {
   position: absolute;
   top: -100px;
   font-family: 'Share Tech Mono', monospace;
-  font-size: 14px;
+  font-size: 16px;
   color: #A855F7;
-  opacity: 0.1;
-  animation: matrix-fall 10s linear infinite;
+  opacity: 0.25;
+  animation: matrix-fall 12s linear infinite;
+  text-shadow: 0 0 5px #A855F7;
+  letter-spacing: 2px;
 }
 
 @keyframes matrix-fall {
-  to {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  10% {
+    opacity: 0.25;
+  }
+  90% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 0;
     transform: translateY(100vh);
   }
 }
