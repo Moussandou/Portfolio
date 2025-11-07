@@ -211,39 +211,39 @@ export default function App() {
               <DraggableTerminal command="./contact --all" delay={0} id="contact" index={2}>
                 <div className="space-y-4">
                   <div className="grid grid-cols-1 gap-3">
-                    <div className="flex items-center hover-glow gap-2">
-                      <span className="text-[#9333EA] mr-3">[TEL]</span>
+                    <div className="flex items-center hover-glow gap-2 flex-wrap">
+                      <span className="text-[#9333EA] mr-3 flex-shrink-0">[TEL]</span>
                       <TechIcon name="phone" size={16} />
-                      <span>07 81 63 32 78</span>
+                      <span className="break-all">07 81 63 32 78</span>
                     </div>
-                    <div className="flex items-center hover-glow gap-2">
-                      <span className="text-[#FFD700] mr-3">[MAIL]</span>
+                    <div className="flex items-center hover-glow gap-2 flex-wrap">
+                      <span className="text-[#FFD700] mr-3 flex-shrink-0">[MAIL]</span>
                       <TechIcon name="email" size={16} />
-                      <a href="mailto:moussandou.mroivili@epitech.eu" className="text-[#00FFFF] hover:text-[#9333EA] transition-colors">
+                      <a href="mailto:moussandou.mroivili@epitech.eu" className="text-[#00FFFF] hover:text-[#9333EA] transition-colors break-all text-sm sm:text-base">
                         moussandou.mroivili@epitech.eu
                       </a>
                     </div>
-                    <div className="flex items-center hover-glow gap-2">
-                      <span className="text-[#FF0080] mr-3">[LOC]</span>
+                    <div className="flex items-center hover-glow gap-2 flex-wrap">
+                      <span className="text-[#FF0080] mr-3 flex-shrink-0">[LOC]</span>
                       <TechIcon name="location" size={16} />
                       <span>Marseille, France</span>
                     </div>
-                    <div className="flex items-center hover-glow gap-2">
-                      <span className="text-[#00FFFF] mr-3">[NET]</span>
+                    <div className="flex items-center hover-glow gap-2 flex-wrap">
+                      <span className="text-[#00FFFF] mr-3 flex-shrink-0">[NET]</span>
                       <TechIcon name="linkedin" size={16} />
-                      <a href="https://linkedin.com/in/moussandou" className="text-[#FFD700] hover:text-[#9333EA] transition-colors">
+                      <a href="https://linkedin.com/in/moussandou" className="text-[#FFD700] hover:text-[#9333EA] transition-colors break-all text-sm sm:text-base">
                         linkedin.com/in/moussandou
                       </a>
                     </div>
-                    <div className="flex items-center hover-glow gap-2">
-                      <span className="text-[#FF0080] mr-3">[INSTA]</span>
+                    <div className="flex items-center hover-glow gap-2 flex-wrap">
+                      <span className="text-[#FF0080] mr-3 flex-shrink-0">[INSTA]</span>
                       <TechIcon name="instagram" size={16} />
                       <a href="https://www.instagram.com/__takax__" target="_blank" rel="noopener noreferrer" className="text-[#9333EA] hover:text-[#00FFFF] transition-colors">
                         @__takax__
                       </a>
                     </div>
-                    <div className="flex items-center hover-glow gap-2">
-                      <span className="text-[#00FFFF] mr-3">[PAY]</span>
+                    <div className="flex items-center hover-glow gap-2 flex-wrap">
+                      <span className="text-[#00FFFF] mr-3 flex-shrink-0">[PAY]</span>
                       <TechIcon name="paypal" size={16} />
                       <a href="https://www.paypal.com/paypalme/Moussandou17" target="_blank" rel="noopener noreferrer" className="text-[#FFD700] hover:text-[#9333EA] transition-colors">
                         PayPal.me/Moussandou17
@@ -263,15 +263,6 @@ export default function App() {
                 <div className="space-y-5">
                   {[
                     {
-                      name: "JEB - Plateforme Incubateur",
-                      desc: "Full-stack React, API intégration, dashboard admin",
-                      tech: "React",
-                      color: "#9333EA",
-                      role: "Développeur Frontend",
-                      icon: "react",
-                      image: jebImage
-                    },
-                    {
                       name: "R-Type - Jeu Arcade Multijoueur",
                       desc: "Jeu arcade multijoueur géré par un serveur",
                       tech: "C++ SFML",
@@ -279,6 +270,15 @@ export default function App() {
                       role: "Développeur Graphique SFML",
                       icon: "cpp",
                       video: rtypeVideo
+                    },
+                    {
+                      name: "JEB - Plateforme Incubateur",
+                      desc: "Full-stack React, API intégration, dashboard admin",
+                      tech: "React",
+                      color: "#9333EA",
+                      role: "Développeur Frontend",
+                      icon: "react",
+                      image: jebImage
                     },
                     {
                       name: "Zappy - Jeu Réseau Multijoueur",
