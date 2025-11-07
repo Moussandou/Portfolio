@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { TypewriterEffect } from './TypewriterEffect';
 
 interface TerminalSectionProps {
@@ -9,15 +9,6 @@ interface TerminalSectionProps {
 
 export function TerminalSection({ command, children, delay = 0 }: TerminalSectionProps) {
   const [showContent, setShowContent] = useState(false);
-  const [commandComplete, setCommandComplete] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setCommandComplete(true);
-    }, delay + command.length * 50 + 500);
-
-    return () => clearTimeout(timer);
-  }, [command.length, delay]);
 
   const handleCommandComplete = () => {
     setTimeout(() => {

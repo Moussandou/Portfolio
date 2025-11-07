@@ -10,13 +10,13 @@ interface DraggableTerminalProps {
   index: number;
 }
 
-export function DraggableTerminal({ 
-  command, 
-  delay, 
-  children, 
-  onOrderChange, 
-  id, 
-  index 
+export function DraggableTerminal({
+  command,
+  delay,
+  children,
+  onOrderChange: _onOrderChange,
+  id: _id,
+  index: _index
 }: DraggableTerminalProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });

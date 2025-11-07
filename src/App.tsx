@@ -1,11 +1,8 @@
-import { TerminalSection } from './components/TerminalSection';
-import { GlitchText } from './components/GlitchText';
 import { AsciiArt } from './components/AsciiArt';
 import { MatrixBackground } from './components/MatrixBackground';
 import { TypewriterEffect } from './components/TypewriterEffect';
 import { ScrollReveal } from './components/ScrollReveal';
 import { NeofetchSection } from './components/NeofetchSection';
-import { TechBadge } from './components/TechBadge';
 import { TechIcon } from './components/TechIcon';
 import { DraggableTerminal } from './components/DraggableTerminal';
 import Slider from 'react-slick';
