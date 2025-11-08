@@ -49,7 +49,7 @@ export const getTerminalColors = (isHackMode: boolean, index: number) => {
   const [bg, border] = bgBorderClass.split(' ');
 
   return {
-    bg: `${bg}/95`,
+    bg: bg, // Blanc pur sans opacité
     border: `${border} border-2`,
     text: 'text-[#0E6655]',
     header: `${bg} ${border}`,
