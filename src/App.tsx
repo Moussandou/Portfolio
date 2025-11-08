@@ -362,13 +362,17 @@ export default function App() {
                               className="w-full aspect-video"
                               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                               allowFullScreen
+                              title={`Vidéo du projet ${project.name}`}
                             />
                           ) : (
                             <video
                               src={project.video}
                               controls
                               className="w-full h-auto hover:scale-105 transition-transform duration-300"
-                            />
+                              aria-label={`Démonstration vidéo du projet ${project.name}`}
+                            >
+                              Votre navigateur ne supporte pas la lecture de vidéos.
+                            </video>
                           )}
                         </div>
                       )}
@@ -379,8 +383,9 @@ export default function App() {
                               <div key={imgIndex}>
                                 <img
                                   src={img}
-                                  alt={`${project.name} - Image ${imgIndex + 1}`}
+                                  alt={`Capture d'écran ${imgIndex + 1} du projet ${project.name}`}
                                   className="w-full h-auto object-cover"
+                                  loading="lazy"
                                 />
                               </div>
                             ))}
@@ -391,8 +396,9 @@ export default function App() {
                         <div className={`mb-3 rounded-lg overflow-hidden border ${isHackMode ? 'border-[#A855F7]/30' : 'border-[#D2691E]/30'}`}>
                           <img
                             src={project.image}
-                            alt={project.name}
+                            alt={`Aperçu du projet ${project.name}`}
                             className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
+                            loading="lazy"
                           />
                         </div>
                       )}

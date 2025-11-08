@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page non trouvée | Moussandou Mroivili</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #F5F1E8 0%, #FAF7F0 50%, #FFF9E8 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            border-radius: 12px;
+            padding: 48px;
+            box-shadow: 0 4px 6px rgba(139, 115, 85, 0.1);
+            text-align: center;
+        }
+        .error-code {
+            font-size: 120px;
+            font-weight: bold;
+            color: #D2691E;
+            line-height: 1;
+            margin-bottom: 24px;
+        }
+        h1 {
+            font-size: 32px;
+            color: #8B7355;
+            margin-bottom: 16px;
+        }
+        p {
+            font-size: 18px;
+            color: #8B7355;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: #8B7355;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            background: #D2691E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(210, 105, 30, 0.3);
+        }
+        .ascii {
+            margin: 24px 0;
+            color: #D2691E;
+            font-size: 12px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-code">404</div>
+        <h1>Page non trouvée</h1>
+        <p>
+            Désolé, la page que vous recherchez n'existe pas ou a été déplacée.
+        </p>
+        <div class="ascii">
+            <pre>
+   _____ _____  _____   ____  _____
+  / ____|  __ \|  __ \ / __ \|  __ \
+ | (___ | |__) | |__) | |  | | |__) |
+  \___ \|  _  /|  _  /| |  | |  _  /
+  ____) | | \ \| | \ \| |__| | | \ \
+ |_____/|_|  \_\_|  \_\\____/|_|  \_\
+            </pre>
+        </div>
+        <a href="/Portfolio/" class="btn">Retour à l'accueil</a>
+    </div>
+</body>
+</html>
