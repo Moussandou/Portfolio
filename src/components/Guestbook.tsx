@@ -13,17 +13,65 @@ interface GuestbookProps {
   isHackMode?: boolean;
 }
 
-// Liste de mots interdits pour la modération
+// Liste de mots interdits pour la modération (français et anglais)
 const BLOCKED_WORDS = [
-  'con', 'connard', 'salaud', 'putain', 'merde', 'chier', 'fdp', 'enculé',
-  'pute', 'salope', 'bite', 'couille', 'cul', 'sexe', 'porn', 'fuck', 'shit',
-  'dick', 'ass', 'bitch', 'damn', 'hell', 'cunt', 'nigger', 'fag'
+  // Français
+  'con', 'connard', 'connasse', 'salaud', 'salope', 'putain', 'pute', 'puta',
+  'merde', 'chier', 'chiasse', 'fdp', 'enculé', 'enculer', 'encule', 'enfoiré',
+  'bite', 'bites', 'couille', 'couilles', 'cul', 'sexe', 'porn', 'porno',
+  'taré', 'tarée', 'débile', 'abruti', 'abrutie', 'crétin', 'crétine',
+  'imbécile', 'idiot', 'idiote', 'nique', 'niquer', 'batard', 'bâtard',
+  'salop', 'fils de pute', 'pd', 'pédé', 'tantouze', 'tapette',
+  'gros con', 'grosse conne', 'fils de', 'va te faire', 'va te',
+  'ta gueule', 'ferme ta gueule', 'ta mere', 'ta mère', 'nique ta mère',
+  'nique ta mere', 'ntm', 'tg', 'ftg', 'connard', 'sale',
+
+  // Anglais
+  'fuck', 'fucker', 'fucking', 'fucked', 'shit', 'shitty', 'bullshit',
+  'dick', 'dickhead', 'ass', 'asshole', 'bitch', 'bitches',
+  'damn', 'dammit', 'hell', 'cunt', 'pussy', 'cock',
+  'bastard', 'motherfucker', 'mofo', 'whore', 'slut',
+  'nigger', 'nigga', 'fag', 'faggot', 'retard', 'retarded',
+  'wtf', 'stfu', 'kys'
 ];
 
-// Fonction de modération
+// Fonction de modération améliorée
 const moderateContent = (text: string): boolean => {
-  const lowerText = text.toLowerCase();
-  return !BLOCKED_WORDS.some(word => lowerText.includes(word));
+  // Normalisation du texte
+  let normalizedText = text.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // Supprime les accents
+    .replace(/[^a-z0-9\s]/g, ' ') // Remplace la ponctuation par des espaces
+    .replace(/\s+/g, ' ') // Normalise les espaces multiples
+    .trim();
+
+  // Vérification des mots interdits
+  for (const word of BLOCKED_WORDS) {
+    const normalizedWord = word.toLowerCase()
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]/g, '');
+
+    // Vérifie le mot exact avec des espaces ou début/fin de texte
+    const wordRegex = new RegExp(`(^|\\s)${normalizedWord}(\\s|$)`, 'i');
+    if (wordRegex.test(normalizedText)) {
+      return false;
+    }
+
+    // Vérifie aussi les variantes avec leet speak (0 pour o, 1 pour i, 3 pour e, etc.)
+    const leetText = normalizedText
+      .replace(/0/g, 'o')
+      .replace(/1/g, 'i')
+      .replace(/3/g, 'e')
+      .replace(/4/g, 'a')
+      .replace(/5/g, 's')
+      .replace(/7/g, 't')
+      .replace(/8/g, 'b');
+
+    if (wordRegex.test(leetText)) {
+      return false;
+    }
+  }
+
+  return true;
 };
 
 export function Guestbook({ isHackMode = false }: GuestbookProps) {
