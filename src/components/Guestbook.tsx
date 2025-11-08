@@ -38,7 +38,7 @@ const BLOCKED_WORDS = [
 // Fonction de modération améliorée
 const moderateContent = (text: string): boolean => {
   // Normalisation du texte
-  let normalizedText = text.toLowerCase()
+  const normalizedText = text.toLowerCase()
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // Supprime les accents
     .replace(/[^a-z0-9\s]/g, ' ') // Remplace la ponctuation par des espaces
     .replace(/\s+/g, ' ') // Normalise les espaces multiples
