@@ -13,7 +13,7 @@ const jebImage = '/Portfolio/assets/jeb.png';
 const moocImage1 = '/Portfolio/assets/icom1.png';
 const moocImage2 = '/Portfolio/assets/icom2.png';
 const moocImage3 = '/Portfolio/assets/icom3.png';
-const rtypeVideo = '/Portfolio/assets/rtype.mov';
+const rtypeVideo = '/Portfolio/assets/rtype.mp4';
 
 export default function App() {
   const [isHackMode, setIsHackMode] = useState(false);
