@@ -6,6 +6,7 @@ import { NeofetchSection } from './components/NeofetchSection';
 import { TechIcon } from './components/TechIcon';
 import { DraggableTerminal } from './components/DraggableTerminal';
 import { ThemeProvider, getTerminalColors } from './components/ThemeProvider';
+import { Guestbook } from './components/Guestbook';
 import Slider from 'react-slick';
 
 // Images & Videos
@@ -430,6 +431,13 @@ export default function App() {
                     </div>
                   )})}
                 </div>
+              </DraggableTerminal>
+            </ScrollReveal>
+
+            {/* Guestbook Section */}
+            <ScrollReveal delay={0}>
+              <DraggableTerminal command="./guestbook --open" delay={0} id="guestbook" index={6} isHackMode={isHackMode} colors={getTerminalColors(isHackMode, 6)}>
+                <Guestbook isHackMode={isHackMode} />
               </DraggableTerminal>
             </ScrollReveal>
           </div>
