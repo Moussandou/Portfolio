@@ -219,8 +219,8 @@ html {
   right: 0;
   bottom: 0;
   background: 
-    linear-gradient(transparent 98%, rgba(147, 51, 234, 0.03) 100%),
-    linear-gradient(90deg, transparent 98%, rgba(147, 51, 234, 0.03) 100%);
+    linear-gradient(transparent 98%, rgba(93, 173, 226, 0.03) 100%),
+    linear-gradient(90deg, transparent 98%, rgba(93, 173, 226, 0.03) 100%);
   background-size: 100% 3px, 3px 100%;
   pointer-events: none;
   z-index: 1000;
@@ -416,8 +416,8 @@ html {
 /* Terminal Window */
 .terminal-window {
   box-shadow: 
-    0 0 20px rgba(147, 51, 234, 0.3),
-    inset 0 0 20px rgba(147, 51, 234, 0.1);
+    0 0 20px rgba(93, 173, 226, 0.3),
+    inset 0 0 20px rgba(93, 173, 226, 0.1);
   border-radius: 8px;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
@@ -425,8 +425,8 @@ html {
 
 .terminal-window:hover {
   box-shadow: 
-    0 0 30px rgba(147, 51, 234, 0.5),
-    inset 0 0 30px rgba(147, 51, 234, 0.15);
+    0 0 30px rgba(93, 173, 226, 0.5),
+    inset 0 0 30px rgba(93, 173, 226, 0.15);
   transform: translateY(-2px);
 }
 
@@ -590,16 +590,16 @@ body:not(.crt-screen):not(.vhs-noise) .terminal-window:hover {
 }
 
 /* Pulse animation for important elements */
-.pulse-purple {
-  animation: pulse-purple 2s infinite;
+.pulse-blue {
+  animation: pulse-blue 2s infinite;
 }
 
-@keyframes pulse-purple {
+@keyframes pulse-blue {
   0%, 100% {
-    box-shadow: 0 0 5px rgba(147, 51, 234, 0.3);
+    box-shadow: 0 0 5px rgba(93, 173, 226, 0.3);
   }
   50% {
-    box-shadow: 0 0 20px rgba(147, 51, 234, 0.6);
+    box-shadow: 0 0 20px rgba(93, 173, 226, 0.6);
   }
 }
 

@@ -37,9 +37,19 @@ export default function App() {
         }`}
       >
         {isHackMode ? (
-          <span className="hidden sm:inline">Mode Clair</span>
+          <>
+            <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <span className="hidden sm:inline">Mode Clair</span>
+          </>
         ) : (
-          <span className="hidden sm:inline">Mode Sombre</span>
+          <>
+            <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+            <span className="hidden sm:inline">Mode Sombre</span>
+          </>
         )}
       </button>
 
@@ -57,7 +67,7 @@ export default function App() {
                 isHackMode={isHackMode}
               />
             </div>
-            <div className={`${isHackMode ? 'text-[#85C1E9]' : 'text-[#0E6655]'} mb-6 px-4 py-2 inline-block rounded ${isHackMode ? 'pulse-purple' : 'bg-white/50'}`}>
+            <div className={`${isHackMode ? 'text-[#85C1E9]' : 'text-[#0E6655]'} mb-6 px-4 py-2 inline-block rounded ${isHackMode ? 'pulse-blue' : 'bg-white/50'}`}>
               [████████████] 100% - Accès autorisé ✓
             </div>
             <div className="text-center mb-8">
@@ -88,38 +98,38 @@ export default function App() {
                   <div>
                     <span className={isHackMode ? 'text-[#85C1E9]' : 'text-[#0E6655]'}>Langages :</span>
                     <div className="ml-4 flex flex-wrap gap-2 mt-2">
-                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-purple' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
+                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-blue' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
                         <TechIcon name="c" size={14} />
                         C
                       </span>
-                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-purple' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
+                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-blue' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
                         <TechIcon name="cpp" size={14} />
                         C++
                       </span>
-                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-purple' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
+                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-blue' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
                         <TechIcon name="python" size={14} />
                         Python
                       </span>
-                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-purple' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
+                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-blue' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
                         <TechIcon name="javascript" size={14} />
                         JavaScript
                       </span>
-                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-purple' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
+                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-blue' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
                         <TechIcon name="html5" size={14} />
                         HTML5
                       </span>
-                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-purple' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
+                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-blue' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
                         <TechIcon name="css3" size={14} />
                         CSS3
                       </span>
-                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-purple' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm`}>
+                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-blue' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm`}>
                         SQL
                       </span>
-                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-purple' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
+                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-blue' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
                         <TechIcon name="lambda" size={14} />
                         Haskell
                       </span>
-                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-purple' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
+                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-blue' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
                         <TechIcon name="cpu" size={14} />
                         ASM
                       </span>
@@ -128,27 +138,27 @@ export default function App() {
                   <div>
                     <span className={isHackMode ? 'text-[#85C1E9]' : 'text-[#0E6655]'}>Frameworks & Outils :</span>
                     <div className="ml-4 flex flex-wrap gap-2 mt-2">
-                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#85C1E9]/30 text-[#85C1E9] hover-glow pulse-purple' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
+                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#85C1E9]/30 text-[#85C1E9] hover-glow pulse-blue' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
                         <TechIcon name="react" size={14} />
                         React
                       </span>
-                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#85C1E9]/30 text-[#85C1E9] hover-glow pulse-purple' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
+                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#85C1E9]/30 text-[#85C1E9] hover-glow pulse-blue' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
                         <TechIcon name="git" size={14} />
                         Git
                       </span>
-                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#85C1E9]/30 text-[#85C1E9] hover-glow pulse-purple' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
+                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#85C1E9]/30 text-[#85C1E9] hover-glow pulse-blue' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
                         <TechIcon name="wordpress" size={14} />
                         WordPress
                       </span>
-                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#85C1E9]/30 text-[#85C1E9] hover-glow pulse-purple' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
+                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#85C1E9]/30 text-[#85C1E9] hover-glow pulse-blue' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
                         <TechIcon name="hackathon" size={14} />
                         N8n
                       </span>
-                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#85C1E9]/30 text-[#85C1E9] hover-glow pulse-purple' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
+                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#85C1E9]/30 text-[#85C1E9] hover-glow pulse-blue' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm flex items-center gap-2`}>
                         <TechIcon name="lambda" size={14} />
                         VS Code
                       </span>
-                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#85C1E9]/30 text-[#85C1E9] hover-glow pulse-purple' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm`}>
+                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#85C1E9]/30 text-[#85C1E9] hover-glow pulse-blue' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm`}>
                         Trello
                       </span>
                     </div>
@@ -415,7 +425,7 @@ export default function App() {
                         </div>
                         <div className="flex items-center gap-1">
                           <TechIcon name={project.icon} size={12} />
-                          <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-purple' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm`}>
+                          <span className={`px-3 py-1 ${isHackMode ? 'bg-[#0F1729]/80 border-[#5DADE2]/30 text-[#5DADE2] hover-glow pulse-blue' : 'bg-white/80 border-[#0E6655]/40 text-[#0E6655]'} border text-sm`}>
                             {project.tech}
                           </span>
                         </div>
