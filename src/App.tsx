@@ -89,7 +89,7 @@ export default function App() {
 
             {/* Skills Section */}
             <ScrollReveal delay={0}>
-              <DraggableTerminal command="./competences --list" delay={0} id="skills" index={1} isHackMode={isHackMode} colors={getTerminalColors(isHackMode, 1)}>
+              <DraggableTerminal command="./competences -list" delay={0} id="skills" index={1} isHackMode={isHackMode} colors={getTerminalColors(isHackMode, 1)}>
                 <div className="space-y-4">
                   <div>
                     <span className={isHackMode ? 'text-[#FFD700]' : 'text-[#D2691E]'}>Langages :</span>
@@ -182,7 +182,7 @@ export default function App() {
 
             {/* Experience Section */}
             <ScrollReveal delay={0}>
-              <DraggableTerminal command="./experience --dev-only" delay={0} id="experience" index={4} isHackMode={isHackMode} colors={getTerminalColors(isHackMode, 4)}>
+              <DraggableTerminal command="./experience -dev-only" delay={0} id="experience" index={4} isHackMode={isHackMode} colors={getTerminalColors(isHackMode, 4)}>
                 <div className="space-y-4">
                   <div className={`border-l-2 ${isHackMode ? 'border-[#A855F7]/50 hover-glow' : 'border-[#D2691E]/60'} pl-4`}>
                     <div className={`${isHackMode ? 'text-[#A855F7]' : 'text-[#D2691E]'} flex items-center gap-2 font-semibold`}>
@@ -219,7 +219,7 @@ export default function App() {
 
             {/* Certifications Section */}
             <ScrollReveal delay={0}>
-              <DraggableTerminal command="./certifications --valid" delay={0} id="certifications" index={5} isHackMode={isHackMode} colors={getTerminalColors(isHackMode, 5)}>
+              <DraggableTerminal command="./certifications -valid" delay={0} id="certifications" index={5} isHackMode={isHackMode} colors={getTerminalColors(isHackMode, 5)}>
                 <div className="space-y-3">
                   <div className={`flex items-center gap-2 ${isHackMode ? 'hover-glow' : ''}`}>
                     <span className={`mr-3 ${isHackMode ? 'text-[#A855F7]' : 'text-[#D2691E]'}`}>[CERT]</span>
@@ -236,7 +236,7 @@ export default function App() {
 
             {/* Contact Section */}
             <ScrollReveal delay={0}>
-              <DraggableTerminal command="./contact --all" delay={0} id="contact" index={2} isHackMode={isHackMode} colors={getTerminalColors(isHackMode, 2)}>
+              <DraggableTerminal command="./contact -all" delay={0} id="contact" index={2} isHackMode={isHackMode} colors={getTerminalColors(isHackMode, 2)}>
                 <div className="space-y-4">
                   <div className="grid grid-cols-1 gap-3">
                     <div className={`flex items-center gap-2 flex-wrap ${isHackMode ? 'hover-glow' : ''}`}>
@@ -285,7 +285,7 @@ export default function App() {
           <div className="space-y-6 lg:space-y-8">
             {/* Projects Section */}
             <ScrollReveal delay={0}>
-              <DraggableTerminal command="./projets --showcase" delay={0} id="projects" index={3} isHackMode={isHackMode} colors={getTerminalColors(isHackMode, 3)}>
+              <DraggableTerminal command="./projets -showcase" delay={0} id="projects" index={3} isHackMode={isHackMode} colors={getTerminalColors(isHackMode, 3)}>
                 <div className="space-y-5">
                   {[
                     {
@@ -436,7 +436,7 @@ export default function App() {
 
             {/* Guestbook Section */}
             <ScrollReveal delay={0}>
-              <DraggableTerminal command="./guestbook --open" delay={0} id="guestbook" index={6} isHackMode={isHackMode} colors={getTerminalColors(isHackMode, 6)}>
+              <DraggableTerminal command="./guestbook -open" delay={0} id="guestbook" index={6} isHackMode={isHackMode} colors={getTerminalColors(isHackMode, 6)}>
                 <Guestbook isHackMode={isHackMode} />
               </DraggableTerminal>
             </ScrollReveal>
