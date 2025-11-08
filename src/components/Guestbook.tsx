@@ -176,7 +176,7 @@ export function Guestbook({ isHackMode = false }: GuestbookProps) {
       {/* Formulaire */}
       <form onSubmit={handleSubmit} className="space-y-3">
         <div>
-          <label className={`block text-xs mb-1 ${isHackMode ? 'text-[#A855F7]' : 'text-[#D2691E]'}`}>
+          <label className={`block text-xs mb-1 ${isHackMode ? 'text-[#5DADE2]' : 'text-[#0E6655]'}`}>
             Nom / Pseudo
           </label>
           <input
@@ -187,14 +187,14 @@ export function Guestbook({ isHackMode = false }: GuestbookProps) {
             maxLength={50}
             className={`w-full px-3 py-2 rounded border text-sm ${
               isHackMode
-                ? 'bg-[#1a1a1a] border-[#A855F7]/30 text-white placeholder-gray-500 focus:border-[#A855F7]'
-                : 'bg-white border-[#D2691E]/40 text-[#8B7355] placeholder-gray-400 focus:border-[#D2691E]'
+                ? 'bg-[#0F1729]/90 border-[#5DADE2]/30 text-white placeholder-gray-500 focus:border-[#5DADE2]'
+                : 'bg-white border-[#0E6655]/40 text-[#117A65] placeholder-gray-400 focus:border-[#0E6655]'
             } outline-none transition-colors`}
           />
         </div>
 
         <div>
-          <label className={`block text-xs mb-1 ${isHackMode ? 'text-[#A855F7]' : 'text-[#D2691E]'}`}>
+          <label className={`block text-xs mb-1 ${isHackMode ? 'text-[#5DADE2]' : 'text-[#0E6655]'}`}>
             Message
           </label>
           <textarea
@@ -205,8 +205,8 @@ export function Guestbook({ isHackMode = false }: GuestbookProps) {
             rows={3}
             className={`w-full px-3 py-2 rounded border text-sm resize-none ${
               isHackMode
-                ? 'bg-[#1a1a1a] border-[#A855F7]/30 text-white placeholder-gray-500 focus:border-[#A855F7]'
-                : 'bg-white border-[#D2691E]/40 text-[#8B7355] placeholder-gray-400 focus:border-[#D2691E]'
+                ? 'bg-[#0F1729]/90 border-[#5DADE2]/30 text-white placeholder-gray-500 focus:border-[#5DADE2]'
+                : 'bg-white border-[#0E6655]/40 text-[#117A65] placeholder-gray-400 focus:border-[#0E6655]'
             } outline-none transition-colors`}
           />
           <div className="text-xs text-right mt-1 opacity-60">
@@ -231,8 +231,8 @@ export function Guestbook({ isHackMode = false }: GuestbookProps) {
           disabled={loading}
           className={`w-full py-2 px-4 rounded font-semibold text-sm transition-all ${
             isHackMode
-              ? 'bg-[#A855F7] text-black hover:bg-[#9333EA] disabled:bg-[#A855F7]/50'
-              : 'bg-[#8B7355] text-white hover:bg-[#D2691E] disabled:bg-[#8B7355]/50'
+              ? 'bg-[#5DADE2] text-black hover:bg-[#9333EA] disabled:bg-[#5DADE2]/50'
+              : 'bg-[#117A65] text-white hover:bg-[#0E6655] disabled:bg-[#117A65]/50'
           } disabled:cursor-not-allowed`}
         >
           {loading ? 'Envoi...' : 'Envoyer'}
@@ -241,7 +241,7 @@ export function Guestbook({ isHackMode = false }: GuestbookProps) {
 
       {/* Liste des messages */}
       <div className="space-y-3 max-h-[400px] overflow-y-auto">
-        <div className={`text-xs font-semibold ${isHackMode ? 'text-[#FFD700]' : 'text-[#D2691E]'}`}>
+        <div className={`text-xs font-semibold ${isHackMode ? 'text-[#85C1E9]' : 'text-[#0E6655]'}`}>
           {entries.length > 0 ? `${entries.length} message${entries.length > 1 ? 's' : ''}` : 'Aucun message'}
         </div>
 
@@ -250,19 +250,19 @@ export function Guestbook({ isHackMode = false }: GuestbookProps) {
             key={entry.id}
             className={`p-3 rounded border ${
               isHackMode
-                ? 'bg-[#1a1a1a] border-[#A855F7]/20 hover:border-[#A855F7]/40'
-                : 'bg-white/80 border-[#D2691E]/20 hover:border-[#D2691E]/40'
+                ? 'bg-[#0F1729]/90 border-[#5DADE2]/20 hover:border-[#5DADE2]/40'
+                : 'bg-white/80 border-[#0E6655]/20 hover:border-[#0E6655]/40'
             } transition-colors`}
           >
             <div className="flex items-start justify-between mb-2">
-              <div className={`font-semibold text-sm ${isHackMode ? 'text-[#A855F7]' : 'text-[#D2691E]'}`}>
+              <div className={`font-semibold text-sm ${isHackMode ? 'text-[#5DADE2]' : 'text-[#0E6655]'}`}>
                 {entry.name}
               </div>
-              <div className={`text-xs ${isHackMode ? 'text-gray-500' : 'text-[#8B7355]/60'}`}>
+              <div className={`text-xs ${isHackMode ? 'text-gray-500' : 'text-[#117A65]/60'}`}>
                 {formatDate(entry.timestamp)}
               </div>
             </div>
-            <div className={`text-sm ${isHackMode ? 'text-gray-300' : 'text-[#8B7355]'}`}>
+            <div className={`text-sm ${isHackMode ? 'text-gray-300' : 'text-[#117A65]'}`}>
               {entry.message}
             </div>
           </div>

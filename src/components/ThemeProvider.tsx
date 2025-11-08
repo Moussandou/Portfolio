@@ -21,36 +21,38 @@ export function ThemeProvider({ isHackMode, children }: ThemeProviderProps) {
   );
 }
 
-// Couleurs crème différentes pour chaque section
-export const creamColors = [
-  'bg-[#FFF9E8] border-[#E8DCC8]', // Crème vanille
-  'bg-[#FAF0E6] border-[#D4C4B0]', // Lin
-  'bg-[#F5F5DC] border-[#D9D1B8]', // Beige
-  'bg-[#FAEBD7] border-[#DDD5C7]', // Blanc antique
-  'bg-[#FFF8DC] border-[#E8DFC8]', // Cornsilk
-  'bg-[#FFFAF0] border-[#E8E3D8]', // Blanc floral
+// Couleurs Deep Ocean pour chaque section (mode clair) - Fond blanc pur
+export const deepOceanColors = [
+  'bg-white border-[#0E6655]', // Deep Ocean 1 - Blanc pur
+  'bg-white border-[#0E6655]', // Deep Ocean 2 - Blanc pur
+  'bg-white border-[#117A65]', // Deep Ocean 3 - Blanc pur
+  'bg-white border-[#0E6655]', // Deep Ocean 4 - Blanc pur
+  'bg-white border-[#117A65]', // Deep Ocean 5 - Blanc pur
+  'bg-white border-[#0E6655]', // Deep Ocean 6 - Blanc pur
 ];
 
 export const getTerminalColors = (isHackMode: boolean, index: number) => {
   if (isHackMode) {
+    // Midnight Blue (Mode sombre)
     return {
-      bg: 'bg-black/90',
-      border: 'border-[#A855F7]/30',
+      bg: 'bg-[#0F1729]/95',
+      border: 'border-[#5DADE2]/30',
       text: 'text-gray-300',
-      header: 'bg-[#1a1a1a] border-b-[#A855F7]/30',
-      accent: 'text-[#A855F7]',
+      header: 'bg-[#1A2332]/90 border-b-[#5DADE2]/30',
+      accent: 'text-[#5DADE2]',
     };
   }
 
-  const colorIndex = index % creamColors.length;
-  const bgBorderClass = creamColors[colorIndex];
+  // Deep Ocean (Mode clair)
+  const colorIndex = index % deepOceanColors.length;
+  const bgBorderClass = deepOceanColors[colorIndex];
   const [bg, border] = bgBorderClass.split(' ');
 
   return {
     bg: `${bg}/95`,
     border: `${border} border-2`,
-    text: 'text-[#5A4A3A]',
+    text: 'text-[#0E6655]',
     header: `${bg} ${border}`,
-    accent: 'text-[#D2691E]',
+    accent: 'text-[#0E6655]',
   };
 };

@@ -16,7 +16,7 @@ export function AsciiArt({ isHackMode }: AsciiArtProps) {
       {/* ASCII Art MOUSSANDOU */}
       <div className="w-full flex justify-center">
         <pre
-          className={`${isHackMode ? 'text-[#A855F7] opacity-40' : 'text-[#D2691E] opacity-80'} whitespace-pre select-none ${isHackMode ? 'hover-glow' : ''} font-bold text-[5px] sm:text-[7px] md:text-[9px] lg:text-[10px]`}
+          className={`${isHackMode ? 'text-[#5DADE2] opacity-40' : 'text-[#0E6655] opacity-80'} whitespace-pre select-none ${isHackMode ? 'hover-glow' : ''} font-bold text-[5px] sm:text-[7px] md:text-[9px] lg:text-[10px]`}
           style={{
             fontFamily: 'Consolas, Monaco, "Courier New", monospace',
             lineHeight: '1.1',
@@ -30,7 +30,7 @@ export function AsciiArt({ isHackMode }: AsciiArtProps) {
       {/* ASCII Art MROIVILI */}
       <div className="flex justify-center mt-1 sm:mt-2">
         <pre
-          className={`whitespace-pre select-none ${isHackMode ? 'glitch-text opacity-40' : 'text-[#D2691E] opacity-80'} font-semibold text-[6px] sm:text-[8px] md:text-[10px] lg:text-[11px]`}
+          className={`whitespace-pre select-none ${isHackMode ? 'text-[#5DADE2] opacity-40 hover-glow' : 'text-[#0E6655] opacity-80'} font-semibold text-[6px] sm:text-[8px] md:text-[10px] lg:text-[11px]`}
           style={{
             fontFamily: 'Consolas, Monaco, "Courier New", monospace',
             lineHeight: '1.1',
