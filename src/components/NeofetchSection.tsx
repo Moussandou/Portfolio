@@ -8,9 +8,9 @@ export function NeofetchSection({ isHackMode = false }: NeofetchSectionProps) {
     { label: "Statut", value: "Étudiant 3ème année Epitech" },
     { label: "Spécialité", value: "Développement Web & Applications" },
     { label: "Localisation", value: "Marseille, France" },
-    { label: "Téléphone", value: "07 81 63 32 78" },
-    { label: "Email", value: "moussandou.m@gmail.com" },
-    { label: "LinkedIn", value: "linkedin.com/in/moussandou" },
+    { label: "Téléphone", value: "07 81 63 32 78", link: "tel:+33781633278" },
+    { label: "Email", value: "moussandou.mroivili@epitech.eu", link: "mailto:moussandou.mroivili@epitech.eu" },
+    { label: "LinkedIn", value: "linkedin.com/in/moussandou", link: "https://linkedin.com/in/moussandou" },
     { label: "Langues", value: "Français (Natif), Anglais (Professionnel)" },
     { label: "Personnalité", value: "Curieux, Passionné, Autonome" },
     { label: "Uptime", value: "20 ans de fonctionnement optimal" }
@@ -43,9 +43,20 @@ export function NeofetchSection({ isHackMode = false }: NeofetchSectionProps) {
           {systemInfo.map((info, index) => (
             <div key={index} className={`flex ${isHackMode ? 'hover-glow' : ''}`}>
               <span className={`min-w-[110px] md:min-w-[140px] flex-shrink-0 text-xs md:text-sm ${isHackMode ? 'text-white' : 'text-[#8B7355]'}`}>{info.label}:</span>
-              <span className={`ml-2 text-xs md:text-sm break-words ${isHackMode ? 'text-gray-400' : 'text-[#8B7355]'}`}>
-                {info.value}
-              </span>
+              {info.link ? (
+                <a
+                  href={info.link}
+                  target={info.link.startsWith('http') ? '_blank' : undefined}
+                  rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className={`ml-2 text-xs md:text-sm break-all underline decoration-dotted ${isHackMode ? 'text-[#00FFFF] hover:text-[#A855F7]' : 'text-[#8B7355] hover:text-[#D2691E]'} transition-colors`}
+                >
+                  {info.value}
+                </a>
+              ) : (
+                <span className={`ml-2 text-xs md:text-sm break-words ${isHackMode ? 'text-gray-400' : 'text-[#8B7355]'}`}>
+                  {info.value}
+                </span>
+              )}
             </div>
           ))}
         </div>

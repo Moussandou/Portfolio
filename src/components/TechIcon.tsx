@@ -9,36 +9,34 @@ export function TechIcon({ name, size = 16, className = "" }: TechIconProps) {
   const iconMap: Record<string, string> = {
     // Langages - Icônes officielles Devicon
     'c': 'devicon-c-original',
-    'cpp': 'devicon-cplusplus-original', 
+    'cpp': 'devicon-cplusplus-original',
     'python': 'devicon-python-original',
     'javascript': 'devicon-javascript-original',
     'html5': 'devicon-html5-original',
     'css3': 'devicon-css3-original',
-    'database': 'devicon-mysql-original',
     'lambda': 'devicon-haskell-original',
-    'cpu': 'devicon-c-original', // Pour ASM on garde C
-    
+    'cpu': 'devicon-bash-plain',
+
     // Frameworks & Outils
     'react': 'devicon-react-original',
     'git': 'devicon-git-original',
-    'wordpress': 'devicon-wordpress-original',
+    'wordpress': 'devicon-wordpress-plain',
     'hackathon': 'devicon-nodejs-original', // Pour N8n
-    'seo': 'devicon-google-original',
+    'seo': 'devicon-google-plain',
     'teacher': 'devicon-python-original',
-    
+
     // OS
-    'linux': 'devicon-linux-original',
+    'linux': 'devicon-linux-plain',
+    'apple': 'devicon-apple-original',
+    'macos': 'devicon-apple-original',
     'windows': 'devicon-windows8-original',
-    
-    // Icônes génériques (fallback vers emoji)
-    'phone': '📱',
-    'email': '✉️',
-    'location': '📍',
-    'linkedin': '💼',
-    'instagram': '📸',
-    'paypal': '💳',
-    'link': '🔗',
-    'certificate': '🏆',
+
+    // Icônes génériques et sociales
+    'email': 'devicon-google-plain',
+    'linkedin': 'devicon-linkedin-plain',
+    'link': 'devicon-firefox-plain',
+    'sun': 'devicon-chrome-plain',
+    'laptop': 'devicon-chrome-plain',
   };
 
   const iconClass = iconMap[name.toLowerCase()];

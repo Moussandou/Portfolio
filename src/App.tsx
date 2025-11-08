@@ -29,14 +29,23 @@ export default function App() {
         {/* Toggle Button - Fixed position responsive */}
         <button
         onClick={() => setIsHackMode(!isHackMode)}
-        className={`fixed top-4 right-4 sm:top-6 sm:right-6 z-50 px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-bold text-xs sm:text-sm transition-all duration-300 transform hover:scale-105 border-2 ${
+        className={`fixed top-4 right-4 sm:top-6 sm:right-6 z-50 px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-bold text-xs sm:text-sm transition-all duration-300 transform hover:scale-105 border-2 flex items-center gap-2 ${
           isHackMode
             ? 'bg-black border-[#A855F7] text-[#A855F7] hover:bg-[#A855F7] hover:text-black shadow-[0_0_20px_rgba(168,85,247,0.5)]'
             : 'bg-white border-[#8B7355] text-[#8B7355] hover:bg-[#8B7355] hover:text-white shadow-lg'
         }`}
       >
-        <span className="hidden sm:inline">{isHackMode ? '☀️ Mode Clair' : '💻 Hack Mode'}</span>
-        <span className="sm:hidden">{isHackMode ? '☀️' : '💻'}</span>
+        {isHackMode ? (
+          <>
+            <i className="devicon-chrome-plain text-base sm:text-lg"></i>
+            <span className="hidden sm:inline">Mode Clair</span>
+          </>
+        ) : (
+          <>
+            <i className="devicon-linux-plain text-base sm:text-lg"></i>
+            <span className="hidden sm:inline">Hack Mode</span>
+          </>
+        )}
       </button>
 
       {/* Main terminal interface - utilisation de tout l'espace */}
@@ -108,8 +117,7 @@ export default function App() {
                         <TechIcon name="css3" size={14} />
                         CSS3
                       </span>
-                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#1a1a1a] border-[#A855F7]/30 text-[#A855F7] hover-glow pulse-purple' : 'bg-white/80 border-[#D2691E]/40 text-[#D2691E]'} border text-sm flex items-center gap-2`}>
-                        <TechIcon name="database" size={14} />
+                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#1a1a1a] border-[#A855F7]/30 text-[#A855F7] hover-glow pulse-purple' : 'bg-white/80 border-[#D2691E]/40 text-[#D2691E]'} border text-sm`}>
                         SQL
                       </span>
                       <span className={`px-3 py-1 ${isHackMode ? 'bg-[#1a1a1a] border-[#A855F7]/30 text-[#A855F7] hover-glow pulse-purple' : 'bg-white/80 border-[#D2691E]/40 text-[#D2691E]'} border text-sm flex items-center gap-2`}>
@@ -145,8 +153,7 @@ export default function App() {
                         <TechIcon name="lambda" size={14} />
                         VS Code
                       </span>
-                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#1a1a1a] border-[#00FFFF]/30 text-[#00FFFF] hover-glow pulse-purple' : 'bg-white/80 border-[#D2691E]/40 text-[#D2691E]'} border text-sm flex items-center gap-2`}>
-                        <TechIcon name="database" size={14} />
+                      <span className={`px-3 py-1 ${isHackMode ? 'bg-[#1a1a1a] border-[#00FFFF]/30 text-[#00FFFF] hover-glow pulse-purple' : 'bg-white/80 border-[#D2691E]/40 text-[#D2691E]'} border text-sm`}>
                         Trello
                       </span>
                     </div>
@@ -155,13 +162,13 @@ export default function App() {
                     <span className={isHackMode ? 'text-[#FFD700]' : 'text-[#D2691E]'}>OS :</span>
                     <div className="flex items-center gap-2 flex-wrap">
                       <TechIcon name="linux" size={16} />
-                      <span className="text-[#FF0080]">Linux</span>
+                      <span className={isHackMode ? 'text-[#FF0080]' : 'text-[#D2691E]'}>Linux</span>
                       <span className={isHackMode ? 'text-white' : 'text-[#8B7355]'}>,</span>
                       <TechIcon name="apple" size={16} />
-                      <span className="text-[#FF0080]">macOS</span>
+                      <span className={isHackMode ? 'text-[#FF0080]' : 'text-[#D2691E]'}>macOS</span>
                       <span className={isHackMode ? 'text-white' : 'text-[#8B7355]'}>&</span>
                       <TechIcon name="windows" size={16} />
-                      <span className="text-[#FF0080]">Windows</span>
+                      <span className={isHackMode ? 'text-[#FF0080]' : 'text-[#D2691E]'}>Windows</span>
                     </div>
                   </div>
                   <div className={isHackMode ? 'hover-glow' : ''}>
@@ -215,7 +222,6 @@ export default function App() {
                 <div className="space-y-3">
                   <div className={`flex items-center gap-2 ${isHackMode ? 'hover-glow' : ''}`}>
                     <span className={`mr-3 ${isHackMode ? 'text-[#A855F7]' : 'text-[#D2691E]'}`}>[CERT]</span>
-                    <TechIcon name="certificate" size={16} />
                     <span>Cambridge English (B2)</span>
                   </div>
                   <div className={`flex items-center gap-2 ${isHackMode ? 'hover-glow' : ''}`}>
@@ -234,8 +240,9 @@ export default function App() {
                   <div className="grid grid-cols-1 gap-3">
                     <div className={`flex items-center gap-2 flex-wrap ${isHackMode ? 'hover-glow' : ''}`}>
                       <span className={`mr-3 flex-shrink-0 ${isHackMode ? 'text-[#A855F7]' : 'text-[#D2691E]'}`}>[TEL]</span>
-                      <TechIcon name="phone" size={16} />
-                      <span className="break-all">07 81 63 32 78</span>
+                      <a href="tel:+33781633278" className={`${isHackMode ? 'text-[#00FFFF] hover:text-[#A855F7]' : 'text-[#8B7355] hover:text-[#D2691E]'} transition-colors break-all text-sm sm:text-base underline decoration-dotted`}>
+                        07 81 63 32 78
+                      </a>
                     </div>
                     <div className={`flex items-center gap-2 flex-wrap ${isHackMode ? 'hover-glow' : ''}`}>
                       <span className={`mr-3 flex-shrink-0 ${isHackMode ? 'text-[#FFD700]' : 'text-[#D2691E]'}`}>[MAIL]</span>
@@ -246,7 +253,6 @@ export default function App() {
                     </div>
                     <div className={`flex items-center gap-2 flex-wrap ${isHackMode ? 'hover-glow' : ''}`}>
                       <span className={`mr-3 flex-shrink-0 ${isHackMode ? 'text-[#FF0080]' : 'text-[#D2691E]'}`}>[LOC]</span>
-                      <TechIcon name="location" size={16} />
                       <span>Marseille, France</span>
                     </div>
                     <div className={`flex items-center gap-2 flex-wrap ${isHackMode ? 'hover-glow' : ''}`}>
@@ -258,14 +264,12 @@ export default function App() {
                     </div>
                     <div className={`flex items-center gap-2 flex-wrap ${isHackMode ? 'hover-glow' : ''}`}>
                       <span className={`mr-3 flex-shrink-0 ${isHackMode ? 'text-[#FF0080]' : 'text-[#D2691E]'}`}>[INSTA]</span>
-                      <TechIcon name="instagram" size={16} />
                       <a href="https://www.instagram.com/__takax__" target="_blank" rel="noopener noreferrer" className={`${isHackMode ? 'text-[#A855F7] hover:text-[#00FFFF]' : 'text-[#8B7355] hover:text-[#D2691E]'} transition-colors underline decoration-dotted`}>
                         @__takax__
                       </a>
                     </div>
                     <div className={`flex items-center gap-2 flex-wrap ${isHackMode ? 'hover-glow' : ''}`}>
                       <span className={`mr-3 flex-shrink-0 ${isHackMode ? 'text-[#00FFFF]' : 'text-[#D2691E]'}`}>[PAY]</span>
-                      <TechIcon name="paypal" size={16} />
                       <a href="https://www.paypal.com/paypalme/Moussandou17" target="_blank" rel="noopener noreferrer" className={`${isHackMode ? 'text-[#FFD700] hover:text-[#A855F7]' : 'text-[#8B7355] hover:text-[#D2691E]'} transition-colors underline decoration-dotted`}>
                         PayPal.me/Moussandou17
                       </a>
@@ -427,9 +431,9 @@ export default function App() {
 
         {/* Easter Egg Footer */}
         <ScrollReveal delay={0}>
-          <div className="mt-16 text-center">
-            <div className={`${isHackMode ? 'text-[#A855F7]/30' : 'text-[#D2691E]/40'} text-xs mb-4 float`}>
-              <pre>
+          <div className="mt-16 text-center px-2">
+            <div className={`${isHackMode ? 'text-[#A855F7]/30' : 'text-[#D2691E]/40'} text-[10px] sm:text-xs mb-4 float overflow-x-auto`}>
+              <pre className="inline-block text-left">
 {`[SYSTÈME] Connexion établie...
 [TERMINAL] Bienvenue dans le réseau, ${new Date().getFullYear()}
 [AVERTISSEMENT] Ce portfolio peut contenir des traces de code génial`}
