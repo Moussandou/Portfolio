@@ -20,26 +20,27 @@ export default function App() {
 
   return (
     <ThemeProvider isHackMode={isHackMode}>
-      <div className={`min-h-screen transition-colors duration-500 monocraft ${
+      <div className={`min-h-screen w-full overflow-x-hidden transition-colors duration-500 monocraft ${
         isHackMode
           ? 'bg-black crt-screen vhs-noise'
           : 'bg-gradient-to-br from-[#F5F1E8] via-[#FAF7F0] to-[#FFF9E8]'
       }`}>
 
-        {/* Toggle Button - Fixed position */}
+        {/* Toggle Button - Fixed position responsive */}
         <button
         onClick={() => setIsHackMode(!isHackMode)}
-        className={`fixed top-6 right-6 z-50 px-6 py-3 rounded-lg font-bold text-sm transition-all duration-300 transform hover:scale-105 border-2 ${
+        className={`fixed top-4 right-4 sm:top-6 sm:right-6 z-50 px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-bold text-xs sm:text-sm transition-all duration-300 transform hover:scale-105 border-2 ${
           isHackMode
             ? 'bg-black border-[#A855F7] text-[#A855F7] hover:bg-[#A855F7] hover:text-black shadow-[0_0_20px_rgba(168,85,247,0.5)]'
             : 'bg-white border-[#8B7355] text-[#8B7355] hover:bg-[#8B7355] hover:text-white shadow-lg'
         }`}
       >
-        {isHackMode ? '☀️ Mode Clair' : '💻 Hack Mode'}
+        <span className="hidden sm:inline">{isHackMode ? '☀️ Mode Clair' : '💻 Hack Mode'}</span>
+        <span className="sm:hidden">{isHackMode ? '☀️' : '💻'}</span>
       </button>
 
       {/* Main terminal interface - utilisation de tout l'espace */}
-      <div className="relative z-10 w-full px-4 py-8 lg:px-8 xl:px-12">
+      <div className="relative z-10 w-full px-2 sm:px-4 py-6 sm:py-8 lg:px-8 xl:px-12">
         
         {/* Header with boot sequence */}
         <ScrollReveal delay={0}>
