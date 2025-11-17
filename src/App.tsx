@@ -10,6 +10,9 @@ import { Guestbook } from './components/Guestbook';
 import Slider from 'react-slick';
 
 // Images & Videos
+const bambuImage1 = '/Portfolio/assets/bambu-buddy-1.png';
+const bambuImage2 = '/Portfolio/assets/bambu-buddy-2.png';
+const bambuImage3 = '/Portfolio/assets/bambu-buddy-3.png';
 const jebImage = '/Portfolio/assets/jeb.png';
 const moocImage1 = '/Portfolio/assets/icom1.png';
 const moocImage2 = '/Portfolio/assets/icom2.png';
@@ -221,6 +224,87 @@ export default function App() {
               </DraggableTerminal>
             </ScrollReveal>
 
+            {/* CV Section */}
+            <ScrollReveal delay={0}>
+              <DraggableTerminal command="./curriculum -full" delay={0} id="curriculum" index={7} isHackMode={isHackMode} colors={getTerminalColors(isHackMode, 7)}>
+                <div className="space-y-4">
+                  {/* Formation */}
+                  <div className={`border-l-2 ${isHackMode ? 'border-[#5DADE2]/50 hover-glow' : 'border-[#0E6655]/60'} pl-4`}>
+                    <div className={`${isHackMode ? 'text-[#5DADE2]' : 'text-[#0E6655]'} font-semibold flex items-center gap-2`}>
+                      <TechIcon name="teacher" size={16} />
+                      Formation
+                    </div>
+                    <div className={`text-sm ${isHackMode ? 'text-gray-300' : 'text-[#117A65]'} mt-2 space-y-2`}>
+                      <div>
+                        <div className="font-medium">Programme Grande École – Informatique</div>
+                        <div className={`text-xs ${isHackMode ? 'text-gray-400' : 'text-[#117A65]'}`}>Epitech – Marseille (2023 - 2028)</div>
+                        <div className={`text-xs ${isHackMode ? 'text-gray-400' : 'text-[#117A65]'}`}>
+                          C, C++, Shell, Systèmes, Réseaux, Web, Architecture logicielle, Git, ASM
+                        </div>
+                      </div>
+                      <div>
+                        <div className="font-medium">Baccalauréat Général</div>
+                        <div className={`text-xs ${isHackMode ? 'text-gray-400' : 'text-[#117A65]'}`}>Lycée Saint-Exupéry – Marseille (2020 - 2023)</div>
+                        <div className={`text-xs ${isHackMode ? 'text-gray-400' : 'text-[#117A65]'}`}>
+                          Spécialités : Numérique & Sciences Informatiques, Anglais
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Compétences clés */}
+                  <div className={`border-l-2 ${isHackMode ? 'border-[#85C1E9]/50 hover-glow' : 'border-[#0E6655]/60'} pl-4`}>
+                    <div className={`${isHackMode ? 'text-[#85C1E9]' : 'text-[#0E6655]'} font-semibold flex items-center gap-2`}>
+                      <TechIcon name="hackathon" size={16} />
+                      Compétences Clés
+                    </div>
+                    <div className={`text-sm ${isHackMode ? 'text-gray-300' : 'text-[#117A65]'} mt-1`}>
+                      • C, C++, Python, JavaScript, SQL, HTML/CSS, Haskell, ASM
+                      <br />
+                      • CSFML, Node.js, WordPress, N8n, Git, Trello, VS Code
+                      <br />
+                      • Programmation orientée objet (C++)
+                      <br />
+                      • Gestion de projet agile, travail en équipe
+                    </div>
+                  </div>
+
+                  {/* Projets notables */}
+                  <div className={`border-l-2 ${isHackMode ? 'border-[#5DADE2]/50 hover-glow' : 'border-[#0E6655]/60'} pl-4`}>
+                    <div className={`${isHackMode ? 'text-[#5DADE2]' : 'text-[#0E6655]'} font-semibold flex items-center gap-2`}>
+                      <TechIcon name="cpp" size={16} />
+                      Projets Réalisés
+                    </div>
+                    <div className={`text-sm ${isHackMode ? 'text-gray-300' : 'text-[#117A65]'} mt-1`}>
+                      • Jetpack Multiplayer Game (C++ / SFML)
+                      <br />
+                      • Site Web JEB INCUBATOR (React / HTML / CSS)
+                      <br />
+                      • Site WordPress – autonomie-numerique.fr
+                    </div>
+                  </div>
+
+                  {/* Téléchargement CV */}
+                  <div className="mt-4 pt-4 border-t border-current/20">
+                    <a
+                      href="/Portfolio/assets/CV_Moussandou_Mroivili.pdf"
+                      download
+                      className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 ${
+                        isHackMode
+                          ? 'bg-[#0F1729] border-2 border-[#5DADE2] text-[#5DADE2] hover:bg-[#5DADE2] hover:text-black shadow-[0_0_15px_rgba(93,173,226,0.4)]'
+                          : 'bg-white border-2 border-[#0E6655] text-[#0E6655] hover:bg-[#0E6655] hover:text-white shadow-lg'
+                      } font-semibold`}
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      Télécharger mon CV (PDF)
+                    </a>
+                  </div>
+                </div>
+              </DraggableTerminal>
+            </ScrollReveal>
+
             {/* Certifications Section */}
             <ScrollReveal delay={0}>
               <DraggableTerminal command="./certifications -valid" delay={0} id="certifications" index={5} isHackMode={isHackMode} colors={getTerminalColors(isHackMode, 5)}>
@@ -292,6 +376,17 @@ export default function App() {
               <DraggableTerminal command="./projets -showcase" delay={0} id="projects" index={3} isHackMode={isHackMode} colors={getTerminalColors(isHackMode, 3)}>
                 <div className="space-y-5">
                   {[
+                    {
+                      name: "Bambu Buddy - 3D Print Manager",
+                      desc: "Application de gestion d'impression 3D - Suivi de filaments, calcul de coûts, statistiques de ventes. PWA + Desktop (macOS/Windows)",
+                      tech: "React/TypeScript/Tauri",
+                      color: "#5DADE2",
+                      role: "Full-Stack Developer & Creator",
+                      icon: "react",
+                      images: [bambuImage1, bambuImage2, bambuImage3],
+                      link: "https://bambu-buddy.web.app",
+                      github: "https://github.com/moussandou/bambu-buddy"
+                    },
                     {
                       name: "R-Type - Jeu Arcade Multijoueur",
                       desc: "Jeu arcade multijoueur géré par un serveur",
@@ -407,20 +502,31 @@ export default function App() {
                           />
                         </div>
                       )}
-                      <div className="flex items-center justify-between mb-1">
-                        <div className="flex items-center gap-2">
+                      <div className="flex items-center justify-between mb-1 flex-wrap gap-2">
+                        <div className="flex items-center gap-2 flex-wrap">
                           {project.link ? (
                             <a
                               href={project.link}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className={`${isHackMode ? 'text-white hover:text-[#5DADE2]' : 'text-[#117A65] hover:text-[#0E6655]'} transition-colors flex items-center gap-2 font-semibold underline decoration-dotted`}
+                              className={`${isHackMode ? 'text-white hover:text-[#5DADE2]' : 'text-[#117A65] hover:text-[#0E6655]'} transition-colors font-semibold underline decoration-dotted`}
                             >
                               {project.name}
-                              <TechIcon name="link" size={12} />
                             </a>
                           ) : (
                             <span className={`${isHackMode ? 'text-white' : 'text-[#117A65]'} font-semibold`}>{project.name}</span>
+                          )}
+                          {project.github && (
+                            <a
+                              href={project.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`${isHackMode ? 'text-[#85C1E9] hover:text-[#5DADE2]' : 'text-[#0E6655] hover:text-[#117A65]'} transition-colors flex items-center gap-1 text-xs`}
+                              title="Voir sur GitHub"
+                            >
+                              <TechIcon name="git" size={12} />
+                              GitHub
+                            </a>
                           )}
                         </div>
                         <div className="flex items-center gap-1">
