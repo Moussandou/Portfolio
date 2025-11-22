@@ -5,12 +5,12 @@ interface KonamiCodeProps {
     onUnlock: () => void;
 }
 
-export function KonamiCode({ onUnlock }: KonamiCodeProps) {
-    const [sequence, setSequence] = useState<string[]>([]);
-    const { playSound } = useSound();
+// Up, Up, Down, Down, Left, Right, Left, Right, B, A
+const KONAMI_CODE = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
 
-    // Up, Up, Down, Down, Left, Right, Left, Right, B, A
-    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+export function KonamiCode({ onUnlock }: KonamiCodeProps) {
+    const [_sequence, setSequence] = useState<string[]>([]);
+    const { playSound } = useSound();
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
@@ -20,14 +20,14 @@ export function KonamiCode({ onUnlock }: KonamiCodeProps) {
                 const newSequence = [...prev, key];
 
                 // Check if the new sequence matches the beginning of the Konami code
-                const isMatch = newSequence.every((k, i) => k === konamiCode[i]);
+                const isMatch = newSequence.every((k, i) => k === KONAMI_CODE[i]);
 
                 if (!isMatch) {
                     // If mistake, reset but keep the last key if it starts the sequence
                     return key === 'ArrowUp' ? ['ArrowUp'] : [];
                 }
 
-                if (newSequence.length === konamiCode.length) {
+                if (newSequence.length === KONAMI_CODE.length) {
                     playSound('success');
                     onUnlock();
                     return [];

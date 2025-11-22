@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface BootSequenceProps {
@@ -9,16 +9,16 @@ export function BootSequence({ onComplete }: BootSequenceProps) {
     const [lines, setLines] = useState<string[]>([]);
     const [isComplete, setIsComplete] = useState(false);
 
-    const bootLines = [
-        "INITIALIZING KERNEL...",
-        "LOADING MODULES: [CPU] [MEM] [GPU] [NET]",
-        "MOUNTING FILESYSTEM... OK",
-        "CHECKING PERMISSIONS... ROOT ACCESS GRANTED",
-        "STARTING INTERFACE SERVICE...",
-        "ESTABLISHING SECURE CONNECTION...",
-        "LOADING PORTFOLIO DATA...",
-        "SYSTEM READY."
-    ];
+    const bootLines = useMemo(() => [
+        "[████████████] 100% BOOTING MOUSSANDOU_OS...",
+        "Loading portfolio modules...",
+        "Init: React Framework v18.3",
+        "Init: TypeScript Engine",
+        "Init: Tailwind CSS Renderer",
+        "Mounting Components...",
+        "[OK] System Ready",
+        "Welcome to my portfolio."
+    ], []);
 
     useEffect(() => {
         let delay = 0;
@@ -34,7 +34,7 @@ export function BootSequence({ onComplete }: BootSequenceProps) {
                 }
             }, delay);
         });
-    }, [onComplete]);
+    }, [bootLines, onComplete]);
 
     return (
         <AnimatePresence>

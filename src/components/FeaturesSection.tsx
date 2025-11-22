@@ -81,7 +81,10 @@ export function FeaturesSection({ isHackMode }: FeaturesSectionProps) {
                         <div
                             key={index}
                             id={feat.id}
-                            onClick={() => (feat as any).action && (feat as any).action()}
+                            onClick={() => {
+                                const feature = feat as { action?: () => void };
+                                if (feature.action) feature.action();
+                            }}
                             className={`p-3 rounded border transition-all duration-300 ${isHackMode
                                 ? 'bg-[var(--theme-background)]/50 border-[var(--theme-border)]/30 hover:border-[var(--theme-primary)] hover:bg-[var(--theme-primary)]/10'
                                 : 'bg-white/50 border-[var(--theme-border)]/30 hover:border-[var(--theme-primary)] hover:bg-[var(--theme-primary)]/10'

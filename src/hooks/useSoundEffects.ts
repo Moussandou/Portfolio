@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 export function useSoundEffects() {
     const playSound = useCallback((type: 'click' | 'hover' | 'success' | 'error' | 'typing') => {
-        const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+        const AudioContext = window.AudioContext || (window as unknown as { webkitAudioContext: typeof window.AudioContext }).webkitAudioContext;
         if (!AudioContext) return;
 
         const ctx = new AudioContext();

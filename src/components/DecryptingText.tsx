@@ -34,7 +34,7 @@ export function DecryptingText({
             setIsComplete(false);
 
             intervalRef.current = setInterval(() => {
-                setDisplayText(prev => {
+                setDisplayText((_prev) => {
                     let result = '';
                     const currentIteration = iterationRef.current;
 

@@ -14,7 +14,7 @@ export function SoundProvider({ children }: { children: React.ReactNode }) {
     const playSound = useCallback((type: 'click' | 'hover' | 'success' | 'error' | 'typing' | 'startup') => {
         if (isMuted) return;
 
-        const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+        const AudioContext = window.AudioContext || (window as unknown as { webkitAudioContext: typeof window.AudioContext }).webkitAudioContext;
         if (!AudioContext) return;
 
         const ctx = new AudioContext();

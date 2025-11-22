@@ -60,7 +60,7 @@ export function FileSystemProvider({ children }: { children: React.ReactNode }) 
     };
 
     const resolvePath = (pathStr: string): FileSystemNode | null => {
-        let pathParts = pathStr.split('/').filter(p => p);
+        const pathParts = pathStr.split('/').filter(p => p);
 
         // Handle absolute path
         let traversalPath = pathStr.startsWith('/') ? [] : [...currentPath];
@@ -129,7 +129,7 @@ export function FileSystemProvider({ children }: { children: React.ReactNode }) 
                     type: 'info'
                 };
 
-            case 'ls':
+            case 'ls': {
                 const dirNode = getDirNode(currentPath);
                 if (dirNode && dirNode.type === 'directory' && dirNode.children) {
                     const items = Object.entries(dirNode.children).map(([name, node]) => {
@@ -138,11 +138,12 @@ export function FileSystemProvider({ children }: { children: React.ReactNode }) 
                     return { output: items.join('  '), type: 'success' };
                 }
                 return { output: 'Error: Current path is invalid', type: 'error' };
+            }
 
             case 'pwd':
                 return { output: '/' + currentPath.join('/'), type: 'info' };
 
-            case 'cd':
+            case 'cd': {
                 if (!args[0]) return { output: '', type: 'success', newPath: ['home', 'moussandou'] };
 
                 const targetPath = args[0];
@@ -171,8 +172,9 @@ export function FileSystemProvider({ children }: { children: React.ReactNode }) 
 
                 setCurrentPath(newPath);
                 return { output: '', type: 'success', newPath };
+            }
 
-            case 'cat':
+            case 'cat': {
                 if (!args[0]) return { output: 'cat: missing operand', type: 'error' };
                 const fileName = args[0];
                 const currentDir = getDirNode(currentPath);
@@ -185,8 +187,9 @@ export function FileSystemProvider({ children }: { children: React.ReactNode }) 
                     return { output: `cat: ${fileName}: Is a directory`, type: 'error' };
                 }
                 return { output: `cat: ${fileName}: No such file or directory`, type: 'error' };
+            }
 
-            case 'mkdir':
+            case 'mkdir': {
                 if (!args[0]) return { output: 'mkdir: missing operand', type: 'error' };
                 const newDirName = args[0];
                 const currentDirForMkdir = getDirNode(currentPath);
@@ -209,8 +212,9 @@ export function FileSystemProvider({ children }: { children: React.ReactNode }) 
                     return newFS;
                 });
                 return { output: '', type: 'success' };
+            }
 
-            case 'touch':
+            case 'touch': {
                 if (!args[0]) return { output: 'touch: missing operand', type: 'error' };
                 const newFileName = args[0];
                 const currentDirForTouch = getDirNode(currentPath);
@@ -234,12 +238,15 @@ export function FileSystemProvider({ children }: { children: React.ReactNode }) 
                     return newFS;
                 });
                 return { output: '', type: 'success' };
+            }
 
-            case 'whoami':
+            case 'whoami': {
                 return { output: 'moussandou', type: 'success' };
+            }
 
-            case 'date':
+            case 'date': {
                 return { output: new Date().toString(), type: 'info' };
+            }
 
             case 'clear':
                 return { output: '', type: 'success' }; // Handled by UI clearing

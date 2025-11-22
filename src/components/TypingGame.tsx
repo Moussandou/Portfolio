@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useSound } from '../context/SoundContext';
 import { useAchievements } from '../context/AchievementContext';
 
@@ -28,7 +28,6 @@ export function TypingGame({ onExit }: TypingGameProps) {
     const [userInput, setUserInput] = useState('');
     const [timeLeft, setTimeLeft] = useState(GAME_DURATION);
     const [wpm, setWpm] = useState(0);
-    const [accuracy, setAccuracy] = useState(100);
     const [correctChars, setCorrectChars] = useState(0);
     const [totalChars, setTotalChars] = useState(0);
 
@@ -45,6 +44,20 @@ export function TypingGame({ onExit }: TypingGameProps) {
         }
     }, [gameState]);
 
+    const endGame = useCallback(() => {
+        setGameState('finished');
+        playSound('success');
+
+        // Calculate final stats
+        const minutes = GAME_DURATION / 60;
+        const finalWpm = Math.round((correctChars / 5) / minutes);
+        setWpm(finalWpm);
+
+        // Achievements
+        if (finalWpm > 60) unlockAchievement('speed_demon');
+        if (finalWpm > 100) unlockAchievement('keyboard_warrior');
+    }, [correctChars, playSound, unlockAchievement]);
+
     useEffect(() => {
         let interval: NodeJS.Timeout;
         if (gameState === 'playing' && timeLeft > 0) {
@@ -55,7 +68,7 @@ export function TypingGame({ onExit }: TypingGameProps) {
             endGame();
         }
         return () => clearInterval(interval);
-    }, [gameState, timeLeft]);
+    }, [gameState, timeLeft, endGame]);
 
     const startGame = () => {
         setGameState('playing');
@@ -66,21 +79,6 @@ export function TypingGame({ onExit }: TypingGameProps) {
         setTotalChars(0);
         inputRef.current?.focus();
         playSound('click');
-    };
-
-    const endGame = () => {
-        setGameState('finished');
-        playSound('success');
-
-        // Calculate final stats
-        const timeElapsed = GAME_DURATION - timeLeft; // Should be GAME_DURATION usually
-        const minutes = GAME_DURATION / 60;
-        const finalWpm = Math.round((correctChars / 5) / minutes);
-        setWpm(finalWpm);
-
-        // Achievements
-        if (finalWpm > 60) unlockAchievement('speed_demon');
-        if (finalWpm > 100) unlockAchievement('keyboard_warrior'); // Make sure this exists or add it
     };
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
