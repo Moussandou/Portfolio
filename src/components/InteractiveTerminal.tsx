@@ -53,6 +53,9 @@ export function InteractiveTerminal() {
             } else if (cmd === 'github-city') {
                 showViz('github-city');
                 setLines(prev => [...prev, { type: 'input', content: cmd }, { type: 'output', content: 'Launching GitHub City Visualization...' }]);
+            } else if (cmd === 'skill-graph') {
+                showViz('skill-graph');
+                setLines(prev => [...prev, { type: 'input', content: cmd }, { type: 'output', content: 'Launching Skill Graph...' }]);
             } else {
                 const result = executeCommand(cmd);
                 if (result.output) {

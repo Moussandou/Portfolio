@@ -28,6 +28,7 @@ import { InteractiveTerminal } from './components/InteractiveTerminal';
 import { AchievementNotification } from './components/AchievementNotification';
 import { HackerTyper } from './components/HackerTyper';
 import { GithubCity } from './components/GithubCity';
+import { SkillGraph } from './components/SkillGraph';
 import { SystemNotification } from './components/SystemNotification';
 import { DecryptingText } from './components/DecryptingText';
 import { GlitchText } from './components/GlitchText';
@@ -136,6 +137,7 @@ function AppContent() {
         <CrtOverlay />
         <HackerTyper />
         <GithubCity />
+        <SkillGraph />
         <CyberpunkHud isHackMode={isHackMode} />
         <FakeBSOD />
 

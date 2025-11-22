@@ -124,6 +124,7 @@ export function FileSystemProvider({ children }: { children: React.ReactNode }) 
   touch [file] Create file
   typing-game Start typing speed test
   github-city View 3D GitHub activity
+  skill-graph View skill network graph
   whoami    Display current user
   date      Display current date`,
                     type: 'info'
