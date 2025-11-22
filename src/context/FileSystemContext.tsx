@@ -186,11 +186,52 @@ export function FileSystemProvider({ children }: { children: React.ReactNode }) 
 
             case 'mkdir':
                 if (!args[0]) return { output: 'mkdir: missing operand', type: 'error' };
-                // TODO: Implement actual state update for mkdir/touch
-                return { output: 'mkdir: Read-only file system (Implementation pending)', type: 'error' };
+                const newDirName = args[0];
+                const currentDirForMkdir = getDirNode(currentPath);
+
+                if (currentDirForMkdir?.children && currentDirForMkdir.children[newDirName]) {
+                    return { output: `mkdir: cannot create directory '${newDirName}': File exists`, type: 'error' };
+                }
+
+                setFileSystem(prev => {
+                    const newFS = JSON.parse(JSON.stringify(prev));
+                    let node = { type: 'directory', children: newFS } as FileSystemNode;
+
+                    for (const part of currentPath) {
+                        if (node.children) node = node.children[part];
+                    }
+
+                    if (node.children) {
+                        node.children[newDirName] = { type: 'directory', children: {} };
+                    }
+                    return newFS;
+                });
+                return { output: '', type: 'success' };
 
             case 'touch':
-                return { output: 'touch: Read-only file system (Implementation pending)', type: 'error' };
+                if (!args[0]) return { output: 'touch: missing operand', type: 'error' };
+                const newFileName = args[0];
+                const currentDirForTouch = getDirNode(currentPath);
+
+                if (currentDirForTouch?.children && currentDirForTouch.children[newFileName]) {
+                    // touch updates timestamp usually, but here we just do nothing if it exists
+                    return { output: '', type: 'success' };
+                }
+
+                setFileSystem(prev => {
+                    const newFS = JSON.parse(JSON.stringify(prev));
+                    let node = { type: 'directory', children: newFS } as FileSystemNode;
+
+                    for (const part of currentPath) {
+                        if (node.children) node = node.children[part];
+                    }
+
+                    if (node.children) {
+                        node.children[newFileName] = { type: 'file', content: '' };
+                    }
+                    return newFS;
+                });
+                return { output: '', type: 'success' };
 
             case 'whoami':
                 return { output: 'moussandou', type: 'success' };
