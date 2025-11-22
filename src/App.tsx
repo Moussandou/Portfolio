@@ -20,6 +20,8 @@ import { BootSequence } from './components/BootSequence';
 import { FeaturesSection } from './components/FeaturesSection';
 import { SoundProvider, useSound } from './context/SoundContext';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
+import { FileSystemProvider } from './context/FileSystemContext';
+import { InteractiveTerminal } from './components/InteractiveTerminal';
 import { SystemNotification } from './components/SystemNotification';
 import { DecryptingText } from './components/DecryptingText';
 import { GlitchText } from './components/GlitchText';
@@ -42,7 +44,9 @@ export default function App() {
   return (
     <SoundProvider>
       <ThemeProvider>
-        <AppContent />
+        <FileSystemProvider>
+          <AppContent />
+        </FileSystemProvider>
       </ThemeProvider>
     </SoundProvider>
   );
@@ -220,6 +224,15 @@ function AppContent() {
 
             {/* Colonne gauche */}
             <div className="space-y-6 lg:space-y-8">
+              {/* Interactive Terminal - New! */}
+              <ScrollReveal delay={0}>
+                <DraggableTerminal command="./terminal" delay={0} id="interactive-term" index={9} isHackMode={isHackMode} colors={getTerminalColors(isHackMode, 0)}>
+                  <div className="h-64 sm:h-80">
+                    <InteractiveTerminal />
+                  </div>
+                </DraggableTerminal>
+              </ScrollReveal>
+
               {/* Neofetch About Section */}
               <ScrollReveal delay={0}>
                 <DraggableTerminal command="neofetch" delay={0} id="neofetch" index={0} isHackMode={isHackMode} colors={getTerminalColors(isHackMode, 0)}>
