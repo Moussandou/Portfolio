@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
 
 interface SoundContextType {
-    playSound: (type: 'click' | 'hover' | 'success' | 'error' | 'typing') => void;
+    playSound: (type: 'click' | 'hover' | 'success' | 'error' | 'typing' | 'startup') => void;
     isMuted: boolean;
     toggleMute: () => void;
 }
@@ -11,7 +11,7 @@ const SoundContext = createContext<SoundContextType | undefined>(undefined);
 export function SoundProvider({ children }: { children: React.ReactNode }) {
     const [isMuted, setIsMuted] = useState(false);
 
-    const playSound = useCallback((type: 'click' | 'hover' | 'success' | 'error' | 'typing') => {
+    const playSound = useCallback((type: 'click' | 'hover' | 'success' | 'error' | 'typing' | 'startup') => {
         if (isMuted) return;
 
         const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
@@ -74,6 +74,15 @@ export function SoundProvider({ children }: { children: React.ReactNode }) {
                 gain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
                 osc.start(now);
                 osc.stop(now + 0.03);
+                break;
+            case 'startup':
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(200, now);
+                osc.frequency.exponentialRampToValueAtTime(800, now + 0.5);
+                gain.gain.setValueAtTime(0.1, now);
+                gain.gain.linearRampToValueAtTime(0, now + 1.5);
+                osc.start(now);
+                osc.stop(now + 1.5);
                 break;
         }
     }, [isMuted]);

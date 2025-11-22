@@ -1,4 +1,4 @@
-
+import { ThemePicker } from './ThemePicker';
 
 interface FeaturesSectionProps {
     isHackMode: boolean;
@@ -62,35 +62,41 @@ export function FeaturesSection({ isHackMode }: FeaturesSectionProps) {
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {features.map((feat, index) => (
-                    <div
-                        key={index}
-                        id={feat.id}
-                        className={`p-3 rounded border transition-all duration-300 ${isHackMode
-                            ? 'bg-[#0F1729]/50 border-[#5DADE2]/30 hover:border-[#5DADE2] hover:bg-[#5DADE2]/10'
-                            : 'bg-white/50 border-[#0E6655]/30 hover:border-[#0E6655] hover:bg-[#0E6655]/10'
-                            }`}
-                    >
-                        <div className="flex items-center gap-2 mb-2">
-                            <span className="text-xl">{feat.icon}</span>
-                            <span className={`font-bold ${isHackMode ? 'text-[#5DADE2]' : 'text-[#0E6655]'}`}>
-                                {feat.title}
-                            </span>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="space-y-4">
+                    {isHackMode && (
+                        <div className="flex justify-center mb-4">
+                            <ThemePicker />
                         </div>
-                        <div className={`text-xs font-mono mb-1 px-2 py-1 rounded w-fit ${isHackMode ? 'bg-[#5DADE2]/20 text-[#85C1E9]' : 'bg-[#0E6655]/10 text-[#117A65]'
-                            }`}>
-                            {feat.cmd}
+                    )}
+                    {features.map((feat, index) => (
+                        <div
+                            key={index}
+                            id={feat.id}
+                            className={`p-3 rounded border transition-all duration-300 ${isHackMode
+                                ? 'bg-[var(--theme-background)]/50 border-[var(--theme-border)]/30 hover:border-[var(--theme-primary)] hover:bg-[var(--theme-primary)]/10'
+                                : 'bg-white/50 border-[var(--theme-border)]/30 hover:border-[var(--theme-primary)] hover:bg-[var(--theme-primary)]/10'
+                                }`}
+                        >
+                            <div className="flex items-center gap-2 mb-2">
+                                <div className={`text-2xl mb-2 text-[var(--theme-primary)]`}>{feat.icon}</div>
+                                <div className={`font-mono font-bold mb-1 text-[var(--theme-primary)]`}>
+                                    {isHackMode ? `> ${feat.cmd}` : feat.title}
+                                </div>
+                            </div>
+                            <div className={`text-xs font-mono mb-1 px-2 py-1 rounded w-fit bg-[var(--theme-border)]/10 text-[var(--theme-text)]/80`}>
+                                {feat.cmd}
+                            </div>
+                            <p className={`text-xs ${isHackMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                {feat.desc}
+                            </p>
                         </div>
-                        <p className={`text-xs ${isHackMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                            {feat.desc}
-                        </p>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
 
-            <div className={`text-xs italic text-center mt-4 ${isHackMode ? 'text-gray-500' : 'text-gray-400'}`}>
-                * D'autres secrets sont peut-être encore cachés...
+                <div className={`text-xs italic text-center mt-4 ${isHackMode ? 'text-gray-500' : 'text-gray-400'}`}>
+                    * D'autres secrets sont peut-être encore cachés...
+                </div>
             </div>
         </div>
     );

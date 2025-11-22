@@ -74,7 +74,7 @@ export function DraggableTerminal({
       {/* Active Glow Border */}
       {isActive && (
         <div className={`absolute inset-0 rounded-lg pointer-events-none border z-40 ${isHackMode
-            ? 'border-[#5DADE2] shadow-[0_0_15px_rgba(93,173,226,0.3)]'
+            ? 'border-[var(--theme-primary)] shadow-[0_0_15px_var(--theme-glow)]'
             : 'border-[#0E6655] shadow-[0_0_15px_rgba(14,102,85,0.3)]'
           }`} />
       )}

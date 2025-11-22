@@ -6,9 +6,10 @@ interface CustomContextMenuProps {
     isHackMode: boolean;
     onToggleTheme: () => void;
     onShowNotification: (message: string, type?: 'info' | 'success' | 'warning' | 'error') => void;
+    onReload: () => void;
 }
 
-export function CustomContextMenu({ isHackMode, onToggleTheme, onShowNotification }: CustomContextMenuProps) {
+export function CustomContextMenu({ isHackMode, onToggleTheme, onShowNotification, onReload }: CustomContextMenuProps) {
     const [visible, setVisible] = useState(false);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const menuRef = useRef<HTMLDivElement>(null);
@@ -43,6 +44,7 @@ export function CustomContextMenu({ isHackMode, onToggleTheme, onShowNotificatio
         { label: '📧 Envoyer un mail', action: () => window.location.href = 'mailto:moussandou.mroivili@epitech.eu' },
         { label: '🐙 GitHub Profile', action: () => window.open('https://github.com/moussandou', '_blank') },
         { label: '🔄 Changer Thème', action: onToggleTheme },
+        { label: '🚀 Redémarrer le système', action: onReload },
         { label: '💻 System Info', action: () => onShowNotification('OS: WebOS v2.0\nKernel: React 18\nShell: ZSH\nUptime: ' + Math.floor(performance.now() / 1000) + 's', 'info') },
     ];
 
@@ -56,7 +58,7 @@ export function CustomContextMenu({ isHackMode, onToggleTheme, onShowNotificatio
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.1 }}
                     className={`fixed z-[100] min-w-[160px] w-auto rounded-lg border backdrop-blur-md shadow-xl overflow-hidden ${isHackMode
-                        ? 'bg-[#0F1729]/95 border-[#5DADE2] text-[#5DADE2] shadow-[0_0_15px_rgba(93,173,226,0.3)]'
+                        ? 'bg-[var(--theme-background)]/95 border-[var(--theme-border)] text-[var(--theme-text)] shadow-[0_0_15px_var(--theme-glow)]'
                         : 'bg-white/95 border-[#0E6655] text-[#0E6655] shadow-lg'
                         }`}
                     style={{ top: position.y, left: position.x }}
@@ -75,7 +77,7 @@ export function CustomContextMenu({ isHackMode, onToggleTheme, onShowNotificatio
                                 }}
                                 onMouseEnter={() => playSound('hover')}
                                 className={`w-full text-left px-3 py-2 text-sm rounded transition-colors whitespace-nowrap ${isHackMode
-                                    ? 'hover:bg-[#5DADE2] hover:text-[#0F1729]'
+                                    ? 'hover:bg-[var(--theme-primary)] hover:text-[var(--theme-background)]'
                                     : 'hover:bg-[#0E6655] hover:text-white'
                                     }`}
                             >

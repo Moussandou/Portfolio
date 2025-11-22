@@ -5,9 +5,10 @@ import { useSound } from '../context/SoundContext';
 interface CommandPaletteProps {
     isHackMode: boolean;
     setHackMode: (value: boolean) => void;
+    onReload: () => void;
 }
 
-export function CommandPalette({ isHackMode, setHackMode }: CommandPaletteProps) {
+export function CommandPalette({ isHackMode, setHackMode, onReload }: CommandPaletteProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [query, setQuery] = useState('');
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -15,6 +16,7 @@ export function CommandPalette({ isHackMode, setHackMode }: CommandPaletteProps)
 
     const commands = [
         { id: 'theme', label: 'Toggle Theme', action: () => setHackMode(!isHackMode), icon: '🌓' },
+        { id: 'reload', label: 'Reload System / Reboot', action: onReload, icon: '🚀' },
         { id: 'top', label: 'Scroll to Top', action: () => window.scrollTo({ top: 0, behavior: 'smooth' }), icon: '⬆️' },
         { id: 'projects', label: 'Go to Projects', action: () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }), icon: '📂' },
         { id: 'contact', label: 'Go to Contact', action: () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), icon: '📧' },

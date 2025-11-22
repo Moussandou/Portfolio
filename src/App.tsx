@@ -5,7 +5,7 @@ import { ScrollReveal } from './components/ScrollReveal';
 import { NeofetchSection } from './components/NeofetchSection';
 import { TechIcon } from './components/TechIcon';
 import { DraggableTerminal } from './components/DraggableTerminal';
-import { ThemeProvider, getTerminalColors } from './components/ThemeProvider';
+import { getTerminalColors } from './components/ThemeProvider';
 import { Guestbook } from './components/Guestbook';
 import { MatrixBackground } from './components/MatrixBackground';
 import { MagneticWrapper } from './components/MagneticWrapper';
@@ -19,6 +19,7 @@ import { CommandPalette } from './components/CommandPalette';
 import { BootSequence } from './components/BootSequence';
 import { FeaturesSection } from './components/FeaturesSection';
 import { SoundProvider, useSound } from './context/SoundContext';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { SystemNotification } from './components/SystemNotification';
 import { DecryptingText } from './components/DecryptingText';
 import { GlitchText } from './components/GlitchText';
@@ -40,13 +41,15 @@ const rtypeVideo = '/Portfolio/assets/rtype.mp4';
 export default function App() {
   return (
     <SoundProvider>
-      <AppContent />
+      <ThemeProvider>
+        <AppContent />
+      </ThemeProvider>
     </SoundProvider>
   );
 }
 
 function AppContent() {
-  const [isHackMode, setIsHackMode] = useState(false);
+  const { isHackMode, toggleHackMode, setHackMode } = useTheme();
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showBootSequence, setShowBootSequence] = useState(true);
   const { playSound, isMuted, toggleMute } = useSound();
@@ -70,12 +73,18 @@ function AppContent() {
   }, []);
 
   const handleKonamiUnlock = () => {
-    setIsHackMode(true);
+    setHackMode(true);
     showNotification("🔓 SYSTEM OVERRIDE: GOD MODE ACTIVATED", 'success');
   };
 
+  const handleReload = () => {
+    setShowBootSequence(true);
+    playSound('startup');
+  };
+
   return (
-    <ThemeProvider isHackMode={isHackMode}>
+    <>
+      {/* ThemeProvider wrapper removed */}
       {showBootSequence && <BootSequence onComplete={() => setShowBootSequence(false)} />}
 
       <SystemNotification
@@ -91,17 +100,18 @@ function AppContent() {
         }`}>
 
         {/* Round 3 Enhancements */}
-        <CommandPalette isHackMode={isHackMode} setHackMode={setIsHackMode} />
+        <CommandPalette isHackMode={isHackMode} setHackMode={setHackMode} onReload={handleReload} />
 
         {/* Round 2 Enhancements */}
         <CustomContextMenu
           isHackMode={isHackMode}
-          onToggleTheme={() => setIsHackMode(!isHackMode)}
+          onToggleTheme={toggleHackMode}
           onShowNotification={showNotification}
+          onReload={handleReload}
         />
         <KonamiCode onUnlock={handleKonamiUnlock} />
         <LiveClock isHackMode={isHackMode} />
-        <CrtOverlay isHackMode={isHackMode} />
+        <CrtOverlay />
         <CyberpunkHud isHackMode={isHackMode} />
         <FakeBSOD />
 
@@ -126,7 +136,7 @@ function AppContent() {
           <MagneticWrapper strength={15}>
             <button
               onClick={() => {
-                setIsHackMode(!isHackMode);
+                toggleHackMode();
                 playSound('success');
               }}
               className={`px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-bold text-xs sm:text-sm transition-all duration-300 transform border-2 flex items-center gap-2 ${isHackMode
@@ -156,27 +166,17 @@ function AppContent() {
           {/* Sound Toggle */}
           <MagneticWrapper strength={10}>
             <button
-              onClick={() => {
-                toggleMute();
-                if (isMuted) playSound('click');
-              }}
-              className={`p-2 rounded-full border transition-all duration-300 ${isHackMode
-                ? isMuted
-                  ? 'bg-[#0F1729] border-gray-600 text-gray-600 hover:border-gray-400 hover:text-gray-400'
-                  : 'bg-[#0F1729] border-[#5DADE2]/50 text-[#5DADE2] hover:bg-[#5DADE2] hover:text-black shadow-[0_0_10px_rgba(93,173,226,0.3)]'
-                : isMuted
-                  ? 'bg-white border-gray-300 text-gray-400 hover:border-gray-500 hover:text-gray-500'
-                  : 'bg-white border-[#0E6655]/50 text-[#0E6655] hover:bg-[#0E6655] hover:text-white shadow-md'
-                }`}
-              title={isMuted ? "Unmute Sound" : "Mute Sound"}
+              onClick={toggleMute}
+              className={`p-2 rounded-full transition-all duration-300 ${isHackMode ? 'text-[#5DADE2] hover:bg-[#5DADE2]/20' : 'text-[#0E6655] hover:bg-[#0E6655]/10'}`}
+              aria-label={isMuted ? "Activer le son" : "Couper le son"}
             >
               {isMuted ? (
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
                 </svg>
               ) : (
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
                 </svg>
               )}
@@ -202,7 +202,7 @@ function AppContent() {
                 [████████████] 100% - Accès autorisé ✓
               </div>
               <div className="text-center mb-8">
-                <div className={`${isHackMode ? 'text-[#5DADE2]' : 'text-[#0E6655]'} text-lg lg:text-xl font-semibold`}>
+                <div className={`text-[var(--theme-primary)] text-lg lg:text-xl font-semibold`}>
                   <DecryptingText
                     text="// Développeur //"
                     isHackMode={isHackMode}
@@ -652,13 +652,12 @@ function AppContent() {
                                 >
                                   {project.name}
                                 </a>
-                              ) : (
-                                <GlitchText
-                                  text={project.name}
-                                  isHackMode={isHackMode}
-                                  className={`${isHackMode ? 'text-white' : 'text-[#117A65]'} font-semibold`}
-                                />
-                              )}
+                              ) : <GlitchText
+                                text={project.name}
+                                isHackMode={isHackMode}
+                                className={`${isHackMode ? 'text-white' : 'text-[#117A65]'} font-semibold`}
+                              />
+                              }
                               {project.github && (
                                 <a
                                   href={project.github}
@@ -715,6 +714,6 @@ function AppContent() {
           </ScrollReveal>
         </div>
       </div>
-    </ThemeProvider>
+    </>
   );
 }

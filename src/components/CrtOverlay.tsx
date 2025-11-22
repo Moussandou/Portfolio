@@ -1,28 +1,18 @@
 import { useState, useEffect } from 'react';
 
-interface CrtOverlayProps {
-    isHackMode: boolean;
-}
-
-export function CrtOverlay({ isHackMode }: CrtOverlayProps) {
+export function CrtOverlay() {
     const [intensity, setIntensity] = useState<'off' | 'low' | 'high'>('low');
 
     useEffect(() => {
-        // Reset to low when hack mode changes, or keep user preference?
-        // Let's keep it simple for now: if hack mode is off, CRT is off.
-        if (!isHackMode) {
-            setIntensity('off');
-        } else {
-            setIntensity('low');
-        }
-    }, [isHackMode]);
+        // Default to low on mount
+        setIntensity('low');
+    }, []);
 
     const toggleIntensity = () => {
-        if (!isHackMode) return;
         setIntensity(prev => prev === 'low' ? 'high' : prev === 'high' ? 'off' : 'low');
     };
 
-    if (!isHackMode || intensity === 'off') return null;
+    if (intensity === 'off') return null;
 
     return (
         <div className={`pointer-events-none fixed inset-0 z-[9999] overflow-hidden ${intensity === 'high' ? 'opacity-100' : 'opacity-50'}`}>
@@ -39,7 +29,7 @@ export function CrtOverlay({ isHackMode }: CrtOverlayProps) {
             <div className="fixed bottom-4 left-4 pointer-events-auto z-[10000]">
                 <button
                     onClick={toggleIntensity}
-                    className="text-[10px] font-mono text-[#5DADE2] opacity-50 hover:opacity-100 border border-[#5DADE2]/30 px-2 py-1 rounded bg-[#0F1729]/80 backdrop-blur"
+                    className="text-[10px] font-mono text-[var(--theme-primary)] opacity-50 hover:opacity-100 border border-[var(--theme-border)]/30 px-2 py-1 rounded bg-[var(--theme-background)]/80 backdrop-blur"
                 >
                     CRT: {intensity.toUpperCase()}
                 </button>
