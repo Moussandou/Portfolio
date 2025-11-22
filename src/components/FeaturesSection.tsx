@@ -1,10 +1,13 @@
 import { ThemePicker } from './ThemePicker';
+import { AchievementList } from './AchievementList';
+import { useAchievements } from '../context/AchievementContext';
 
 interface FeaturesSectionProps {
     isHackMode: boolean;
 }
 
 export function FeaturesSection({ isHackMode }: FeaturesSectionProps) {
+    const { unlockAchievement } = useAchievements();
     const features = [
         {
             icon: "⌨️",
@@ -47,7 +50,8 @@ export function FeaturesSection({ isHackMode }: FeaturesSectionProps) {
             title: "Don't Click",
             cmd: "DANGER",
             desc: "Ne cliquez surtout pas ici.",
-            id: "bsod-trigger"
+            id: "bsod-trigger",
+            action: () => unlockAchievement('curious_cat')
         }
     ];
 
@@ -65,14 +69,19 @@ export function FeaturesSection({ isHackMode }: FeaturesSectionProps) {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="space-y-4">
                     {isHackMode && (
-                        <div className="flex justify-center mb-4">
+                        <div className="flex flex-col gap-4 mb-4">
                             <ThemePicker />
+                            <div className="border-t border-[#5DADE2]/30 pt-4">
+                                <h4 className="text-sm font-bold text-[#5DADE2] mb-2">ACHIEVEMENTS</h4>
+                                <AchievementList />
+                            </div>
                         </div>
                     )}
                     {features.map((feat, index) => (
                         <div
                             key={index}
                             id={feat.id}
+                            onClick={() => (feat as any).action && (feat as any).action()}
                             className={`p-3 rounded border transition-all duration-300 ${isHackMode
                                 ? 'bg-[var(--theme-background)]/50 border-[var(--theme-border)]/30 hover:border-[var(--theme-primary)] hover:bg-[var(--theme-primary)]/10'
                                 : 'bg-white/50 border-[var(--theme-border)]/30 hover:border-[var(--theme-primary)] hover:bg-[var(--theme-primary)]/10'

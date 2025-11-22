@@ -21,7 +21,9 @@ import { FeaturesSection } from './components/FeaturesSection';
 import { SoundProvider, useSound } from './context/SoundContext';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { FileSystemProvider } from './context/FileSystemContext';
+import { AchievementProvider, useAchievements } from './context/AchievementContext';
 import { InteractiveTerminal } from './components/InteractiveTerminal';
+import { AchievementNotification } from './components/AchievementNotification';
 import { SystemNotification } from './components/SystemNotification';
 import { DecryptingText } from './components/DecryptingText';
 import { GlitchText } from './components/GlitchText';
@@ -45,7 +47,9 @@ export default function App() {
     <SoundProvider>
       <ThemeProvider>
         <FileSystemProvider>
-          <AppContent />
+          <AchievementProvider>
+            <AppContent />
+          </AchievementProvider>
         </FileSystemProvider>
       </ThemeProvider>
     </SoundProvider>
@@ -54,6 +58,7 @@ export default function App() {
 
 function AppContent() {
   const { isHackMode, toggleHackMode, setHackMode } = useTheme();
+  const { unlockAchievement } = useAchievements();
   const [scrollProgress, setScrollProgress] = useState(0);
   const [showBootSequence, setShowBootSequence] = useState(true);
   const { playSound, isMuted, toggleMute } = useSound();
@@ -78,6 +83,7 @@ function AppContent() {
 
   const handleKonamiUnlock = () => {
     setHackMode(true);
+    unlockAchievement('konami_master');
     showNotification("🔓 SYSTEM OVERRIDE: GOD MODE ACTIVATED", 'success');
   };
 
@@ -97,6 +103,7 @@ function AppContent() {
         onClose={() => setNotification(null)}
         isHackMode={isHackMode}
       />
+      <AchievementNotification />
 
       <div className={`min-h-screen w-full overflow-x-hidden transition-colors duration-500 monocraft relative ${isHackMode
         ? 'bg-[#0A0E1A] crt-screen vhs-noise'
@@ -141,6 +148,7 @@ function AppContent() {
             <button
               onClick={() => {
                 toggleHackMode();
+                if (!isHackMode) unlockAchievement('hacker_mode');
                 playSound('success');
               }}
               className={`px-4 py-2 sm:px-6 sm:py-3 rounded-lg font-bold text-xs sm:text-sm transition-all duration-300 transform border-2 flex items-center gap-2 ${isHackMode

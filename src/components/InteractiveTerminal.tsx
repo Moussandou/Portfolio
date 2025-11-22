@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useFileSystem } from '../context/FileSystemContext';
 import { useTheme } from '../context/ThemeContext';
 import { useSound } from '../context/SoundContext';
+import { useAchievements } from '../context/AchievementContext';
 
 interface TerminalLine {
     type: 'input' | 'output';
@@ -13,6 +14,7 @@ export function InteractiveTerminal() {
     const { currentPath, executeCommand, addToHistory, commandHistory } = useFileSystem();
     const { isHackMode } = useTheme();
     const { playSound } = useSound();
+    const { unlockAchievement } = useAchievements();
 
     const [lines, setLines] = useState<TerminalLine[]>([
         { type: 'output', content: 'Welcome to MoussandouOS v2.0. Type "help" for available commands.' }
@@ -43,6 +45,7 @@ export function InteractiveTerminal() {
                     newLines.push({ type: 'output', content: result.output });
                 }
                 setLines(newLines);
+                unlockAchievement('terminal_wizard');
             }
 
             addToHistory(cmd);
