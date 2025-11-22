@@ -4,6 +4,7 @@ import { useTheme } from '../context/ThemeContext';
 import { useSound } from '../context/SoundContext';
 import { useAchievements } from '../context/AchievementContext';
 import { useHackerTyper } from '../context/HackerTyperContext';
+import { useDataViz } from '../context/DataVizContext';
 import { TypingGame } from './TypingGame';
 
 interface TerminalLine {
@@ -18,6 +19,7 @@ export function InteractiveTerminal() {
     const { playSound } = useSound();
     const { unlockAchievement } = useAchievements();
     const { startHackerTyper } = useHackerTyper();
+    const { showViz } = useDataViz();
     const [terminalMode, setTerminalMode] = useState<'shell' | 'typing-game'>('shell');
 
     const [lines, setLines] = useState<TerminalLine[]>([
@@ -48,6 +50,9 @@ export function InteractiveTerminal() {
                 setLines(prev => [...prev, { type: 'input', content: cmd }, { type: 'output', content: 'Initiating Hacker Mode...' }]);
             } else if (cmd === 'typing-game') {
                 setTerminalMode('typing-game');
+            } else if (cmd === 'github-city') {
+                showViz('github-city');
+                setLines(prev => [...prev, { type: 'input', content: cmd }, { type: 'output', content: 'Launching GitHub City Visualization...' }]);
             } else {
                 const result = executeCommand(cmd);
                 if (result.output) {

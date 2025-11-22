@@ -123,6 +123,7 @@ export function FileSystemProvider({ children }: { children: React.ReactNode }) 
   mkdir [dir] Create directory
   touch [file] Create file
   typing-game Start typing speed test
+  github-city View 3D GitHub activity
   whoami    Display current user
   date      Display current date`,
                     type: 'info'

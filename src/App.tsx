@@ -23,9 +23,11 @@ import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { FileSystemProvider } from './context/FileSystemContext';
 import { AchievementProvider, useAchievements } from './context/AchievementContext';
 import { HackerTyperProvider } from './context/HackerTyperContext';
+import { DataVizProvider } from './context/DataVizContext';
 import { InteractiveTerminal } from './components/InteractiveTerminal';
 import { AchievementNotification } from './components/AchievementNotification';
 import { HackerTyper } from './components/HackerTyper';
+import { GithubCity } from './components/GithubCity';
 import { SystemNotification } from './components/SystemNotification';
 import { DecryptingText } from './components/DecryptingText';
 import { GlitchText } from './components/GlitchText';
@@ -52,7 +54,9 @@ export default function App() {
           <FileSystemProvider>
             <AchievementProvider>
               <HackerTyperProvider>
-                <AppContent />
+                <DataVizProvider>
+                  <AppContent />
+                </DataVizProvider>
               </HackerTyperProvider>
             </AchievementProvider>
           </FileSystemProvider>
@@ -131,6 +135,7 @@ function AppContent() {
         <LiveClock isHackMode={isHackMode} />
         <CrtOverlay />
         <HackerTyper />
+        <GithubCity />
         <CyberpunkHud isHackMode={isHackMode} />
         <FakeBSOD />
 
