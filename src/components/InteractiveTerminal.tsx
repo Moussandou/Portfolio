@@ -3,6 +3,7 @@ import { useFileSystem } from '../context/FileSystemContext';
 import { useTheme } from '../context/ThemeContext';
 import { useSound } from '../context/SoundContext';
 import { useAchievements } from '../context/AchievementContext';
+import { useHackerTyper } from '../context/HackerTyperContext';
 
 interface TerminalLine {
     type: 'input' | 'output';
@@ -15,6 +16,7 @@ export function InteractiveTerminal() {
     const { isHackMode } = useTheme();
     const { playSound } = useSound();
     const { unlockAchievement } = useAchievements();
+    const { startHackerTyper } = useHackerTyper();
 
     const [lines, setLines] = useState<TerminalLine[]>([
         { type: 'output', content: 'Welcome to MoussandouOS v2.0. Type "help" for available commands.' }
@@ -39,6 +41,9 @@ export function InteractiveTerminal() {
 
             if (cmd === 'clear') {
                 setLines([]);
+            } else if (cmd === 'hackertyper') {
+                startHackerTyper();
+                setLines(prev => [...prev, { type: 'input', content: cmd }, { type: 'output', content: 'Initiating Hacker Mode...' }]);
             } else {
                 const result = executeCommand(cmd);
                 if (result.output) {

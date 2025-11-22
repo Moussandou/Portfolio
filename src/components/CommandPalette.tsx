@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useHackerTyper } from '../context/HackerTyperContext';
 import { useSound } from '../context/SoundContext';
 
 interface CommandPaletteProps {
@@ -12,10 +13,18 @@ export function CommandPalette({ isHackMode, setHackMode, onReload }: CommandPal
     const [isOpen, setIsOpen] = useState(false);
     const [query, setQuery] = useState('');
     const [selectedIndex, setSelectedIndex] = useState(0);
+    const { startHackerTyper } = useHackerTyper();
     const { playSound } = useSound();
 
     const commands = [
         { id: 'theme', label: 'Toggle Theme', action: () => setHackMode(!isHackMode), icon: '🌓' },
+        {
+            id: 'hacker-typer',
+            label: 'Hacker Typer Mode',
+            icon: '💻',
+            action: () => startHackerTyper(),
+            shortcut: 'hack'
+        },
         { id: 'reload', label: 'Reload System / Reboot', action: onReload, icon: '🚀' },
         { id: 'top', label: 'Scroll to Top', action: () => window.scrollTo({ top: 0, behavior: 'smooth' }), icon: '⬆️' },
         { id: 'projects', label: 'Go to Projects', action: () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }), icon: '📂' },

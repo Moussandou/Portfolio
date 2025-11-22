@@ -22,8 +22,10 @@ import { SoundProvider, useSound } from './context/SoundContext';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { FileSystemProvider } from './context/FileSystemContext';
 import { AchievementProvider, useAchievements } from './context/AchievementContext';
+import { HackerTyperProvider } from './context/HackerTyperContext';
 import { InteractiveTerminal } from './components/InteractiveTerminal';
 import { AchievementNotification } from './components/AchievementNotification';
+import { HackerTyper } from './components/HackerTyper';
 import { SystemNotification } from './components/SystemNotification';
 import { DecryptingText } from './components/DecryptingText';
 import { GlitchText } from './components/GlitchText';
@@ -47,9 +49,13 @@ export default function App() {
     <SoundProvider>
       <ThemeProvider>
         <FileSystemProvider>
-          <AchievementProvider>
-            <AppContent />
-          </AchievementProvider>
+          <FileSystemProvider>
+            <AchievementProvider>
+              <HackerTyperProvider>
+                <AppContent />
+              </HackerTyperProvider>
+            </AchievementProvider>
+          </FileSystemProvider>
         </FileSystemProvider>
       </ThemeProvider>
     </SoundProvider>
@@ -122,7 +128,9 @@ function AppContent() {
         />
         <KonamiCode onUnlock={handleKonamiUnlock} />
         <LiveClock isHackMode={isHackMode} />
+        <LiveClock isHackMode={isHackMode} />
         <CrtOverlay />
+        <HackerTyper />
         <CyberpunkHud isHackMode={isHackMode} />
         <FakeBSOD />
 
