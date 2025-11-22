@@ -25,17 +25,7 @@ export function TerminalSection({ command, children, delay = 0, isHackMode = fal
   };
 
   return (
-    <div className={`mb-8 terminal-window border ${colors ? colors.border : 'border-[#5DADE2]/30'} ${colors ? colors.bg : 'bg-[#0F1729]/95'} backdrop-blur-sm rounded-lg transition-all duration-300`}>
-      {/* Terminal header */}
-      <div className={`flex items-center justify-between ${colors ? colors.header : 'bg-[#1A2332]/90'} border-b ${colors ? colors.border : 'border-[#5DADE2]/30'} px-4 py-2 rounded-t-lg`}>
-        <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 rounded-full bg-red-500"></div>
-          <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-          <div className="w-3 h-3 rounded-full bg-green-500"></div>
-        </div>
-        <div className={`${colors ? colors.accent : 'text-[#5DADE2]'} text-sm font-semibold`}>moussandou@terminal:~</div>
-      </div>
-
+    <div className={`h-full ${colors ? colors.bg : 'bg-[#0F1729]/90'} backdrop-blur-sm rounded-b-lg transition-all duration-300`}>
       {/* Terminal content */}
       <div className="p-4 font-mono">
         <div className={`${colors ? colors.accent : 'text-[#5DADE2]'} mb-2`}>

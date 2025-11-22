@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 interface TypewriterEffectProps {
   text: string;
@@ -13,18 +13,24 @@ export function TypewriterEffect({ text, speed = 50, delay = 0, onComplete, clas
   const [displayedText, setDisplayedText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showCursor, setShowCursor] = useState(true);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    // Randomize speed slightly for human effect (±20ms)
+    const randomSpeed = Math.max(10, speed + (Math.random() * 40 - 20));
+
+    timeoutRef.current = setTimeout(() => {
       if (currentIndex < text.length) {
         setDisplayedText(text.slice(0, currentIndex + 1));
         setCurrentIndex(currentIndex + 1);
       } else {
         onComplete?.();
       }
-    }, currentIndex === 0 ? delay : speed);
+    }, currentIndex === 0 ? delay : randomSpeed);
 
-    return () => clearTimeout(timeout);
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
   }, [currentIndex, text, speed, delay, onComplete]);
 
   useEffect(() => {
@@ -38,7 +44,9 @@ export function TypewriterEffect({ text, speed = 50, delay = 0, onComplete, clas
   return (
     <span className={className}>
       {displayedText}
-      {showCursor && (currentIndex <= text.length) && <span className={`animate-pulse ${isHackMode ? 'text-[#5DADE2]' : 'text-[#0E6655]'}`}>_</span>}
+      <span className={`${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100 ${isHackMode ? 'text-[#5DADE2]' : 'text-[#0E6655]'}`}>
+        {isHackMode ? '█' : '_'}
+      </span>
     </span>
   );
 }

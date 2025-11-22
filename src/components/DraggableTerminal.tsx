@@ -1,5 +1,6 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
 import { TerminalSection } from './TerminalSection';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 interface DraggableTerminalProps {
   command: string;
@@ -22,94 +23,61 @@ export function DraggableTerminal({
   command,
   delay,
   children,
-  onOrderChange: _onOrderChange,
-  id: _id,
-  index: _index,
   isHackMode = false,
-  colors
+  colors,
+  id
 }: DraggableTerminalProps) {
-  const [isDragging, setIsDragging] = useState(false);
-  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const terminalRef = useRef<HTMLDivElement>(null);
-  const [zIndex, setZIndex] = useState(10);
-
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    if (!isDragging) return;
-    
-    setPosition({
-      x: e.clientX - dragOffset.x,
-      y: e.clientY - dragOffset.y
-    });
-  }, [isDragging, dragOffset]);
-
-  const handleMouseUp = useCallback(() => {
-    if (!isDragging) return;
-    
-    setIsDragging(false);
-    setZIndex(10);
-    setPosition({ x: 0, y: 0 }); // Reset position
-  }, [isDragging]);
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (!terminalRef.current) return;
-    
-    const rect = terminalRef.current.getBoundingClientRect();
-    setDragOffset({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    });
-    setIsDragging(true);
-    setZIndex(100); // Bring to front
-    
-    e.preventDefault();
-  };
-
-  useEffect(() => {
-    if (isDragging) {
-      document.addEventListener('mousemove', handleMouseMove);
-      document.addEventListener('mouseup', handleMouseUp);
-    }
-
-    return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-    };
-  }, [isDragging, handleMouseMove, handleMouseUp]);
+  const [isActive, setIsActive] = useState(false);
 
   return (
-    <div
-      ref={terminalRef}
-      className={`
-        relative transition-all duration-200 
-        ${isDragging ? 'scale-105 shadow-2xl cursor-grabbing' : 'cursor-auto'}
-      `}
-      style={{
-        transform: isDragging ? `translate(${position.x}px, ${position.y}px)` : 'none',
-        zIndex: zIndex,
+    <motion.div
+      id={id}
+      initial={{ opacity: 0, scale: 0.9, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{
+        duration: 0.4,
+        delay: delay * 0.1,
+        type: "spring",
+        stiffness: 100,
+        damping: 15
       }}
+      className={`relative transition-all duration-300 ${isActive ? 'scale-[1.02] z-30' : 'z-10'}`}
+      style={{ zIndex: isActive ? 30 : 10 }}
+      onMouseEnter={() => setIsActive(true)}
+      onMouseLeave={() => setIsActive(false)}
+      onClick={() => setIsActive(true)}
     >
-      {/* Drag handle */}
+      {/* Header (Visual only) */}
       <div
-        className={`absolute top-0 left-0 right-0 h-6 ${colors ? colors.header : 'bg-[#5DADE2]/10'} border ${colors ? colors.border : 'border-[#5DADE2]/30'} rounded-t-lg cursor-grab active:cursor-grabbing flex items-center justify-center hover:opacity-80 transition-all`}
-        onMouseDown={handleMouseDown}
+        className={`absolute top-0 left-0 right-0 h-8 ${colors ? colors.header : 'bg-[#5DADE2]/10'} border-x border-t ${colors ? colors.border : 'border-[#5DADE2]/30'} rounded-t-lg flex items-center justify-between px-3 backdrop-blur-sm z-20 transition-colors duration-300 ${isActive ? 'bg-opacity-80' : ''}`}
       >
-        <div className="flex gap-1">
-          <div className="w-2 h-2 bg-[#5DADE2] rounded-full"></div>
-          <div className="w-2 h-2 bg-[#85C1E9] rounded-full"></div>
-          <div className="w-2 h-2 bg-[#85C1E9] rounded-full"></div>
+        <div className="flex gap-2">
+          <div className={`w-3 h-3 rounded-full ${isHackMode ? 'bg-red-500/80 shadow-[0_0_8px_rgba(239,68,68,0.6)]' : 'bg-[#FF5F56]'}`}></div>
+          <div className={`w-3 h-3 rounded-full ${isHackMode ? 'bg-yellow-500/80 shadow-[0_0_8px_rgba(234,179,8,0.6)]' : 'bg-[#FFBD2E]'}`}></div>
+          <div className={`w-3 h-3 rounded-full ${isHackMode ? 'bg-green-500/80 shadow-[0_0_8px_rgba(34,197,94,0.6)]' : 'bg-[#27C93F]'}`}></div>
         </div>
-        <div className={`absolute right-2 text-xs ${colors ? colors.accent : 'text-[#5DADE2]'}/60`}>
+        <div className={`text-xs font-mono ${colors ? colors.accent : 'text-[#5DADE2]'} opacity-70 select-none`}>
+          {isHackMode ? 'root@kali:~' : 'user@macbook:~'}
+        </div>
+        <div className={`text-xs ${colors ? colors.accent : 'text-[#5DADE2]'} opacity-50`}>
           {'///'}
         </div>
       </div>
 
-      {/* Terminal content with margin for drag handle */}
-      <div className="mt-6">
-        <TerminalSection command={command} delay={delay} isHackMode={isHackMode} colors={colors}>
+      {/* Terminal content */}
+      <div className="pt-8 h-full">
+        <TerminalSection command={command} delay={delay + 0.5} isHackMode={isHackMode} colors={colors}>
           {children}
         </TerminalSection>
       </div>
-    </div>
+
+      {/* Active Glow Border */}
+      {isActive && (
+        <div className={`absolute inset-0 rounded-lg pointer-events-none border z-40 ${isHackMode
+            ? 'border-[#5DADE2] shadow-[0_0_15px_rgba(93,173,226,0.3)]'
+            : 'border-[#0E6655] shadow-[0_0_15px_rgba(14,102,85,0.3)]'
+          }`} />
+      )}
+    </motion.div>
   );
 }
