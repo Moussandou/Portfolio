@@ -4,6 +4,7 @@ import { useTheme } from '../context/ThemeContext';
 import { useSound } from '../context/SoundContext';
 import { useAchievements } from '../context/AchievementContext';
 import { useHackerTyper } from '../context/HackerTyperContext';
+import { TypingGame } from './TypingGame';
 
 interface TerminalLine {
     type: 'input' | 'output';
@@ -17,6 +18,7 @@ export function InteractiveTerminal() {
     const { playSound } = useSound();
     const { unlockAchievement } = useAchievements();
     const { startHackerTyper } = useHackerTyper();
+    const [terminalMode, setTerminalMode] = useState<'shell' | 'typing-game'>('shell');
 
     const [lines, setLines] = useState<TerminalLine[]>([
         { type: 'output', content: 'Welcome to MoussandouOS v2.0. Type "help" for available commands.' }
@@ -44,6 +46,8 @@ export function InteractiveTerminal() {
             } else if (cmd === 'hackertyper') {
                 startHackerTyper();
                 setLines(prev => [...prev, { type: 'input', content: cmd }, { type: 'output', content: 'Initiating Hacker Mode...' }]);
+            } else if (cmd === 'typing-game') {
+                setTerminalMode('typing-game');
             } else {
                 const result = executeCommand(cmd);
                 if (result.output) {
@@ -81,9 +85,13 @@ export function InteractiveTerminal() {
 
     const pathString = `~/${currentPath.slice(2).join('/')}`; // Hide home/moussandou prefix for cleaner look
 
+    if (terminalMode === 'typing-game') {
+        return <TypingGame onExit={() => setTerminalMode('shell')} />;
+    }
+
     return (
         <div
-            className="h-full w-full font-mono text-sm p-2 overflow-y-auto"
+            className="h-full w-full bg-transparent font-mono text-sm sm:text-base overflow-y-auto p-2 sm:p-4"
             onClick={() => inputRef.current?.focus()}
         >
             {lines.map((line, i) => (

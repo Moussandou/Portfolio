@@ -122,6 +122,7 @@ export function FileSystemProvider({ children }: { children: React.ReactNode }) 
   clear     Clear terminal
   mkdir [dir] Create directory
   touch [file] Create file
+  typing-game Start typing speed test
   whoami    Display current user
   date      Display current date`,
                     type: 'info'
