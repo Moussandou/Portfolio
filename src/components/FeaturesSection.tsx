@@ -94,17 +94,17 @@ export function FeaturesSection({ isHackMode }: FeaturesSectionProps) {
                             if (feature.action) feature.action();
                         }}
                         className={`p-3 rounded border transition-all duration-300 h-full flex flex-col ${isHackMode
-                            ? 'bg-[var(--theme-background)]/50 border-[var(--theme-border)]/30 hover:border-[var(--theme-primary)] hover:bg-[var(--theme-primary)]/10'
-                            : 'bg-white/50 border-[var(--theme-border)]/30 hover:border-[var(--theme-primary)] hover:bg-[var(--theme-primary)]/10'
+                            ? 'bg-[#0A0E1A]/50 border-[#5DADE2]/40 hover:border-[#5DADE2] hover:bg-[#5DADE2]/10'
+                            : 'bg-white/50 border-[#0E6655]/40 hover:border-[#0E6655] hover:bg-[#0E6655]/10'
                             }`}
                     >
                         <div className="flex items-center gap-2 mb-2">
-                            <div className={`text-2xl text-[var(--theme-primary)]`}>{feat.icon}</div>
-                            <div className={`font-mono font-bold text-[var(--theme-primary)]`}>
+                            <div className={`text-2xl`}>{feat.icon}</div>
+                            <div className={`font-mono font-bold ${isHackMode ? 'text-[#5DADE2]' : 'text-[#0E6655]'}`}>
                                 {isHackMode ? `> ${feat.cmd}` : feat.title}
                             </div>
                         </div>
-                        <div className={`text-xs font-mono mb-2 px-2 py-1 rounded w-fit bg-[var(--theme-border)]/10 text-[var(--theme-text)]/80`}>
+                        <div className={`text-xs font-mono mb-2 px-2 py-1 rounded w-fit ${isHackMode ? 'bg-[#5DADE2]/10 text-[#85C1E9]' : 'bg-[#0E6655]/10 text-[#117A65]'}`}>
                             {feat.cmd}
                         </div>
                         <p className={`text-xs ${isHackMode ? 'text-gray-400' : 'text-gray-600'} flex-grow`}>

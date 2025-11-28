@@ -32,7 +32,7 @@ export function TechIcon({ name, size = 24, className = "" }: TechIconProps) {
     "asm": "embeddedc",
     "sql": "mysql",
     "seo": "google",
-    "teacher": "twitter",
+    "teacher": "teacher",
     "email": "google",
     "linkedin": "linkedin",
     "hackathon": "trophy",
@@ -40,7 +40,7 @@ export function TechIcon({ name, size = 24, className = "" }: TechIconProps) {
 
   // Handle special cases that aren't in devicon or need specific handling
   const iconName = iconMap[name.toLowerCase()] || name.toLowerCase();
-  const isDevicon = !["trophy", "n8n"].includes(iconName);
+  const isDevicon = !["trophy", "n8n", "teacher"].includes(iconName);
 
   return (
     <div className="relative group inline-flex items-center justify-center">
@@ -51,7 +51,7 @@ export function TechIcon({ name, size = 24, className = "" }: TechIconProps) {
         ></i>
       ) : (
         <span style={{ fontSize: size }}>
-          {iconName === 'trophy' ? '🏆' : iconName === 'n8n' ? '⚡' : '🔧'}
+          {iconName === 'trophy' ? '🏆' : iconName === 'n8n' ? '⚡' : iconName === 'teacher' ? '👨‍🏫' : '🔧'}
         </span>
       )}
 

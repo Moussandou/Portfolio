@@ -131,8 +131,13 @@ export function InteractiveTerminal() {
     return (
         <div
             ref={containerRef}
-            className="h-full w-full bg-transparent font-mono text-sm sm:text-base overflow-y-auto p-2 sm:p-4 scroll-smooth"
-            onClick={() => inputRef.current?.focus()}
+            className="h-full w-full bg-transparent font-mono text-sm sm:text-base overflow-y-auto p-2 sm:p-4 scroll-smooth cursor-text"
+            onClick={() => {
+                const selection = window.getSelection();
+                if (!selection || selection.toString().length === 0) {
+                    inputRef.current?.focus();
+                }
+            }}
         >
             {lines.map((line, i) => (
                 <div key={i} className="mb-1 break-words">
@@ -155,7 +160,7 @@ export function InteractiveTerminal() {
                 <span className={isHackMode ? 'text-[#5DADE2]' : 'text-[#0E6655]'}>
                     moussandou@host:{pathString}$
                 </span>
-                <div className="relative flex-1">
+                <div className="relative flex-1 min-w-[100px] min-h-[24px]">
                     {/* Ghost Text */}
                     {suggestion && input && suggestion.startsWith(input) && (
                         <div
@@ -171,7 +176,7 @@ export function InteractiveTerminal() {
                         value={input}
                         onChange={handleInputChange}
                         onKeyDown={handleKeyDown}
-                        className={`w-full bg-transparent outline-none border-none p-0 relative z-10 ${isHackMode ? 'text-gray-300 caret-[#5DADE2]' : 'text-gray-800 caret-[#0E6655]'
+                        className={`w-full bg-transparent outline-none border-none p-0 relative z-20 ${isHackMode ? 'text-gray-300 caret-[#5DADE2]' : 'text-gray-800 caret-[#0E6655]'
                             }`}
                         autoFocus
                         autoComplete="off"

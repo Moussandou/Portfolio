@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { useDataViz } from '../context/DataVizContext';
+// import { useDataViz } from '../context/DataVizContext'; // Removed unused
 import { useTheme } from '../context/ThemeContext';
 
 interface Node {
@@ -95,7 +95,7 @@ const SKILLS_DATA = {
 };
 
 export function SkillGraph() {
-    const { activeViz, closeViz } = useDataViz();
+    // const { activeViz, closeViz } = useDataViz(); // Removed unused context
     const { isHackMode } = useTheme();
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [_hoveredNode, setHoveredNode] = useState<Node | null>(null);
@@ -106,53 +106,105 @@ export function SkillGraph() {
     const animationRef = useRef<number>();
     const draggingNode = useRef<Node | null>(null);
 
+    const containerRef = useRef<HTMLDivElement>(null);
+
     useEffect(() => {
-        if (activeViz !== 'skill-graph') return;
-        if (!canvasRef.current) return;
+        if (!canvasRef.current || !containerRef.current) return;
 
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        canvasRef.current.width = width;
-        canvasRef.current.height = height;
+        const initGraph = () => {
+            if (!containerRef.current || !canvasRef.current) return;
+            const { clientWidth, clientHeight } = containerRef.current;
 
-        // Initialize nodes
-        nodesRef.current = SKILLS_DATA.nodes.map(n => {
-            const node: Node = {
-                ...n,
-                x: width / 2 + (Math.random() - 0.5) * 200, // Spread out initial positions
-                y: height / 2 + (Math.random() - 0.5) * 200,
-                vx: 0,
-                vy: 0
-            };
-            // Preload image if icon exists
-            if (n.icon) {
-                const img = new Image();
-                img.src = n.icon;
-                node.img = img;
+            if (clientWidth === 0 || clientHeight === 0) return;
+
+            canvasRef.current.width = clientWidth;
+            canvasRef.current.height = clientHeight;
+
+            const width = clientWidth;
+            const height = clientHeight;
+
+            // Initialize nodes only if not already initialized or if size changed significantly
+            // We always re-initialize positions if dimensions change drastically to fit screen
+            // But to preserve state, we might want to just update radii.
+            // For simplicity and robustness on resize, let's re-calc radii but keep positions if possible.
+
+            const scale = Math.min(width, height) / 600; // Base dimension 600
+            const sizeMultiplier = Math.max(0.4, Math.min(1, scale)); // Clamp between 0.4 and 1.0
+
+            if (nodesRef.current.length === 0) {
+                nodesRef.current = SKILLS_DATA.nodes.map(n => {
+                    const node: Node = {
+                        ...n,
+                        radius: n.radius * sizeMultiplier, // Scale radius
+                        x: width / 2 + (Math.random() - 0.5) * 200,
+                        y: height / 2 + (Math.random() - 0.5) * 200,
+                        vx: 0,
+                        vy: 0
+                    };
+                    if (n.icon) {
+                        const img = new Image();
+                        img.src = n.icon;
+                        node.img = img;
+                    }
+                    return node;
+                });
+                linksRef.current = SKILLS_DATA.links;
+            } else {
+                // Update radii for existing nodes on resize
+                nodesRef.current.forEach((node, i) => {
+                    node.radius = SKILLS_DATA.nodes[i].radius * sizeMultiplier;
+                });
             }
-            return node;
+        };
+
+        const resizeObserver = new ResizeObserver(() => {
+            initGraph();
         });
-        linksRef.current = SKILLS_DATA.links;
 
-        // Pre-calculate link references to avoid repeated lookups
-        const resolvedLinks = SKILLS_DATA.links.map(link => ({
-            source: nodesRef.current.find(n => n.id === link.source),
-            target: nodesRef.current.find(n => n.id === link.target)
-        })).filter(l => l.source && l.target) as { source: Node, target: Node }[];
+        resizeObserver.observe(containerRef.current);
+        initGraph(); // Initial call
 
+        return () => {
+            resizeObserver.disconnect();
+        };
+    }, []); // Run once to set up observer
+
+    useEffect(() => {
+        // Animation loop
         const simulate = () => {
-            const nodes = nodesRef.current;
-            const ctx = canvasRef.current?.getContext('2d');
-            if (!ctx || !canvasRef.current) return;
+            if (!canvasRef.current) return;
+            const ctx = canvasRef.current.getContext('2d');
+            if (!ctx) return;
 
-            // Physics constants
-            const repulsion = 2500;
-            const springLength = 200;
+            const width = canvasRef.current.width;
+            const height = canvasRef.current.height;
+
+            if (width === 0 || height === 0) {
+                animationRef.current = requestAnimationFrame(simulate);
+                return;
+            }
+
+            if (nodesRef.current.length === 0) {
+                animationRef.current = requestAnimationFrame(simulate);
+                return;
+            }
+
+            const nodes = nodesRef.current;
+            const resolvedLinks = SKILLS_DATA.links.map(link => ({
+                source: nodesRef.current.find(n => n.id === link.source),
+                target: nodesRef.current.find(n => n.id === link.target)
+            })).filter(l => l.source && l.target) as { source: Node, target: Node }[];
+
+            // Scaled Physics constants
+            const scale = Math.min(width, height) / 600;
+            const physicsScale = Math.max(0.5, Math.min(1, scale));
+
+            const repulsion = 2500 * physicsScale;
+            const springLength = 150 * physicsScale;
             const springStrength = 0.04;
             const damping = 0.9;
             const centerStrength = 0.005;
 
-            // Clear canvas
             ctx.clearRect(0, 0, width, height);
 
             try {
@@ -197,12 +249,10 @@ export function SkillGraph() {
                 }
 
                 // Update positions and draw
-
-                // Draw links first with glow
                 ctx.shadowBlur = 5;
                 ctx.shadowColor = isHackMode ? '#5DADE2' : '#0E6655';
                 ctx.strokeStyle = isHackMode ? 'rgba(93, 173, 226, 0.4)' : 'rgba(14, 102, 85, 0.4)';
-                ctx.lineWidth = 2;
+                ctx.lineWidth = 2 * physicsScale;
 
                 for (const link of resolvedLinks) {
                     ctx.beginPath();
@@ -210,9 +260,8 @@ export function SkillGraph() {
                     ctx.lineTo(link.target.x, link.target.y);
                     ctx.stroke();
                 }
-                ctx.shadowBlur = 0; // Reset shadow
+                ctx.shadowBlur = 0;
 
-                // Draw nodes
                 for (const node of nodes) {
                     if (node !== draggingNode.current) {
                         node.vx *= damping;
@@ -221,17 +270,13 @@ export function SkillGraph() {
                         node.y += node.vy;
                     }
 
-                    // Boundary constraints - Keep nodes inside canvas
                     node.x = Math.max(node.radius, Math.min(width - node.radius, node.x));
                     node.y = Math.max(node.radius, Math.min(height - node.radius, node.y));
 
-                    // Safety check for NaN
                     if (isNaN(node.x)) node.x = width / 2;
                     if (isNaN(node.y)) node.y = height / 2;
 
                     ctx.save();
-
-                    // Draw connection lines glow
                     if (node.group === 'center') {
                         ctx.shadowBlur = 20;
                         ctx.shadowColor = '#ffffff';
@@ -242,30 +287,22 @@ export function SkillGraph() {
 
                     if (node.img && node.img.complete && node.img.naturalWidth > 0) {
                         try {
-                            // Draw Image Icon
                             ctx.beginPath();
                             ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
                             ctx.clip();
                             ctx.drawImage(node.img, node.x - node.radius, node.y - node.radius, node.radius * 2, node.radius * 2);
-
-                            // Border ring
                             ctx.beginPath();
                             ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
                             ctx.strokeStyle = node.color;
                             ctx.lineWidth = 2;
                             ctx.stroke();
                         } catch (e) {
-                            // Fallback if image drawing fails
                             ctx.beginPath();
                             ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
                             ctx.fillStyle = node.color;
                             ctx.fill();
-                            ctx.strokeStyle = '#fff';
-                            ctx.lineWidth = 1;
-                            ctx.stroke();
                         }
                     } else {
-                        // Fallback to circle
                         ctx.beginPath();
                         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
                         ctx.fillStyle = node.color;
@@ -274,21 +311,17 @@ export function SkillGraph() {
                         ctx.lineWidth = 1;
                         ctx.stroke();
                     }
-
                     ctx.restore();
 
-                    // Label - Always White with Shadow for visibility
                     ctx.fillStyle = '#ffffff';
                     ctx.shadowColor = '#000000';
                     ctx.shadowBlur = 4;
                     ctx.shadowOffsetX = 1;
                     ctx.shadowOffsetY = 1;
-                    ctx.font = 'bold 12px monospace';
+                    ctx.font = `bold ${Math.max(10, 12 * physicsScale)}px monospace`;
                     ctx.textAlign = 'center';
                     ctx.textBaseline = 'middle';
-                    ctx.fillText(node.id, node.x, node.y + node.radius + 15);
-
-                    // Reset shadow for next iteration
+                    ctx.fillText(node.id, node.x, node.y + node.radius + 15 * physicsScale);
                     ctx.shadowColor = 'transparent';
                     ctx.shadowBlur = 0;
                     ctx.shadowOffsetX = 0;
@@ -306,9 +339,7 @@ export function SkillGraph() {
         return () => {
             if (animationRef.current) cancelAnimationFrame(animationRef.current);
         };
-    }, [activeViz, isHackMode]);
-
-    if (activeViz !== 'skill-graph') return null;
+    }, [isHackMode]);
 
     const handleMouseDown = (e: React.MouseEvent) => {
         const rect = canvasRef.current?.getBoundingClientRect();
@@ -337,7 +368,6 @@ export function SkillGraph() {
             draggingNode.current.vy = 0;
         }
 
-        // Hover detection
         const rect = canvasRef.current?.getBoundingClientRect();
         if (!rect) return;
         const x = e.clientX - rect.left;
@@ -359,29 +389,59 @@ export function SkillGraph() {
         draggingNode.current = null;
     };
 
+    // Touch Handlers
+    const handleTouchStart = (e: React.TouchEvent) => {
+        e.preventDefault(); // Prevent scrolling while dragging
+        const rect = canvasRef.current?.getBoundingClientRect();
+        if (!rect) return;
+        const touch = e.touches[0];
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+
+        const clickedNode = nodesRef.current.find(n => {
+            const dx = n.x - x;
+            const dy = n.y - y;
+            return Math.sqrt(dx * dx + dy * dy) < n.radius * 1.5; // Larger touch target
+        });
+
+        if (clickedNode) {
+            draggingNode.current = clickedNode;
+        }
+    };
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        e.preventDefault();
+        if (draggingNode.current) {
+            const rect = canvasRef.current?.getBoundingClientRect();
+            if (!rect) return;
+            const touch = e.touches[0];
+            draggingNode.current.x = touch.clientX - rect.left;
+            draggingNode.current.y = touch.clientY - rect.top;
+            draggingNode.current.vx = 0;
+            draggingNode.current.vy = 0;
+        }
+    };
+
+    const handleTouchEnd = () => {
+        draggingNode.current = null;
+    };
+
     return (
-        <div className="fixed inset-0 z-[90] bg-black/90 backdrop-blur-sm">
-            <div className="absolute top-4 right-4 z-[100]">
-                <button
-                    onClick={closeViz}
-                    className="px-4 py-2 bg-red-500/20 text-red-500 border border-red-500 rounded hover:bg-red-500/40 transition-colors"
-                >
-                    CLOSE [ESC]
-                </button>
+        <div ref={containerRef} className="absolute inset-0 z-10 bg-transparent overflow-hidden">
+            <div className="absolute top-4 left-4 z-20 pointer-events-none">
+                <h2 className={`text-xl font-bold mb-2 ${isHackMode ? 'text-white' : 'text-[#0E6655]'}`}>NEURAL SKILL NETWORK</h2>
+                <p className={`text-sm ${isHackMode ? 'text-gray-400' : 'text-gray-600'}`}>Drag nodes to reorganize</p>
             </div>
-
-            <div className="absolute top-4 left-4 z-[100] text-white pointer-events-none">
-                <h2 className="text-2xl font-bold mb-2">NEURAL SKILL NETWORK</h2>
-                <p className="opacity-70 text-sm">Drag nodes to reorganize</p>
-            </div>
-
             <canvas
                 ref={canvasRef}
                 onMouseDown={handleMouseDown}
                 onMouseMove={handleMouseMove}
                 onMouseUp={handleMouseUp}
                 onMouseLeave={handleMouseUp}
-                className="w-full h-full"
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
+                className="w-full h-full touch-none" // touch-none to prevent browser gestures
             />
         </div>
     );

@@ -5,14 +5,11 @@ interface SectionNavigationProps {
 }
 
 const sections = [
-    { id: 'neofetch', label: 'Info' },
-    { id: 'skills', label: 'Compétences' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'hero', label: 'Accueil' },
+    { id: 'about', label: 'Profil' },
     { id: 'projects', label: 'Projets' },
-    { id: 'experience', label: 'Expérience' },
-    { id: 'certifications', label: 'Certifs' },
-    { id: 'guestbook', label: 'Livre d\'or' },
-    { id: 'curriculum', label: 'CV' },
+    { id: 'terminal', label: 'Terminal' },
+    { id: 'contact', label: 'Contact' },
 ];
 
 export function SectionNavigation({ isHackMode }: SectionNavigationProps) {
@@ -52,8 +49,8 @@ export function SectionNavigation({ isHackMode }: SectionNavigationProps) {
                     {/* Tooltip */}
                     <span
                         className={`absolute right-8 px-2 py-1 text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap ${isHackMode
-                                ? 'bg-[#0F1729] text-[#5DADE2] border border-[#5DADE2]/30'
-                                : 'bg-white text-[#0E6655] border border-[#0E6655]/30 shadow-sm'
+                            ? 'bg-[#0F1729] text-[#5DADE2] border border-[#5DADE2]/30'
+                            : 'bg-white text-[#0E6655] border border-[#0E6655]/30 shadow-sm'
                             }`}
                     >
                         {label}
@@ -63,12 +60,12 @@ export function SectionNavigation({ isHackMode }: SectionNavigationProps) {
                     <button
                         onClick={() => scrollToSection(id)}
                         className={`w-3 h-3 rounded-full transition-all duration-300 border ${activeSection === id
-                                ? isHackMode
-                                    ? 'bg-[#5DADE2] border-[#5DADE2] scale-125 shadow-[0_0_10px_#5DADE2]'
-                                    : 'bg-[#0E6655] border-[#0E6655] scale-125'
-                                : isHackMode
-                                    ? 'bg-transparent border-[#5DADE2]/50 hover:border-[#5DADE2] hover:bg-[#5DADE2]/30'
-                                    : 'bg-transparent border-[#0E6655]/50 hover:border-[#0E6655] hover:bg-[#0E6655]/30'
+                            ? isHackMode
+                                ? 'bg-[#5DADE2] border-[#5DADE2] scale-125 shadow-[0_0_10px_#5DADE2]'
+                                : 'bg-[#0E6655] border-[#0E6655] scale-125'
+                            : isHackMode
+                                ? 'bg-transparent border-[#5DADE2]/50 hover:border-[#5DADE2] hover:bg-[#5DADE2]/30'
+                                : 'bg-transparent border-[#0E6655]/50 hover:border-[#0E6655] hover:bg-[#0E6655]/30'
                             }`}
                         aria-label={`Aller à la section ${label}`}
                     />
