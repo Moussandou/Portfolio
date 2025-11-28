@@ -28,16 +28,43 @@ export function InteractiveTerminal() {
     const [input, setInput] = useState('');
     const [historyIndex, setHistoryIndex] = useState(-1);
     const inputRef = useRef<HTMLInputElement>(null);
-    const bottomRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    const [suggestion, setSuggestion] = useState('');
+
+    const AVAILABLE_COMMANDS = [
+        'help', 'ls', 'cd', 'cat', 'pwd', 'clear', 'mkdir', 'touch',
+        'typing-game', 'github-city', 'skill-graph', 'hackertyper',
+        'whoami', 'date'
+    ];
 
     useEffect(() => {
-        if (bottomRef.current) {
-            bottomRef.current.scrollIntoView({ behavior: 'smooth' });
+        if (containerRef.current) {
+            containerRef.current.scrollTop = containerRef.current.scrollHeight;
         }
     }, [lines]);
 
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const val = e.target.value;
+        setInput(val);
+        playSound('typing');
+
+        if (val.trim()) {
+            const match = AVAILABLE_COMMANDS.find(cmd => cmd.startsWith(val.toLowerCase()));
+            setSuggestion(match || '');
+        } else {
+            setSuggestion('');
+        }
+    };
+
     const handleKeyDown = (e: React.KeyboardEvent) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Tab') {
+            e.preventDefault();
+            if (suggestion) {
+                setInput(suggestion);
+                setSuggestion('');
+            }
+        } else if (e.key === 'Enter') {
             const cmd = input.trim();
             if (!cmd) return;
 
@@ -68,6 +95,7 @@ export function InteractiveTerminal() {
             addToHistory(cmd);
             setHistoryIndex(-1);
             setInput('');
+            setSuggestion('');
             playSound('success');
         } else if (e.key === 'ArrowUp') {
             e.preventDefault();
@@ -76,6 +104,7 @@ export function InteractiveTerminal() {
                 if (newIndex < commandHistory.length) {
                     setHistoryIndex(newIndex);
                     setInput(commandHistory[commandHistory.length - 1 - newIndex]);
+                    setSuggestion('');
                 }
             }
         } else if (e.key === 'ArrowDown') {
@@ -84,9 +113,11 @@ export function InteractiveTerminal() {
                 const newIndex = historyIndex - 1;
                 setHistoryIndex(newIndex);
                 setInput(commandHistory[commandHistory.length - 1 - newIndex]);
+                setSuggestion('');
             } else if (historyIndex === 0) {
                 setHistoryIndex(-1);
                 setInput('');
+                setSuggestion('');
             }
         }
     };
@@ -99,7 +130,8 @@ export function InteractiveTerminal() {
 
     return (
         <div
-            className="h-full w-full bg-transparent font-mono text-sm sm:text-base overflow-y-auto p-2 sm:p-4"
+            ref={containerRef}
+            className="h-full w-full bg-transparent font-mono text-sm sm:text-base overflow-y-auto p-2 sm:p-4 scroll-smooth"
             onClick={() => inputRef.current?.focus()}
         >
             {lines.map((line, i) => (
@@ -119,27 +151,34 @@ export function InteractiveTerminal() {
                 </div>
             ))}
 
-            <div className="flex flex-wrap gap-2 items-center">
+            <div className="flex flex-wrap gap-2 items-center relative">
                 <span className={isHackMode ? 'text-[#5DADE2]' : 'text-[#0E6655]'}>
                     moussandou@host:{pathString}$
                 </span>
-                <input
-                    ref={inputRef}
-                    type="text"
-                    value={input}
-                    onChange={(e) => {
-                        setInput(e.target.value);
-                        playSound('typing');
-                    }}
-                    onKeyDown={handleKeyDown}
-                    className={`flex-1 bg-transparent outline-none border-none p-0 ${isHackMode ? 'text-gray-300 caret-[#5DADE2]' : 'text-gray-800 caret-[#0E6655]'
-                        }`}
-                    autoFocus
-                    autoComplete="off"
-                    spellCheck="false"
-                />
+                <div className="relative flex-1">
+                    {/* Ghost Text */}
+                    {suggestion && input && suggestion.startsWith(input) && (
+                        <div
+                            className="absolute inset-0 pointer-events-none opacity-40"
+                            style={{ color: isHackMode ? '#5DADE2' : '#0E6655' }}
+                        >
+                            {suggestion}
+                        </div>
+                    )}
+                    <input
+                        ref={inputRef}
+                        type="text"
+                        value={input}
+                        onChange={handleInputChange}
+                        onKeyDown={handleKeyDown}
+                        className={`w-full bg-transparent outline-none border-none p-0 relative z-10 ${isHackMode ? 'text-gray-300 caret-[#5DADE2]' : 'text-gray-800 caret-[#0E6655]'
+                            }`}
+                        autoFocus
+                        autoComplete="off"
+                        spellCheck="false"
+                    />
+                </div>
             </div>
-            <div ref={bottomRef} />
         </div>
     );
 }

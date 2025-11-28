@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useDataViz } from '../context/DataVizContext';
 import { useTheme } from '../context/ThemeContext';
 
@@ -27,6 +27,14 @@ export function GithubCity() {
     const [isDragging, setIsDragging] = useState(false);
     const [lastMousePos, setLastMousePos] = useState({ x: 0, y: 0 });
     const cityData = useRef(generateCityData()).current;
+
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') closeViz();
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [closeViz]);
 
     if (activeViz !== 'github-city') return null;
 
@@ -65,15 +73,24 @@ export function GithubCity() {
             <div className="absolute top-4 right-4 z-[100]">
                 <button
                     onClick={closeViz}
-                    className="px-4 py-2 bg-red-500/20 text-red-500 border border-red-500 rounded hover:bg-red-500/40 transition-colors"
+                    className="px-4 py-2 bg-red-500/20 text-red-500 border border-red-500 rounded hover:bg-red-500/40 transition-colors font-mono"
                 >
-                    CLOSE [ESC]
+                    FERMER [ESC]
                 </button>
             </div>
 
-            <div className="absolute top-4 left-4 z-[100] text-white pointer-events-none">
-                <h2 className="text-2xl font-bold mb-2">GITHUB CITY</h2>
-                <p className="opacity-70 text-sm">Drag to rotate view</p>
+            <div className="absolute top-4 left-4 z-[100] max-w-md pointer-events-none">
+                <div className="p-4 bg-black/60 border border-[#5DADE2]/30 rounded backdrop-blur-md">
+                    <h2 className="text-2xl font-bold mb-2 text-[#5DADE2] font-mono">GITHUB CITY</h2>
+                    <p className="text-gray-300 text-sm mb-2 font-mono">
+                        Visualisation 3D de l'activité GitHub.
+                    </p>
+                    <p className="text-gray-400 text-xs font-mono border-t border-gray-700 pt-2 mt-2">
+                        Chaque "gratte-ciel" représente une journée de code. <br />
+                        La hauteur correspond au nombre de contributions.<br />
+                        <span className="text-[#5DADE2]">Drag & Drop</span> pour explorer la ville.
+                    </p>
+                </div>
             </div>
 
             <div
@@ -93,60 +110,99 @@ export function GithubCity() {
                 >
                     {/* Base Platform */}
                     <div
-                        className={`absolute inset-0 transform -translate-x-1/2 -translate-y-1/2 ${isHackMode ? 'bg-[#0d1117]/90 border-[#30363d]' : 'bg-white/90 border-gray-200'} border-4`}
+                        className={`absolute inset-0 transform -translate-x-1/2 -translate-y-1/2 ${isHackMode ? 'bg-[#0d1117]/90 border-[#30363d]' : 'bg-white/90 border-gray-200'} border-4 shadow-2xl`}
                         style={{
-                            width: '800px',
-                            height: '800px',
-                            transform: 'translate(-50%, -50%)'
+                            width: '900px',
+                            height: '220px',
+                            transform: 'translate(-50%, -50%)',
+                            boxShadow: isHackMode ? '0 0 50px rgba(0,0,0,0.5)' : '0 0 50px rgba(0,0,0,0.1)'
                         }}
                     />
 
                     {/* City Blocks */}
-                    <div className="grid grid-cols-52 gap-1" style={{ width: '700px', height: '100px', transform: 'translate(-350px, -50px)' }}>
+                    <div
+                        className="grid gap-1"
+                        style={{
+                            gridTemplateColumns: 'repeat(52, 1fr)',
+                            width: 'max-content',
+                            transform: 'translate(-50%, -50%)',
+                            position: 'absolute',
+                            top: '50%',
+                            left: '50%',
+                            transformStyle: 'preserve-3d'
+                        }}
+                    >
                         {cityData.map((week, wIndex) => (
-                            <div key={wIndex} className="flex flex-col gap-1">
-                                {week.map((count, dIndex) => (
-                                    <div
-                                        key={`${wIndex}-${dIndex}`}
-                                        className="w-3 h-3 relative transform-style-3d transition-all duration-300 hover:brightness-125"
-                                        style={{
-                                            transform: `translateZ(${count * 2}px)`,
-                                        }}
-                                    >
-                                        {/* Top Face */}
+                            <div key={wIndex} className="flex flex-col gap-1" style={{ transformStyle: 'preserve-3d' }}>
+                                {week.map((count, dIndex) => {
+                                    const height = Math.max(2, count * 12); // Minimum height for visibility
+                                    return (
                                         <div
-                                            className="absolute inset-0"
+                                            key={`${wIndex}-${dIndex}`}
+                                            className="w-3 h-3 relative transform-style-3d transition-all duration-300"
                                             style={{
-                                                backgroundColor: getBlockColor(count),
-                                                boxShadow: count > 0 ? `0 0 ${count}px ${getBlockColor(count)}` : 'none'
+                                                transform: `translateZ(${height}px)`,
+                                                transformStyle: 'preserve-3d'
                                             }}
-                                        />
+                                        >
+                                            {/* Roof (Top Face) */}
+                                            <div
+                                                className="absolute inset-0"
+                                                style={{
+                                                    backgroundColor: getBlockColor(count),
+                                                    boxShadow: count > 0 ? `0 0 ${count}px ${getBlockColor(count)}` : 'none',
+                                                    backfaceVisibility: 'hidden'
+                                                }}
+                                            />
 
-                                        {/* Side Faces (only for tall blocks to save DOM/GPU) */}
-                                        {count > 0 && (
-                                            <>
-                                                <div
-                                                    className="absolute inset-0 origin-bottom"
-                                                    style={{
-                                                        height: `${count * 4}px`,
-                                                        transform: 'rotateX(-90deg)',
-                                                        backgroundColor: getBlockColor(count),
-                                                        filter: 'brightness(0.7)'
-                                                    }}
-                                                />
-                                                <div
-                                                    className="absolute inset-0 origin-right"
-                                                    style={{
-                                                        width: `${count * 4}px`,
-                                                        transform: 'rotateY(90deg)',
-                                                        backgroundColor: getBlockColor(count),
-                                                        filter: 'brightness(0.8)'
-                                                    }}
-                                                />
-                                            </>
-                                        )}
-                                    </div>
-                                ))}
+                                            {/* Sides - Only render if height > 0 */}
+                                            {count > 0 && (
+                                                <>
+                                                    {/* Front (South) */}
+                                                    <div
+                                                        className="absolute inset-x-0 top-full origin-top"
+                                                        style={{
+                                                            height: `${height}px`,
+                                                            transform: 'rotateX(-90deg)',
+                                                            backgroundColor: getBlockColor(count),
+                                                            filter: 'brightness(0.6)'
+                                                        }}
+                                                    />
+                                                    {/* Back (North) */}
+                                                    <div
+                                                        className="absolute inset-x-0 bottom-full origin-bottom"
+                                                        style={{
+                                                            height: `${height}px`,
+                                                            transform: 'rotateX(90deg)',
+                                                            backgroundColor: getBlockColor(count),
+                                                            filter: 'brightness(0.8)'
+                                                        }}
+                                                    />
+                                                    {/* Right (East) */}
+                                                    <div
+                                                        className="absolute inset-y-0 left-full origin-left"
+                                                        style={{
+                                                            width: `${height}px`,
+                                                            transform: 'rotateY(90deg)',
+                                                            backgroundColor: getBlockColor(count),
+                                                            filter: 'brightness(0.5)'
+                                                        }}
+                                                    />
+                                                    {/* Left (West) */}
+                                                    <div
+                                                        className="absolute inset-y-0 right-full origin-right"
+                                                        style={{
+                                                            width: `${height}px`,
+                                                            transform: 'rotateY(-90deg)',
+                                                            backgroundColor: getBlockColor(count),
+                                                            filter: 'brightness(0.7)'
+                                                        }}
+                                                    />
+                                                </>
+                                            )}
+                                        </div>
+                                    );
+                                })}
                             </div>
                         ))}
                     </div>
