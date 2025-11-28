@@ -57,7 +57,7 @@ export function CustomContextMenu({ isHackMode, onToggleTheme, onShowNotificatio
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.1 }}
-                    className={`fixed z-[100] min-w-[160px] w-auto rounded-lg border backdrop-blur-md shadow-xl overflow-hidden ${isHackMode
+                    className={`fixed z-[100] w-64 rounded-lg border backdrop-blur-md shadow-xl overflow-hidden ${isHackMode
                         ? 'bg-[var(--theme-background)]/95 border-[var(--theme-border)] text-[var(--theme-text)] shadow-[0_0_15px_var(--theme-glow)]'
                         : 'bg-white/95 border-[#0E6655] text-[#0E6655] shadow-lg'
                         }`}
