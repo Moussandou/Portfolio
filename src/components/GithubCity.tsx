@@ -28,7 +28,6 @@ export function GithubCity() {
     const [lastMousePos, setLastMousePos] = useState({ x: 0, y: 0 });
     const cityData = useRef(generateCityData()).current;
     const containerRef = useRef<HTMLDivElement>(null);
-    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
     const [scale, setScale] = useState(0.6);
 
     useEffect(() => {
@@ -36,8 +35,7 @@ export function GithubCity() {
 
         const observer = new ResizeObserver((entries) => {
             for (const entry of entries) {
-                const { width, height } = entry.contentRect;
-                setDimensions({ width, height });
+                const { width } = entry.contentRect;
 
                 // Calculate scale to fit the 900px city into the container
                 // Add some padding (e.g. 40px)
