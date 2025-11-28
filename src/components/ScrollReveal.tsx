@@ -1,32 +1,22 @@
-import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { ReactNode } from 'react';
 
 interface ScrollRevealProps {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   delay?: number;
 }
 
 export function ScrollReveal({ children, className = "", delay = 0 }: ScrollRevealProps) {
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Lance l'animation automatiquement après le délai spécifié
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, delay);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [delay]);
-
   return (
-    <div
-      ref={ref}
-      className={`scroll-reveal ${isVisible ? 'revealed' : ''} ${className}`}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6, delay: delay * 0.1, ease: "easeOut" }}
+      className={`scroll-reveal ${className}`}
     >
       {children}
-    </div>
+    </motion.div>
   );
 }

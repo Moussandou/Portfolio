@@ -66,49 +66,50 @@ export function FeaturesSection({ isHackMode }: FeaturesSectionProps) {
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div className="space-y-4">
-                    {isHackMode && (
-                        <div className="flex flex-col gap-4 mb-4">
-                            <ThemePicker />
-                            <div className="border-t border-[#5DADE2]/30 pt-4">
-                                <h4 className="text-sm font-bold text-[#5DADE2] mb-2">ACHIEVEMENTS</h4>
-                                <AchievementList />
-                            </div>
-                        </div>
-                    )}
-                    {features.map((feat, index) => (
-                        <div
-                            key={index}
-                            id={feat.id}
-                            onClick={() => {
-                                const feature = feat as { action?: () => void };
-                                if (feature.action) feature.action();
-                            }}
-                            className={`p-3 rounded border transition-all duration-300 ${isHackMode
-                                ? 'bg-[var(--theme-background)]/50 border-[var(--theme-border)]/30 hover:border-[var(--theme-primary)] hover:bg-[var(--theme-primary)]/10'
-                                : 'bg-white/50 border-[var(--theme-border)]/30 hover:border-[var(--theme-primary)] hover:bg-[var(--theme-primary)]/10'
-                                }`}
-                        >
-                            <div className="flex items-center gap-2 mb-2">
-                                <div className={`text-2xl mb-2 text-[var(--theme-primary)]`}>{feat.icon}</div>
-                                <div className={`font-mono font-bold mb-1 text-[var(--theme-primary)]`}>
-                                    {isHackMode ? `> ${feat.cmd}` : feat.title}
-                                </div>
-                            </div>
-                            <div className={`text-xs font-mono mb-1 px-2 py-1 rounded w-fit bg-[var(--theme-border)]/10 text-[var(--theme-text)]/80`}>
-                                {feat.cmd}
-                            </div>
-                            <p className={`text-xs ${isHackMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                                {feat.desc}
-                            </p>
-                        </div>
-                    ))}
+            {isHackMode && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div className="p-4 rounded border border-[#5DADE2]/30 bg-[var(--theme-background)]/50">
+                        <ThemePicker />
+                    </div>
+                    <div className="p-4 rounded border border-[#5DADE2]/30 bg-[var(--theme-background)]/50">
+                        <h4 className="text-sm font-bold text-[#5DADE2] mb-2">ACHIEVEMENTS</h4>
+                        <AchievementList />
+                    </div>
                 </div>
+            )}
 
-                <div className={`text-xs italic text-center mt-4 ${isHackMode ? 'text-gray-500' : 'text-gray-400'}`}>
-                    * D'autres secrets sont peut-être encore cachés...
-                </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {features.map((feat, index) => (
+                    <div
+                        key={index}
+                        id={feat.id}
+                        onClick={() => {
+                            const feature = feat as { action?: () => void };
+                            if (feature.action) feature.action();
+                        }}
+                        className={`p-3 rounded border transition-all duration-300 h-full flex flex-col ${isHackMode
+                            ? 'bg-[var(--theme-background)]/50 border-[var(--theme-border)]/30 hover:border-[var(--theme-primary)] hover:bg-[var(--theme-primary)]/10'
+                            : 'bg-white/50 border-[var(--theme-border)]/30 hover:border-[var(--theme-primary)] hover:bg-[var(--theme-primary)]/10'
+                            }`}
+                    >
+                        <div className="flex items-center gap-2 mb-2">
+                            <div className={`text-2xl text-[var(--theme-primary)]`}>{feat.icon}</div>
+                            <div className={`font-mono font-bold text-[var(--theme-primary)]`}>
+                                {isHackMode ? `> ${feat.cmd}` : feat.title}
+                            </div>
+                        </div>
+                        <div className={`text-xs font-mono mb-2 px-2 py-1 rounded w-fit bg-[var(--theme-border)]/10 text-[var(--theme-text)]/80`}>
+                            {feat.cmd}
+                        </div>
+                        <p className={`text-xs ${isHackMode ? 'text-gray-400' : 'text-gray-600'} flex-grow`}>
+                            {feat.desc}
+                        </p>
+                    </div>
+                ))}
+            </div>
+
+            <div className={`text-xs italic text-center mt-4 ${isHackMode ? 'text-gray-500' : 'text-gray-400'}`}>
+                * D'autres secrets sont peut-être encore cachés...
             </div>
         </div>
     );

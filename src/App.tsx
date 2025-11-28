@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import { AsciiArt } from './components/AsciiArt';
 import { TypewriterEffect } from './components/TypewriterEffect';
 import { ScrollReveal } from './components/ScrollReveal';
@@ -70,9 +71,10 @@ export default function App() {
 function AppContent() {
   const { isHackMode, toggleHackMode, setHackMode } = useTheme();
   const { unlockAchievement } = useAchievements();
-  const [scrollProgress, setScrollProgress] = useState(0);
+
   const [showBootSequence, setShowBootSequence] = useState(true);
   const { playSound, isMuted, toggleMute } = useSound();
+  const [crtIntensity, setCrtIntensity] = useState<'off' | 'low' | 'high'>('low');
   const [notification, setNotification] = useState<{ message: string, type: 'info' | 'success' | 'warning' | 'error' } | null>(null);
 
   const showNotification = (message: string, type: 'info' | 'success' | 'warning' | 'error' = 'info') => {
@@ -80,17 +82,12 @@ function AppContent() {
     playSound(type === 'error' ? 'error' : 'success');
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const totalScroll = document.documentElement.scrollTop;
-      const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scroll = `${totalScroll / windowHeight}`;
-      setScrollProgress(Number(scroll));
-    }
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   const handleKonamiUnlock = () => {
     setHackMode(true);
@@ -133,8 +130,8 @@ function AppContent() {
         />
         <KonamiCode onUnlock={handleKonamiUnlock} />
         <LiveClock isHackMode={isHackMode} />
-        <LiveClock isHackMode={isHackMode} />
-        <CrtOverlay />
+
+        <CrtOverlay intensity={crtIntensity} />
         <HackerTyper />
         <GithubCity />
         <SkillGraph />
@@ -147,9 +144,11 @@ function AppContent() {
         <ParticleClickEffect isHackMode={isHackMode} />
 
         {/* Scroll Progress Bar */}
-        <div className="fixed top-0 left-0 h-1 z-[100] transition-all duration-300"
+        <motion.div
+          className="fixed top-0 left-0 h-1 z-[100]"
           style={{
-            width: `${scrollProgress * 100}%`,
+            scaleX,
+            transformOrigin: "0%",
             background: isHackMode ? '#5DADE2' : '#0E6655',
             boxShadow: isHackMode ? '0 0 10px #5DADE2' : 'none'
           }}
@@ -207,6 +206,18 @@ function AppContent() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
                 </svg>
               )}
+            </button>
+          </MagneticWrapper>
+          {/* CRT Toggle */}
+          <MagneticWrapper strength={10}>
+            <button
+              onClick={() => setCrtIntensity(prev => prev === 'low' ? 'high' : prev === 'high' ? 'off' : 'low')}
+              className={`p-2 rounded-lg transition-all duration-300 font-mono text-xs ${isHackMode
+                ? 'text-[#5DADE2] border border-[#5DADE2]/30 hover:bg-[#5DADE2]/20'
+                : 'text-[#0E6655] border border-[#0E6655]/30 hover:bg-[#0E6655]/10'}`}
+              title="Toggle CRT Effect"
+            >
+              CRT: {crtIntensity.toUpperCase()}
             </button>
           </MagneticWrapper>
         </div>

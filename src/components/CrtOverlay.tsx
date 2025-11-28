@@ -1,17 +1,10 @@
-import { useState, useEffect } from 'react';
 
-export function CrtOverlay() {
-    const [intensity, setIntensity] = useState<'off' | 'low' | 'high'>('low');
 
-    useEffect(() => {
-        // Default to low on mount
-        setIntensity('low');
-    }, []);
+interface CrtOverlayProps {
+    intensity: 'off' | 'low' | 'high';
+}
 
-    const toggleIntensity = () => {
-        setIntensity(prev => prev === 'low' ? 'high' : prev === 'high' ? 'off' : 'low');
-    };
-
+export function CrtOverlay({ intensity }: CrtOverlayProps) {
     if (intensity === 'off') return null;
 
     return (
@@ -24,16 +17,6 @@ export function CrtOverlay() {
 
             {/* Vignette */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_50%,rgba(0,0,0,0.4)_100%)] pointer-events-none" />
-
-            {/* Control Button (Visible and clickable) */}
-            <div className="fixed bottom-4 left-4 pointer-events-auto z-[10000]">
-                <button
-                    onClick={toggleIntensity}
-                    className="text-[10px] font-mono text-[var(--theme-primary)] opacity-50 hover:opacity-100 border border-[var(--theme-border)]/30 px-2 py-1 rounded bg-[var(--theme-background)]/80 backdrop-blur"
-                >
-                    CRT: {intensity.toUpperCase()}
-                </button>
-            </div>
         </div>
     );
 }

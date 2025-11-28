@@ -1,25 +1,28 @@
 import { useState, useEffect } from 'react';
+import { useScroll, useMotionValueEvent } from 'framer-motion';
 
 interface CyberpunkHudProps {
     isHackMode: boolean;
 }
 
 export function CyberpunkHud({ isHackMode }: CyberpunkHudProps) {
-    const [scrollPos, setScrollPos] = useState(0);
+    const { scrollYProgress } = useScroll();
+    const [stats, setStats] = useState({ mem: 42, cpu: 12 });
+    const [displayScroll, setDisplayScroll] = useState(0);
 
     useEffect(() => {
-
-
-        const handleScroll = () => {
-            setScrollPos(Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100));
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => {
-
-            window.removeEventListener('scroll', handleScroll);
-        };
+        const interval = setInterval(() => {
+            setStats({
+                mem: Math.floor(Math.random() * 30 + 40),
+                cpu: Math.floor(Math.random() * 20 + 10)
+            });
+        }, 2000);
+        return () => clearInterval(interval);
     }, []);
+
+    useMotionValueEvent(scrollYProgress, "change", (latest) => {
+        setDisplayScroll(Math.round(latest * 100));
+    });
 
     if (!isHackMode) return null;
 
@@ -27,7 +30,7 @@ export function CyberpunkHud({ isHackMode }: CyberpunkHudProps) {
         <div className="fixed inset-0 pointer-events-none z-[50] overflow-hidden">
             {/* Top Left - Coordinates */}
             <div className="absolute top-4 left-4 font-mono text-[10px] text-[var(--theme-primary)]/60 hidden md:block">
-                <div>ORD: {scrollPos.toString().padStart(3, '0')}</div>
+                <div>ORD: {displayScroll.toString().padStart(3, '0')}</div>
                 <div>LAT: 43.296</div>
                 <div>LNG: 05.369</div>
             </div>
@@ -35,8 +38,8 @@ export function CyberpunkHud({ isHackMode }: CyberpunkHudProps) {
             {/* Top Right - System Status */}
             <div className="absolute top-4 right-4 font-mono text-[10px] text-[var(--theme-primary)]/60 text-right hidden md:block">
                 <div>SYS: ONLINE</div>
-                <div>MEM: {Math.floor(Math.random() * 30 + 40)}%</div>
-                <div>CPU: {Math.floor(Math.random() * 20 + 10)}%</div>
+                <div>MEM: {stats.mem}%</div>
+                <div>CPU: {stats.cpu}%</div>
             </div>
 
             {/* Bottom Left - Decorative Lines */}

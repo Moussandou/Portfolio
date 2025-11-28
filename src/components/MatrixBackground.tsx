@@ -45,7 +45,18 @@ export function MatrixBackground({ isHackMode }: MatrixBackgroundProps) {
         };
         window.addEventListener('mousemove', handleMouseMove);
 
-        const draw = () => {
+        let lastTime = 0;
+        const fps = 30;
+        const interval = 1000 / fps;
+
+        const draw = (time: number) => {
+            animationFrameId = requestAnimationFrame(draw);
+
+            const deltaTime = time - lastTime;
+            if (deltaTime < interval) return;
+
+            lastTime = time - (deltaTime % interval);
+
             // Semi-transparent black for trail effect
             ctx.fillStyle = isHackMode ? 'rgba(10, 14, 26, 0.1)' : 'rgba(232, 248, 245, 0.2)';
             ctx.fillRect(0, 0, width, height);
@@ -88,11 +99,9 @@ export function MatrixBackground({ isHackMode }: MatrixBackgroundProps) {
 
                 drops[i]++;
             }
-
-            animationFrameId = requestAnimationFrame(draw);
         };
 
-        draw();
+        animationFrameId = requestAnimationFrame(draw);
 
         return () => {
             window.removeEventListener('resize', resize);
