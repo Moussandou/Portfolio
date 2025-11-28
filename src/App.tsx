@@ -91,7 +91,10 @@ function AppContent() {
 
   return (
     <>
-      {showBootSequence && <BootSequence onComplete={() => setShowBootSequence(false)} />}
+      {showBootSequence && <BootSequence onComplete={() => {
+        setShowBootSequence(false);
+        window.scrollTo(0, 0);
+      }} />}
 
       <SystemNotification
         message={notification?.message || null}
