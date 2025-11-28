@@ -67,12 +67,18 @@ export function FeaturesSection({ isHackMode }: FeaturesSectionProps) {
             </div>
 
             {isHackMode && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                    <div className="p-4 rounded border border-[#5DADE2]/30 bg-[var(--theme-background)]/50">
+                <div className="space-y-6 mb-8">
+                    {/* Theme Picker Section */}
+                    <div className="p-4 rounded-lg border border-[#5DADE2]/30 bg-[var(--theme-background)]/50 backdrop-blur-sm">
                         <ThemePicker />
                     </div>
-                    <div className="p-4 rounded border border-[#5DADE2]/30 bg-[var(--theme-background)]/50">
-                        <h4 className="text-sm font-bold text-[#5DADE2] mb-2">ACHIEVEMENTS</h4>
+
+                    {/* Achievements Section */}
+                    <div className="p-4 rounded-lg border border-[#5DADE2]/30 bg-[var(--theme-background)]/50 backdrop-blur-sm">
+                        <div className="flex items-center justify-between mb-4 border-b border-[#5DADE2]/20 pb-2">
+                            <h4 className="text-sm font-bold text-[#5DADE2]">SYSTEM_ACHIEVEMENTS</h4>
+                            <span className="text-xs font-mono text-gray-400">STATUS: UNLOCKED</span>
+                        </div>
                         <AchievementList />
                     </div>
                 </div>

@@ -18,23 +18,35 @@ export function ThemePicker() {
     ];
 
     return (
-        <div className="flex gap-2 p-2 bg-black/20 rounded-lg backdrop-blur-sm border border-[var(--theme-border)]/30">
-            {themes.map((theme) => (
-                <button
-                    key={theme.id}
-                    onClick={() => {
-                        setTheme(theme.id);
-                        unlockAchievement('theme_switcher');
-                        playSound('click');
-                    }}
-                    className={`w - 6 h - 6 rounded - full border - 2 transition - all duration - 300 hover: scale - 110 ${currentTheme === theme.id
-                            ? 'border-white scale-110 shadow-[0_0_10px_currentColor]'
-                            : 'border-transparent opacity-70 hover:opacity-100'
-                        } `}
-                    style={{ backgroundColor: theme.color, color: theme.color }}
-                    title={theme.label}
-                />
-            ))}
+        <div className="flex flex-col gap-3">
+            <div className="flex items-center justify-between">
+                <span className="text-sm font-bold text-[#5DADE2]">SYSTEM_THEME</span>
+                <span className="text-xs font-mono text-gray-400">
+                    [{themes.find(t => t.id === currentTheme)?.label.toUpperCase() || 'DEFAULT'}]
+                </span>
+            </div>
+            <div className="flex flex-wrap gap-3">
+                {themes.map((theme) => (
+                    <button
+                        key={theme.id}
+                        onClick={() => {
+                            setTheme(theme.id);
+                            unlockAchievement('theme_switcher');
+                            playSound('click');
+                        }}
+                        className={`w-10 h-10 rounded-lg border-2 transition-all duration-300 hover:scale-110 flex items-center justify-center ${currentTheme === theme.id
+                            ? 'border-white scale-110 shadow-[0_0_15px_currentColor]'
+                            : 'border-transparent opacity-60 hover:opacity-100'
+                            }`}
+                        style={{ backgroundColor: theme.color, color: theme.color, borderColor: currentTheme === theme.id ? 'white' : theme.color }}
+                        title={theme.label}
+                    >
+                        {currentTheme === theme.id && (
+                            <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
+                        )}
+                    </button>
+                ))}
+            </div>
         </div>
     );
 }
