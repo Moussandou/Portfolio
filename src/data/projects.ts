@@ -7,6 +7,12 @@ const jebImage = '/Portfolio/assets/jeb.png';
 const moocImage1 = '/Portfolio/assets/icom1.png';
 const moocImage2 = '/Portfolio/assets/icom2.png';
 const moocImage3 = '/Portfolio/assets/icom3.png';
+const blenderTutoImage1 = '/Portfolio/assets/blender-tuto-1.png';
+const blenderTutoImage2 = '/Portfolio/assets/blender-tuto-2.png';
+const blenderTutoImage3 = '/Portfolio/assets/blender-tuto-3.png';
+const blenderTutoImage4 = '/Portfolio/assets/blender-tuto-4.png';
+const blenderTutoImage5 = '/Portfolio/assets/blender-tuto-5.png';
+const blenderTutoImage6 = '/Portfolio/assets/blender-tuto-6.png';
 const rtypeVideo = '/Portfolio/assets/rtype.mp4';
 
 export interface Project {
@@ -24,6 +30,17 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+    {
+        name: "BlenderTuto - Learning Platform",
+        desc: "Interactive MOOC for 3D Animation. React/Firebase/Gamification.",
+        tech: "React 18 / Vite / Firebase",
+        color: "#E87D0D",
+        role: "Full-Stack Creator",
+        icon: "react",
+        images: [blenderTutoImage1, blenderTutoImage2, blenderTutoImage3, blenderTutoImage4, blenderTutoImage5, blenderTutoImage6],
+        link: "https://blender-tuto-site-34489.web.app/",
+        github: "https://github.com/moussandou" // Placeholder as direct repo not found, waiting for user confirmation
+    },
     {
         name: "Bambu Buddy - 3D Print Manager",
         desc: "Application de gestion d'impression 3D - Suivi de filaments, calcul de coûts, statistiques de ventes. PWA + Desktop (macOS/Windows)",
