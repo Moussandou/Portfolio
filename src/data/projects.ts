@@ -18,6 +18,7 @@ const bingekiImage2 = '/Portfolio/assets/bingeki-2.png';
 const bingekiImage3 = '/Portfolio/assets/bingeki-3.png';
 const bingekiImage4 = '/Portfolio/assets/bingeki-4.png';
 const bingekiImage5 = '/Portfolio/assets/bingeki-5.png';
+const bingekiImage6 = '/Portfolio/assets/bingeki-6.png';
 const rtypeVideo = '/Portfolio/assets/rtype.mp4';
 
 export interface Project {
@@ -42,7 +43,7 @@ export const projects: Project[] = [
         color: "#FF2D55",
         role: "Full-Stack Developer",
         icon: "react",
-        images: [bingekiImage1, bingekiImage2, bingekiImage3, bingekiImage4, bingekiImage5],
+        images: [bingekiImage1, bingekiImage2, bingekiImage3, bingekiImage4, bingekiImage5, bingekiImage6],
         link: "https://bingeki.web.app/",
         github: "https://github.com/Moussandou/Bingeki-V2"
     },
