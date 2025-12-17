@@ -13,6 +13,11 @@ const blenderTutoImage3 = '/Portfolio/assets/blender-tuto-3.png';
 const blenderTutoImage4 = '/Portfolio/assets/blender-tuto-4.png';
 const blenderTutoImage5 = '/Portfolio/assets/blender-tuto-5.png';
 const blenderTutoImage6 = '/Portfolio/assets/blender-tuto-6.png';
+const bingekiImage1 = '/Portfolio/assets/bingeki-1.png';
+const bingekiImage2 = '/Portfolio/assets/bingeki-2.png';
+const bingekiImage3 = '/Portfolio/assets/bingeki-3.png';
+const bingekiImage4 = '/Portfolio/assets/bingeki-4.png';
+const bingekiImage5 = '/Portfolio/assets/bingeki-5.png';
 const rtypeVideo = '/Portfolio/assets/rtype.mp4';
 
 export interface Project {
@@ -30,6 +35,16 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+    {
+        name: "Bingeki - Anime & Manga Tracker",
+        desc: "Application web responsive de suivi anime/manga avec gamification (XP, classements). Catalogue temps réel via Jikan API.",
+        tech: "React / Firebase / Jikan API",
+        color: "#FF2D55",
+        role: "Full-Stack Developer",
+        icon: "react",
+        images: [bingekiImage1, bingekiImage2, bingekiImage3, bingekiImage4, bingekiImage5],
+        link: "https://bingeki.web.app/",
+    },
     {
         name: "BlenderTuto - Learning Platform",
         desc: "Interactive MOOC for 3D Animation. React/Firebase/Gamification.",
