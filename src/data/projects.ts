@@ -44,6 +44,7 @@ export const projects: Project[] = [
         icon: "react",
         images: [bingekiImage1, bingekiImage2, bingekiImage3, bingekiImage4, bingekiImage5],
         link: "https://bingeki.web.app/",
+        github: "https://github.com/Moussandou/Bingeki-V2"
     },
     {
         name: "BlenderTuto - Learning Platform",
