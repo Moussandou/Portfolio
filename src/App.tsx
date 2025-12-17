@@ -54,7 +54,7 @@ function AppContent() {
 
   const [showBootSequence, setShowBootSequence] = useState(true);
   const { playSound, isMuted, toggleMute } = useSound();
-  const [crtIntensity, setCrtIntensity] = useState<'off' | 'low' | 'high'>('low');
+  const [crtIntensity, setCrtIntensity] = useState<'off' | 'low' | 'high'>('off');
   const [notification, setNotification] = useState<{ message: string, type: 'info' | 'success' | 'warning' | 'error' } | null>(null);
 
   const showNotification = (message: string, type: 'info' | 'success' | 'warning' | 'error' = 'info') => {

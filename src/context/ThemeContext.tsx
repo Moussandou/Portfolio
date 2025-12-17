@@ -77,7 +77,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const [currentTheme, setCurrentTheme] = useState<ThemeId>('hack-blue');
-    const [isHackMode, setIsHackMode] = useState(true);
+    const [isHackMode, setIsHackMode] = useState(false);
 
     // Apply CSS variables whenever theme changes
     useEffect(() => {
