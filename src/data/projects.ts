@@ -19,7 +19,6 @@ const bingekiImage3 = '/Portfolio/assets/bingeki-3.png';
 const bingekiImage4 = '/Portfolio/assets/bingeki-4.png';
 const bingekiImage5 = '/Portfolio/assets/bingeki-5.png';
 const bingekiImage6 = '/Portfolio/assets/bingeki-6.png';
-const spriteLabLogo = '/Portfolio/assets/spritelab-logo.png';
 const spriteLabImage1 = '/Portfolio/assets/spritelab-1.png';
 const spriteLabImage2 = '/Portfolio/assets/spritelab-2.png';
 const spriteLabImage3 = '/Portfolio/assets/spritelab-3.png';
@@ -41,6 +40,17 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+    {
+        name: "SpriteLab - Outil de Gestion Spritesheet",
+        desc: "Une application web conçue pour les créateurs de Pixel Art et les développeurs de jeux, permettant de découper, animer et organiser des spritesheets dans une interface immersive au style rétro-futuriste.",
+        tech: "React 18 / TypeScript / Vite",
+        color: "#8A2BE2",
+        role: "Creator & Full-Stack Developer",
+        icon: "react",
+        link: "https://moussandou.github.io/SpriteLab/",
+        github: "https://github.com/Moussandou/SpriteLab",
+        images: [spriteLabImage1, spriteLabImage2, spriteLabImage3, spriteLabImage4]
+    },
     {
         name: "Bingeki - Anime & Manga Tracker",
         desc: "Application web responsive de suivi anime/manga avec gamification (XP, classements). Catalogue temps réel via Jikan API.",
@@ -125,16 +135,5 @@ export const projects: Project[] = [
         color: "#FFFF00",
         role: "Full-Stack Dev",
         icon: "javascript"
-    },
-    {
-        name: "SpriteLab - Outil de Gestion Spritesheet",
-        desc: "Une application web conçue pour les créateurs de Pixel Art et les développeurs de jeux, permettant de découper, animer et organiser des spritesheets dans une interface immersive au style rétro-futuriste.",
-        tech: "React 18 / TypeScript / Vite",
-        color: "#8A2BE2",
-        role: "Creator & Full-Stack Developer",
-        icon: "react",
-        link: "https://moussandou.github.io/SpriteLab/",
-        github: "https://github.com/Moussandou/SpriteLab",
-        images: [spriteLabLogo, spriteLabImage1, spriteLabImage2, spriteLabImage3, spriteLabImage4]
     }
 ];
