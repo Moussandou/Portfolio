@@ -19,6 +19,22 @@ export interface Project {
 
 export const projects: Project[] = [
     {
+        id: "scrappi",
+        name: "Scrappi",
+        image: "/Portfolio/assets/scrappi-1.png",
+        images: ["/Portfolio/assets/scrappi-1.png", "/Portfolio/assets/scrappi-2.png", "/Portfolio/assets/scrappi-3.png"],
+        desc: "Application moderne et artistique de création de scrapbooks numériques avec une esthétique premium.",
+        tech: "Next.js 15 / React 19 / Tailwind CSS / Konva.js / Firebase",
+        color: "#4A6741",
+        role: "Créateur & Développeur Full-Stack",
+        icon: "lucide:palette",
+        github: "https://github.com/Moussandou/Scrappi",
+        link: "https://scrappi-app.web.app/",
+        featured: true,
+        longDesc: "Scrappi est une application de création de carnets de collages (scrapbooks) numériques, conçue pour offrir une expérience tactile et artistique. Utilisant Konva.js pour le rendu du canvas, elle permet de manipuler images, textes et stickers avec fluidité. L'esthétique est basée sur des textures de papier et des ombres douces pour un rendu premium.",
+        features: ["Éditeur de Canvas Artistique (Drag & Drop, Dessin, Texte)", "Gestion Multi-Support : Cloud (Firebase) et stockage local", "Esthétique Premium avec textures et typographie soignée", "Recherche d'images intégrée via l'API Pixabay"]
+    },
+    {
         id: "gdg-discord-bot",
         name: "GDG Discord Bot",
         image: "/Portfolio/assets/gdg-bot-1.png",
