@@ -19,6 +19,22 @@ export interface Project {
 
 export const projects: Project[] = [
     {
+        id: "censor-box",
+        name: "Censor Box",
+        image: "/Portfolio/assets/censorbox-1.png",
+        images: ["/Portfolio/assets/censorbox-1.png", "/Portfolio/assets/censorbox-2.png", "/Portfolio/assets/censorbox-3.png", "/Portfolio/assets/censorbox-4.png", "/Portfolio/assets/censorbox-5.png"],
+        desc: "Jeu de simulation de terminal de renseignement rétro-futuriste avec une esthétique \"Top Secret\".",
+        tech: "React 19 / TypeScript / Vite",
+        color: "#E8D9C5",
+        role: "Créateur & Développeur Full-Stack",
+        icon: "lucide:shield-alert",
+        github: "https://github.com/Moussandou/Censor-Box",
+        link: "https://censor-box-moussandou.web.app/",
+        featured: true,
+        longDesc: "Censor Box est une expérience immersive où vous incarnez un agent chargé de censurer des documents confidentiels. Le jeu mélange rapidité et précision avec une interface CRT rétro, des effets de scanlines et un paysage sonore suspensif. Le défi consiste à classifier les mots par taille pour éviter les fuites d'information.",
+        features: ["Interface Rétro Immersive (Effet CRT, Scanlines)", "Gameplay basé sur la rapidité et la classification de texte", "Système de rapports de mission et niveaux de difficulté", "Contrôles clavier réalistes et interface responsive"]
+    },
+    {
         id: "magichand",
         name: "MagicHand",
         image: "/Portfolio/assets/magichand-banner.jpg",
