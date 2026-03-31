@@ -30,8 +30,8 @@ export function CommandPalette({ isHackMode, setHackMode, onReload }: CommandPal
         { id: 'projects', label: 'Go to Projects', action: () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }), icon: '📂' },
         { id: 'contact', label: 'Go to Contact', action: () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }), icon: '📧' },
         { id: 'skills', label: 'Go to Skills', action: () => document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' }), icon: '⚡' },
-        { id: 'github', label: 'Open GitHub', action: () => window.open('https://github.com/moussandou', '_blank'), icon: '🐙' },
-        { id: 'linkedin', label: 'Open LinkedIn', action: () => window.open('https://linkedin.com/in/moussandou', '_blank'), icon: '💼' },
+        { id: 'github', label: 'Open GitHub', action: () => window.open('https://github.com/Moussandou', '_blank'), icon: '🐙' },
+        { id: 'linkedin', label: 'Open LinkedIn', action: () => window.open('https://www.linkedin.com/in/moussandou/', '_blank'), icon: '💼' },
     ];
 
     const filteredCommands = commands.filter(cmd =>

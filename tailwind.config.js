@@ -7,7 +7,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        mono: ['Monocraft', 'monospace'],
+        outfit: ['Outfit', 'sans-serif'],
+        inter: ['Inter', 'sans-serif'],
+        mono: ['Share Tech Mono', 'monospace'],
       },
       colors: {
         border: "var(--border)",
@@ -35,6 +37,15 @@ export default {
           DEFAULT: "var(--accent)",
           foreground: "var(--accent-foreground)",
         },
+        candy: {
+          fog: "#E5A5C8",
+          pulse: "#8D4074",
+          pastel: {
+            pink: "#FBCFE8",
+            purple: "#E9D5FF",
+            blue: "#BFDBFE",
+          }
+        },
         popover: {
           DEFAULT: "var(--popover)",
           foreground: "var(--popover-foreground)",
@@ -45,6 +56,7 @@ export default {
         },
       },
       borderRadius: {
+        '3xl': '30px',
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
