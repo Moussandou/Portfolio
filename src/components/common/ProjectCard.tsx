@@ -38,7 +38,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/50 mb-1 font-display">
               {project.tech}
             </p>
-            <h3 className="text-lg font-bold text-white font-display leading-tight truncate">
+            <h3 className="text-xl font-black text-white font-display leading-tight group-hover:translate-x-1 transition-transform duration-300">
               {project.name}
             </h3>
           </div>
@@ -80,7 +80,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
                   <img 
                     src={imagesList[currentImgIdx]} 
                     alt={project.name} 
-                    className="w-full h-full object-contain transition-opacity duration-300 scale-95" 
+                    className="w-full h-full object-contain transition-all duration-500 scale-100 group-hover:scale-105" 
                   />
                   {imagesList.length > 1 && (
                     <div className="absolute inset-0 flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -111,6 +111,13 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
                   )}
                 </>
               ) : null}
+            </div>
+            {/* Added overlay for better click signifier */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+            <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+               <div className="bg-white/90 backdrop-blur-sm p-1.5 rounded-lg text-[#8D4074]">
+                 <ExternalLink size={14} />
+               </div>
             </div>
           </div>
         )}

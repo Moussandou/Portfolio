@@ -96,7 +96,7 @@ export function ProjectDetail() {
                     <img 
                       src={imagesList[currentImgIdx]} 
                       alt={project.name} 
-                      className="w-full h-full object-cover transition-opacity duration-300" 
+                      className="w-full h-full object-contain transition-all duration-700" 
                     />
                     {imagesList.length > 1 && (
                       <div className="absolute inset-0 flex items-center justify-between px-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">

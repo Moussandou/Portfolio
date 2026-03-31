@@ -19,6 +19,22 @@ export interface Project {
 
 export const projects: Project[] = [
     {
+        id: "bingeki",
+        name: "Bingeki",
+        desc: "Anime & Manga Tracker avec gamification (XP, classements).",
+        tech: "React / Firebase / Jikan API",
+        color: "#A85D8E",
+        role: "Développeur",
+        icon: "lucide:tv",
+        image: '/Portfolio/assets/bingeki-1.png',
+        images: ['/Portfolio/assets/bingeki-1.png', '/Portfolio/assets/bingeki-2.png', '/Portfolio/assets/bingeki-3.png', '/Portfolio/assets/bingeki-4.png', '/Portfolio/assets/bingeki-5.png', '/Portfolio/assets/bingeki-6.png'],
+        link: "https://bingeki.web.app/fr/",
+        github: "https://github.com/Moussandou/Bingeki-V2",
+        featured: true,
+        longDesc: "Bingeki est une plateforme moderne permettant de traquer la progression de vos animes et mangas favoris. Connectée à l'API Jikan, elle offre des statistiques en temps réel, un système de progression des utilisateurs (XP, niveaux) et des classements (leaderboard). L'interface a été intégralement pensée pour être rapide, élégante et axée sur l'engagement de l'utilisateur.",
+        features: ["Consommation de l'API REST Jikan (MyAnimeList)", "Système complet de gamification (XP, Quêtes, Niveaux)", "Profils utilisateurs et leaderboards temps réel", "Mode sombre et UI premium"]
+    },
+    {
         id: "gameboy-sp",
         name: "GameBoy Advance SP Online",
         image: "/Portfolio/assets/gameboy-1.png",
@@ -111,22 +127,6 @@ export const projects: Project[] = [
         featured: true,
         longDesc: "SpriteLab est une solution open-source conçue pour simplifier le flux de travail des développeurs de jeux 2D. Cette application permet de découper, animer, et gérer facilement des feuilles de sprites complètes. J'ai conçu cette plateforme pour répondre à mes propres besoins de développement de jeu, et l'ai rendue accessible à tous avec une interface utilisateur fluide, réactive et intuitive.",
         features: ["Découpage automatique de sprites", "Création et prévisualisation d'animations fluides", "Exportation sous différents formats standards", "Sauvegarde de session locale et interface drag & drop"]
-    },
-    {
-        id: "bingeki",
-        name: "Bingeki",
-        desc: "Anime & Manga Tracker avec gamification (XP, classements).",
-        tech: "React / Firebase / Jikan API",
-        color: "#A85D8E",
-        role: "Développeur",
-        icon: "lucide:tv",
-        image: '/Portfolio/assets/bingeki-1.png',
-        images: ['/Portfolio/assets/bingeki-1.png', '/Portfolio/assets/bingeki-2.png', '/Portfolio/assets/bingeki-3.png', '/Portfolio/assets/bingeki-4.png', '/Portfolio/assets/bingeki-5.png', '/Portfolio/assets/bingeki-6.png'],
-        link: "https://bingeki.web.app/fr/",
-        github: "https://github.com/Moussandou/Bingeki-V2",
-        featured: true,
-        longDesc: "Bingeki est une plateforme moderne permettant de traquer la progression de vos animes et mangas favoris. Connectée à l'API Jikan, elle offre des statistiques en temps réel, un système de progression des utilisateurs (XP, niveaux) et des classements (leaderboard). L'interface a été intégralement pensée pour être rapide, élégante et axée sur l'engagement de l'utilisateur.",
-        features: ["Consommation de l'API REST Jikan (MyAnimeList)", "Système complet de gamification (XP, Quêtes, Niveaux)", "Profils utilisateurs et leaderboards temps réel", "Mode sombre et UI premium"]
     },
     {
         id: "blentertuto",

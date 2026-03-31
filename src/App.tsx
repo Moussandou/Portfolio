@@ -135,17 +135,21 @@ function Home() {
             </div>
           </div>
 
-          {/* Row 2: Featured Projects (3 + 3) */}
-          <GithubCard className="row-span-2 md:col-span-3 md:row-span-2" />
-          <ProjectCard project={mainFeatured[1]} className="row-span-2 md:col-span-3 md:row-span-2" />
+          {/* Row 2: Featured Projects (4 + 2) */}
+          <ProjectCard project={mainFeatured[0]} className="row-span-2 md:col-span-4 md:row-span-2" />
+          <GithubCard className="row-span-2 md:col-span-2 md:row-span-2" />
           
-          {/* Row 3: Experience (4) + All Projects CTA (2) */}
+          {/* Row 3: Experience (4) + Featured 2 (2) */}
           <ExperienceCard className="row-span-3 md:col-span-4 md:row-span-2" />
-          <AllProjectsCard className="row-span-2 md:col-span-2 md:row-span-2" onClick={() => navigate('/projects')} />
+          <ProjectCard project={mainFeatured[1]} className="row-span-2 md:col-span-2 md:row-span-2" />
 
-          {/* Row 4: Education (3) + Volunteer (3) */}
-          <EducationCard className="row-span-3 md:col-span-3 md:row-span-2" />
-          <VolunteerCard className="row-span-3 md:col-span-3 md:row-span-2" />
+          {/* Row 4: All Projects (2) + Education (4) */}
+          <AllProjectsCard className="row-span-2 md:col-span-2 md:row-span-2" onClick={() => navigate('/projects')} />
+          <EducationCard className="row-span-2 md:col-span-4 md:row-span-2" />
+
+          {/* Row 5: Volunteer (4) + Spacer/Other (2) */}
+          <VolunteerCard className="row-span-2 md:col-span-4 md:row-span-2" />
+          <div className="hidden md:block row-span-2 md:col-span-2" style={{ background: COLORS.blush, borderRadius: '2rem' }} />
 
           {/* Row 5: Contact (6) */}
           <div 
