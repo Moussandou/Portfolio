@@ -19,6 +19,22 @@ export interface Project {
 
 export const projects: Project[] = [
     {
+        id: "gameboy-sp",
+        name: "GameBoy Advance SP Online",
+        image: "/Portfolio/assets/gameboy-1.png",
+        images: ["/Portfolio/assets/gameboy-1.png", "/Portfolio/assets/gameboy-2.png", "/Portfolio/assets/gameboy-3.png"],
+        desc: "Expérience d'émulateur premium avec un OS personnalisé inspiré de la Wii et de la 3DS.",
+        tech: "React 19 / TypeScript / Tailwind CSS 4 / Vite",
+        color: "#3A9EFF",
+        role: "Créateur & Développeur Full-Stack",
+        icon: "lucide:gamepad-2",
+        github: "https://github.com/Moussandou/Gameboy",
+        link: "https://gameboy-moussandou.web.app/",
+        featured: true,
+        longDesc: "GameBoy Advance SP Online est bien plus qu'un simple émulateur. Il intègre un système d'exploitation complet (Moussandou OS) avec des effets de glassmorphism, une barre latérale raffinée et une bibliothèque de jeux classiques (Snake, Tetris, Wall Breaker). L'interface est entièrement responsive, passant d'une expérience desktop à un émulateur mobile optimisé.",
+        features: ["Moussandou OS : Desktop environment avec glassmorphism", "Bibliothèque de jeux arcade classiques intégrée", "Système de settings (Volume, Luminosité, Skins)", "CI/CD automatisé via GitHub Actions & Firebase Hosting"]
+    },
+    {
         id: "censor-box",
         name: "Censor Box",
         image: "/Portfolio/assets/censorbox-1.png",
