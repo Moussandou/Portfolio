@@ -113,6 +113,22 @@ export const projects: Project[] = [
         features: ["Scraping automatique sur 12+ sources RSS", "Génération de résumés IA avec points clés via l'API Gemini", "Publication planifiée et déduplication via SQLite", "Création automatique de fils de discussion et commandes slash interactives"]
     },
     {
+        id: "pocket-piano",
+        name: "Pocket-Piano",
+        image: "/Portfolio/assets/pocket-piano-1.png",
+        images: ["/Portfolio/assets/pocket-piano-1.png", "/Portfolio/assets/pocket-piano-2.png", "/Portfolio/assets/pocket-piano-3.png"],
+        desc: "Application de piano virtuel professionnelle haute performance avec synthèse sonore et fonctionnalités cloud.",
+        tech: "React 19 / TypeScript / Vite / Tone.js / Firebase",
+        color: "#4A90E2",
+        role: "Créateur & Développeur Full-Stack",
+        icon: "lucide:music",
+        github: "https://github.com/Moussandou/Pocket-Piano",
+        link: "https://pocket-piano-moussandou.web.app/",
+        featured: true,
+        longDesc: "Pocket Piano est une application de piano virtuel haute performance conçue pour le web moderne. Elle combine une synthèse sonore à faible latence via Tone.js avec des fonctionnalités cloud (Firebase), offrant une expérience musicale immersive directement dans le navigateur. L'interface premium intègre le support MIDI, l'enregistrement MP3 et un système de gamification complet avec progression et récompenses.",
+        features: ["Audio haute fidélité avec Tone.js et synthèse sonore à faible latence", "Synchronisation cloud via Firebase (Auth, Firestore, Hosting)", "Support MIDI pour claviers externes avec sensibilité à la vélocité", "Enregistreur interne haute qualité et export au format MP3", "Système de gamification (XP, streaks, badges) pour encourager la pratique", "Interface Premium : Dark mode, Glassmorphism et support multilingue (FR/EN)"]
+    },
+    {
         id: "spritelab",
         name: "SpriteLab",
         desc: "Outil de Gestion Spritesheet. Découper, animer et organiser des spritesheets.",
