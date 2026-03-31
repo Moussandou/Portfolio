@@ -19,6 +19,21 @@ export interface Project {
 
 export const projects: Project[] = [
     {
+        id: "magichand",
+        name: "MagicHand",
+        image: "/Portfolio/assets/magichand-banner.jpg",
+        desc: "Moteur AR cybernétique haute performance pour la reconnaissance gestuelle en temps réel.",
+        tech: "Next.js / MediaPipe / Zustand / Tailwind CSS 4",
+        color: "#00D1FF",
+        role: "Créateur & Développeur Full-Stack",
+        icon: "lucide:zap",
+        github: "https://github.com/Moussandou/MagicHand",
+        link: "https://jarvishand-web-ar.web.app/",
+        featured: true,
+        longDesc: "MagicHand est un moteur de Réalité Augmentée web conçu pour la reconnaissance précise des mains et l'overlay d'effets visuels. Propulsé par MediaPipe, il permet de déclencher des 'capacités cybernétiques' (boucliers, rayons thermiques) via des gestes naturels. L'architecture est modulaire, permettant d'ajouter facilement de nouvelles techniques et effets visuels.",
+        features: ["Reconnaissance gestuelle de précision via MediaPipe Vision", "Système de plugins modulaires pour nouvelles capacités", "Pipeline de rendu canvas optimisé pour les effets FX", "Interface HUD immersive et responsive"]
+    },
+    {
         id: "scrappi",
         name: "Scrappi",
         image: "/Portfolio/assets/scrappi-1.png",
