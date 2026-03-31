@@ -40,7 +40,7 @@ const INITIAL_FS: Record<string, FileSystemNode> = {
                         }
                     },
                     'skills.txt': { type: 'file', content: 'LANGUAGES: C, C++, Python, JS/TS, SQL, Haskell, ASM\nFRAMEWORKS: React, Node.js, Tailwind, Tauri\nTOOLS: Git, Docker, N8n' },
-                    'contact.txt': { type: 'file', content: 'Email: moussandou.mroivili@epitech.eu\nTel: 07 81 63 32 78\nLinkedIn: linkedin.com/in/moussandou' },
+                    'contact.txt': { type: 'file', content: 'Email: moussandou.mroivili@epitech.eu\nTel: 07 81 63 32 78\nLinkedIn: linkedin.com/in/moussandou/' },
                     'secret.txt': { type: 'file', content: '01001000 01100101 01101100 01101100 01101111 00100001' }
                 }
             }

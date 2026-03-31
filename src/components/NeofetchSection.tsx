@@ -10,7 +10,7 @@ export function NeofetchSection({ isHackMode = false }: NeofetchSectionProps) {
     { label: "Localisation", value: "Marseille, France" },
     { label: "Téléphone", value: "07 81 63 32 78", link: "tel:+33781633278" },
     { label: "Email", value: "moussandou.mroivili@epitech.eu", link: "mailto:moussandou.mroivili@epitech.eu" },
-    { label: "LinkedIn", value: "linkedin.com/in/moussandou", link: "https://linkedin.com/in/moussandou" },
+    { label: "LinkedIn", value: "linkedin.com/in/moussandou", link: "https://www.linkedin.com/in/moussandou/" },
     { label: "Langues", value: "Français (Natif), Anglais (Professionnel)" },
     { label: "Personnalité", value: "Curieux, Passionné, Autonome" },
     { label: "Uptime", value: "20 ans de fonctionnement optimal" }
