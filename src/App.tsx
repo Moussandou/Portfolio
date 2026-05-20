@@ -10,6 +10,7 @@ import { GithubCard } from './components/common/GithubCard';
 import { ExperienceCard } from './components/common/ExperienceCard';
 import { EducationCard } from './components/common/EducationCard';
 import { VolunteerCard } from './components/common/VolunteerCard';
+import { StatusCard } from './components/common/StatusCard';
 import { Contact } from './pages/Contact';
 import { cn } from './lib/utils';
 import { I18nProvider, useI18n } from './context/I18nContext';
@@ -146,10 +147,11 @@ function Home() {
           {/* Row 4: All Projects (2) + Education (4) */}
           <AllProjectsCard className="row-span-2 md:col-span-2 md:row-span-2" onClick={() => navigate('/projects')} />
           <EducationCard className="row-span-2 md:col-span-4 md:row-span-2" />
-
-          {/* Row 5: Volunteer (4) + Spacer/Other (2) */}
+          {/* Row 5: Volunteer (4) + Status Card (2) */}
           <VolunteerCard className="row-span-2 md:col-span-4 md:row-span-2" />
-          <div className="hidden md:block row-span-2 md:col-span-2" style={{ background: COLORS.blush, borderRadius: '2rem' }} />
+          <div className="row-span-2 md:col-span-2 md:row-span-2 bento-card" style={{ background: COLORS.blush }}>
+            <StatusCard />
+          </div>
 
           {/* Row 5: Contact (6) */}
           <div 

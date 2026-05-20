@@ -60,31 +60,31 @@ export function VolunteerCard({ className }: { className?: string }) {
                       : "opacity-0 translate-x-8 pointer-events-none"
                 )}
               >
-                <div className="flex gap-6 items-start mb-6">
-                  <div className="flex-shrink-0 w-16 h-16 rounded-[20px] bg-white/90 flex items-center justify-center ring-2 ring-white/10 overflow-hidden shadow-2xl">
+                <div className="flex gap-4 items-center mb-3">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-white/95 flex items-center justify-center ring-1 ring-white/10 overflow-hidden shadow-md">
                     {vol.logo ? (
-                      <img src={vol.logo} alt={vol.organization} className="w-full h-full object-contain p-1.5 group-hover:scale-110 transition-transform duration-700" />
+                      <img src={vol.logo} alt={vol.organization} className="w-full h-full object-contain p-1.5 group-hover:scale-105 transition-transform duration-500" />
                     ) : (
-                      <Users size={32} className="text-white/40" />
+                      <Users size={24} className="text-white/40" />
                     )}
                   </div>
-                  <div className="flex-1 min-w-0 pt-1">
-                    <h4 className="text-lg font-black text-white mb-1 tracking-tight leading-tight">{role}</h4>
-                    <p className="text-sm font-bold text-[#D8B4E2] bg-white/10 inline-block px-3 py-1 rounded-full">{vol.organization}</p>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="text-base font-black text-white tracking-tight leading-tight">{role}</h4>
+                    <p className="text-xs font-bold text-[#D8B4E2] bg-white/10 inline-block px-2.5 py-0.5 rounded-full mt-1">{vol.organization}</p>
                   </div>
                 </div>
                 
                 <div className="flex-1 min-h-0">
-                  <p className="text-sm text-white/80 font-medium leading-relaxed italic border-l-2 border-white/20 pl-4 mb-5">
+                  <p className="text-xs text-white/80 font-medium leading-relaxed italic border-l-2 border-white/20 pl-3 mb-3">
                     "{description}"
                   </p>
                   
                   {points && (
-                    <ul className="space-y-2.5">
-                      {points.slice(0, 3).map((p, i) => (
-                        <li key={i} className="flex items-start gap-3 text-[13px] text-white/60 font-medium leading-relaxed">
-                          <div className="w-1.5 h-1.5 rounded-full bg-white/30 mt-1.5 shrink-0" />
-                          {p}
+                    <ul className="space-y-1.5">
+                      {points.slice(0, 2).map((p, i) => (
+                        <li key={i} className="flex items-start gap-2 text-[12px] text-white/70 font-medium leading-normal">
+                          <div className="w-1 h-1 rounded-full bg-white/40 mt-1.5 shrink-0" />
+                          <span className="line-clamp-1">{p}</span>
                         </li>
                       ))}
                     </ul>

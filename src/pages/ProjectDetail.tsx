@@ -41,10 +41,9 @@ export function ProjectDetail() {
       <main className="relative z-10 max-w-[1080px] mx-auto px-6 py-12">
         <button 
           onClick={() => navigate(-1)}
-          className="group flex items-center gap-2 text-[#8D4074] font-display font-medium mb-8 hover:translate-x-[-4px] transition-transform"
+          className="inline-flex items-center gap-2 text-sm font-bold text-[#8D4074] hover:text-[#5a2848] transition-all mb-8 bg-white/40 hover:bg-white/60 px-4 py-2 rounded-xl shadow-sm hover:-translate-x-1"
         >
-          <ArrowLeft size={20} />
-          <span className="uppercase tracking-widest text-sm">{t('projectList.back')}</span>
+          <ArrowLeft size={16} /> {t('projectList.back')}
         </button>
 
         <div className="flex flex-col gap-12">

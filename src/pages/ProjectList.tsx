@@ -13,10 +13,9 @@ export function ProjectList() {
       <main className="relative z-10 max-w-[1080px] mx-auto px-6 py-12">
         <button 
           onClick={() => navigate('/')}
-          className="group flex items-center gap-2 text-[#8D4074] font-display font-medium mb-8 hover:translate-x-[-4px] transition-transform"
+          className="inline-flex items-center gap-2 text-sm font-bold text-[#8D4074] hover:text-[#5a2848] transition-all mb-8 bg-white/40 hover:bg-white/60 px-4 py-2 rounded-xl shadow-sm hover:-translate-x-1"
         >
-          <ArrowLeft size={20} />
-          <span className="uppercase tracking-widest text-sm">{t('projectList.back')}</span>
+          <ArrowLeft size={16} /> {t('projectList.back')}
         </button>
 
         <div className="mb-12">
@@ -28,7 +27,7 @@ export function ProjectList() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
-            <div key={project.id} className="h-[280px]">
+            <div key={project.id} className="h-[380px]">
               <ProjectCard project={project} />
             </div>
           ))}

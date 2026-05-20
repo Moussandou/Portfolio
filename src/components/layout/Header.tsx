@@ -35,8 +35,10 @@ export function Header() {
             <img 
               src="/Portfolio/assets/logo-moussandou.png" 
               alt="Moussandou" 
-              className="object-contain transition-all duration-500 group-hover:scale-105"
-              style={{ height: '8rem' }}
+              className={cn(
+                "object-contain transition-all duration-500 group-hover:scale-105",
+                scrolled ? "h-14 md:h-16" : "h-20 md:h-24"
+              )}
             />
           </Link>
 
