@@ -2,9 +2,11 @@ import { projects } from '../data/projects';
 import { ProjectCard } from '../components/common/ProjectCard';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useI18n } from '../context/I18nContext';
 
 export function ProjectList() {
   const navigate = useNavigate();
+  const { t } = useI18n();
 
   return (
     <>
@@ -14,13 +16,13 @@ export function ProjectList() {
           className="group flex items-center gap-2 text-[#8D4074] font-display font-medium mb-8 hover:translate-x-[-4px] transition-transform"
         >
           <ArrowLeft size={20} />
-          <span className="uppercase tracking-widest text-sm">Retour</span>
+          <span className="uppercase tracking-widest text-sm">{t('projectList.back')}</span>
         </button>
 
         <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#2a1a22] font-display mb-4">Mes Réalisations</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-[#2a1a22] font-display mb-4">{t('projectList.title')}</h1>
           <p className="text-lg text-[#5a2848]/60 max-w-2xl font-medium">
-            Une collection de mes projets les plus marquants, allant du développement full-stack aux outils de création et jeux vidéo.
+            {t('projectList.desc')}
           </p>
         </div>
 

@@ -1,11 +1,12 @@
-
 export interface Project {
     id: string;
     name: string;
-    desc: string;
+    descFr: string;
+    descEn: string;
     tech: string;
     color: string;
-    role: string;
+    roleFr: string;
+    roleEn: string;
     icon: string;
     images?: string[];
     image?: string;
@@ -13,207 +14,261 @@ export interface Project {
     link?: string;
     github?: string;
     featured?: boolean;
-    longDesc?: string;
-    features?: string[];
+    longDescFr?: string;
+    longDescEn?: string;
+    featuresFr?: string[];
+    featuresEn?: string[];
 }
 
 export const projects: Project[] = [
     {
         id: "bingeki",
         name: "Bingeki",
-        desc: "Anime & Manga Tracker avec gamification (XP, classements).",
+        descFr: "Anime & Manga Tracker avec gamification (XP, classements).",
+        descEn: "Anime & Manga Tracker with gamification (XP, leaderboards).",
         tech: "React / Firebase / Jikan API",
         color: "#A85D8E",
-        role: "Développeur",
+        roleFr: "Développeur",
+        roleEn: "Developer",
         icon: "lucide:tv",
         image: '/Portfolio/assets/bingeki-1.png',
         images: ['/Portfolio/assets/bingeki-1.png', '/Portfolio/assets/bingeki-2.png', '/Portfolio/assets/bingeki-3.png', '/Portfolio/assets/bingeki-4.png', '/Portfolio/assets/bingeki-5.png', '/Portfolio/assets/bingeki-6.png'],
         link: "https://bingeki.web.app/fr/",
         github: "https://github.com/Moussandou/Bingeki-V2",
         featured: true,
-        longDesc: "Bingeki est une plateforme moderne permettant de traquer la progression de vos animes et mangas favoris. Connectée à l'API Jikan, elle offre des statistiques en temps réel, un système de progression des utilisateurs (XP, niveaux) et des classements (leaderboard). L'interface a été intégralement pensée pour être rapide, élégante et axée sur l'engagement de l'utilisateur.",
-        features: ["Consommation de l'API REST Jikan (MyAnimeList)", "Système complet de gamification (XP, Quêtes, Niveaux)", "Profils utilisateurs et leaderboards temps réel", "Mode sombre et UI premium"]
+        longDescFr: "Bingeki est une plateforme moderne permettant de traquer la progression de vos animes et mangas favoris. Connectée à l'API Jikan, elle offre des statistiques en temps réel, un système de progression des utilisateurs (XP, niveaux) et des classements (leaderboard). L'interface a été intégralement pensée pour être rapide, élégante et axée sur l'engagement de l'utilisateur.",
+        longDescEn: "Bingeki is a modern platform to track the progress of your favorite anime and manga. Connected to the Jikan API, it offers real-time statistics, a user progression system (XP, levels) and leaderboards. The interface is fully designed to be fast, elegant, and focused on user engagement.",
+        featuresFr: ["Consommation de l'API REST Jikan (MyAnimeList)", "Système complet de gamification (XP, Quêtes, Niveaux)", "Profils utilisateurs et leaderboards temps réel", "Mode sombre et UI premium"],
+        featuresEn: ["Consumption of the Jikan REST API (MyAnimeList)", "Complete gamification system (XP, Quests, Levels)", "User profiles and real-time leaderboards", "Dark mode and premium UI"]
     },
     {
         id: "gameboy-sp",
         name: "GameBoy Advance SP Online",
         image: "/Portfolio/assets/gameboy-1.png",
         images: ["/Portfolio/assets/gameboy-1.png", "/Portfolio/assets/gameboy-2.png", "/Portfolio/assets/gameboy-3.png"],
-        desc: "Expérience d'émulateur premium avec un OS personnalisé inspiré de la Wii et de la 3DS.",
+        descFr: "Expérience d'émulateur premium avec un OS personnalisé inspiré de la Wii et de la 3DS.",
+        descEn: "Premium emulator experience with a custom OS inspired by the Wii and 3DS.",
         tech: "React 19 / TypeScript / Tailwind CSS 4 / Vite",
         color: "#3A9EFF",
-        role: "Créateur & Développeur Full-Stack",
+        roleFr: "Créateur & Développeur Full-Stack",
+        roleEn: "Creator & Full-Stack Developer",
         icon: "lucide:gamepad-2",
         github: "https://github.com/Moussandou/Gameboy",
         link: "https://gameboy-moussandou.web.app/",
         featured: true,
-        longDesc: "GameBoy Advance SP Online est bien plus qu'un simple émulateur. Il intègre un système d'exploitation complet (Moussandou OS) avec des effets de glassmorphism, une barre latérale raffinée et une bibliothèque de jeux classiques (Snake, Tetris, Wall Breaker). L'interface est entièrement responsive, passant d'une expérience desktop à un émulateur mobile optimisé.",
-        features: ["Moussandou OS : Desktop environment avec glassmorphism", "Bibliothèque de jeux arcade classiques intégrée", "Système de settings (Volume, Luminosité, Skins)", "CI/CD automatisé via GitHub Actions & Firebase Hosting"]
+        longDescFr: "GameBoy Advance SP Online est bien plus qu'un simple émulateur. Il intègre un système d'exploitation complet (Moussandou OS) avec des effets de glassmorphism, une barre latérale raffinée et une bibliothèque de jeux classiques (Snake, Tetris, Wall Breaker). L'interface est entièrement responsive, passant d'une expérience desktop à un émulateur mobile optimisé.",
+        longDescEn: "GameBoy Advance SP Online is much more than a simple emulator. It integrates a complete operating system (Moussandou OS) with glassmorphism effects, a refined sidebar, and a library of classic games (Snake, Tetris, Wall Breaker). The interface is fully responsive, scaling from desktop to an optimized mobile experience.",
+        featuresFr: ["Moussandou OS : Desktop environment avec glassmorphism", "Bibliothèque de jeux arcade classiques intégrée", "Système de settings (Volume, Luminosité, Skins)", "CI/CD automatisé via GitHub Actions & Firebase Hosting"],
+        featuresEn: ["Moussandou OS: Desktop environment with glassmorphism", "Integrated library of classic arcade games", "Settings system (Volume, Brightness, Skins)", "Automated CI/CD via GitHub Actions & Firebase Hosting"]
     },
     {
         id: "censor-box",
         name: "Censor Box",
         image: "/Portfolio/assets/censorbox-1.png",
         images: ["/Portfolio/assets/censorbox-1.png", "/Portfolio/assets/censorbox-2.png", "/Portfolio/assets/censorbox-3.png", "/Portfolio/assets/censorbox-4.png", "/Portfolio/assets/censorbox-5.png"],
-        desc: "Jeu de simulation de terminal de renseignement rétro-futuriste avec une esthétique \"Top Secret\".",
+        descFr: "Jeu de simulation de terminal de renseignement rétro-futuriste avec une esthétique \"Top Secret\".",
+        descEn: "Retro-futuristic intelligence terminal simulation game with a \"Top Secret\" aesthetic.",
         tech: "React 19 / TypeScript / Vite",
         color: "#E8D9C5",
-        role: "Créateur & Développeur Full-Stack",
+        roleFr: "Créateur & Développeur Full-Stack",
+        roleEn: "Creator & Full-Stack Developer",
         icon: "lucide:shield-alert",
         github: "https://github.com/Moussandou/Censor-Box",
         link: "https://censor-box-moussandou.web.app/",
         featured: true,
-        longDesc: "Censor Box est une expérience immersive où vous incarnez un agent chargé de censurer des documents confidentiels. Le jeu mélange rapidité et précision avec une interface CRT rétro, des effets de scanlines et un paysage sonore suspensif. Le défi consiste à classifier les mots par taille pour éviter les fuites d'information.",
-        features: ["Interface Rétro Immersive (Effet CRT, Scanlines)", "Gameplay basé sur la rapidité et la classification de texte", "Système de rapports de mission et niveaux de difficulté", "Contrôles clavier réalistes et interface responsive"]
+        longDescFr: "Censor Box est une expérience immersive où vous incarnez un agent chargé de censurer des documents confidentiels. Le jeu mélange rapidité et précision avec une interface CRT rétro, des effets de scanlines et un paysage sonore suspensif. Le défi consiste à classifier les mots par taille pour éviter les fuites d'information.",
+        longDescEn: "Censor Box is an immersive experience where you play as an agent responsible for censoring confidential documents. The game blends speed and precision with a retro CRT interface, scanline effects, and a suspenseful soundscape. The challenge consists of classifying words by size to avoid information leaks.",
+        featuresFr: ["Interface Rétro Immersive (Effet CRT, Scanlines)", "Gameplay basé sur la rapidité et la classification de texte", "Système de rapports de mission et niveaux de difficulté", "Contrôles clavier réalistes et interface responsive"],
+        featuresEn: ["Immersive Retro Interface (CRT Effect, Scanlines)", "Gameplay based on speed and text classification", "Mission report system and difficulty levels", "Realistic keyboard controls and responsive interface"]
     },
     {
         id: "magichand",
         name: "MagicHand",
         image: "/Portfolio/assets/magichand-banner.jpg",
-        desc: "Moteur AR cybernétique haute performance pour la reconnaissance gestuelle en temps réel.",
+        descFr: "Moteur AR cybernétique haute performance pour la reconnaissance gestuelle en temps réel.",
+        descEn: "High-performance cybernetic AR engine for real-time gesture recognition.",
         tech: "Next.js / MediaPipe / Zustand / Tailwind CSS 4",
         color: "#00D1FF",
-        role: "Créateur & Développeur Full-Stack",
+        roleFr: "Créateur & Développeur Full-Stack",
+        roleEn: "Creator & Full-Stack Developer",
         icon: "lucide:zap",
         github: "https://github.com/Moussandou/MagicHand",
         link: "https://jarvishand-web-ar.web.app/",
         featured: true,
-        longDesc: "MagicHand est un moteur de Réalité Augmentée web conçu pour la reconnaissance précise des mains et l'overlay d'effets visuels. Propulsé par MediaPipe, il permet de déclencher des 'capacités cybernétiques' (boucliers, rayons thermiques) via des gestes naturels. L'architecture est modulaire, permettant d'ajouter facilement de nouvelles techniques et effets visuels.",
-        features: ["Reconnaissance gestuelle de précision via MediaPipe Vision", "Système de plugins modulaires pour nouvelles capacités", "Pipeline de rendu canvas optimisé pour les effets FX", "Interface HUD immersive et responsive"]
+        longDescFr: "MagicHand est un moteur de Réalité Augmentée web conçu pour la reconnaissance précise des mains et l'overlay d'effets visuels. Propulsé par MediaPipe, il permet de déclencher des 'capacités cybernétiques' (boucliers, rayons thermiques) via des gestes naturels. L'architecture est modulaire, permettant d'ajouter facilement de nouvelles techniques et effets visuels.",
+        longDescEn: "MagicHand is a web Augmented Reality engine designed for precise hand recognition and visual effects overlay. Powered by MediaPipe, it allows triggering 'cybernetic abilities' (shields, heat rays) via natural gestures. The modular architecture makes it easy to add new techniques and visual effects.",
+        featuresFr: ["Reconnaissance gestuelle de précision via MediaPipe Vision", "Système de plugins modulaires pour nouvelles capacités", "Pipeline de rendu canvas optimisé pour les effets FX", "Interface HUD immersive et responsive"],
+        featuresEn: ["Precision gesture recognition via MediaPipe Vision", "Modular plugin system for new abilities", "Optimized canvas rendering pipeline for FX effects", "Immersive and responsive HUD interface"]
     },
     {
         id: "scrappi",
         name: "Scrappi",
         image: "/Portfolio/assets/scrappi-1.png",
         images: ["/Portfolio/assets/scrappi-1.png", "/Portfolio/assets/scrappi-2.png", "/Portfolio/assets/scrappi-3.png"],
-        desc: "Application moderne et artistique de création de scrapbooks numériques avec une esthétique premium.",
+        descFr: "Application moderne et artistique de création de scrapbooks numériques avec une esthétique premium.",
+        descEn: "Modern and artistic digital scrapbook creator app with a premium aesthetic.",
         tech: "Next.js 15 / React 19 / Tailwind CSS / Konva.js / Firebase",
         color: "#4A6741",
-        role: "Créateur & Développeur Full-Stack",
+        roleFr: "Créateur & Développeur Full-Stack",
+        roleEn: "Creator & Full-Stack Developer",
         icon: "lucide:palette",
         github: "https://github.com/Moussandou/Scrappi",
         link: "https://scrappi-app.web.app/",
         featured: true,
-        longDesc: "Scrappi est une application de création de carnets de collages (scrapbooks) numériques, conçue pour offrir une expérience tactile et artistique. Utilisant Konva.js pour le rendu du canvas, elle permet de manipuler images, textes et stickers avec fluidité. L'esthétique est basée sur des textures de papier et des ombres douces pour un rendu premium.",
-        features: ["Éditeur de Canvas Artistique (Drag & Drop, Dessin, Texte)", "Gestion Multi-Support : Cloud (Firebase) et stockage local", "Esthétique Premium avec textures et typographie soignée", "Recherche d'images intégrée via l'API Pixabay"]
+        longDescFr: "Scrappi est une application de création de carnets de collages (scrapbooks) numériques, conçue pour offrir une expérience tactile et artistique. Utilisant Konva.js pour le rendu du canvas, elle permet de manipuler images, textes et stickers avec fluidité. L'esthétique est basée sur des textures de papier et des ombres douces pour un rendu premium.",
+        longDescEn: "Scrappi is a digital collage scrapbook creator app designed to offer a tactile and artistic experience. Using Konva.js for canvas rendering, it allows fluid manipulation of images, text, and stickers. The aesthetic is based on paper textures and soft shadows for a premium look.",
+        featuresFr: ["Éditeur de Canvas Artistique (Drag & Drop, Dessin, Texte)", "Gestion Multi-Support : Cloud (Firebase) et stockage local", "Esthétique Premium avec textures et typographie soignée", "Recherche d'images intégrée via l'API Pixabay"],
+        featuresEn: ["Artistic Canvas Editor (Drag & Drop, Drawing, Text)", "Multi-Support Management: Cloud (Firebase) and local storage", "Premium aesthetic with textures and curated typography", "Integrated image search via Pixabay API"]
     },
     {
         id: "gdg-discord-bot",
         name: "GDG Discord Bot",
         image: "/Portfolio/assets/gdg-bot-1.png",
         images: ["/Portfolio/assets/gdg-bot-1.png", "/Portfolio/assets/gdg-bot-2.png", "/Portfolio/assets/gdg-bot-3.png", "/Portfolio/assets/gdg-bot-4.png", "/Portfolio/assets/gdg-bot-5.png"],
-        desc: "Bot Discord de veille technologique automatisée avec l'IA pour le GDG Marseille.",
+        descFr: "Bot Discord de veille technologique automatisée avec l'IA pour le GDG Marseille.",
+        descEn: "Automated AI tech watch Discord bot for GDG Marseille.",
         tech: "Node.js / Discord.js / Gemini AI / SQLite",
         color: "#4285F4",
-        role: "Créateur & Développeur",
+        roleFr: "Créateur & Développeur",
+        roleEn: "Creator & Developer",
         icon: "lucide:bot",
         github: "https://github.com/Moussandou/GDG-Discord-Bot",
         featured: true,
-        longDesc: "Bot Discord de veille technologique automatisée conçu pour le Google Developer Group Marseille. Il scanne chaque jour de multiples sources RSS (Google Developpers, Hacker News, etc.), génère des résumés en français via Google Gemini AI et les publie dans des salons thématiques. L'architecture backend comprend une base SQLite locale pour la déduplication des articles, des jobs de scraping planifiés (cron), ainsi que des commandes slash natives pour l'administration et l'interaction des membres.",
-        features: ["Scraping automatique sur 12+ sources RSS", "Génération de résumés IA avec points clés via l'API Gemini", "Publication planifiée et déduplication via SQLite", "Création automatique de fils de discussion et commandes slash interactives"]
+        longDescFr: "Bot Discord de veille technologique automatisée conçu pour le Google Developer Group Marseille. Il scanne chaque jour de multiples sources RSS (Google Developpers, Hacker News, etc.), génère des résumés en français via Google Gemini AI et les publie dans des salons thématiques. L'architecture backend comprend une base SQLite locale pour la déduplication des articles, des jobs de scraping planifiés (cron), ainsi que des commandes slash natives pour l'administration et l'interaction des membres.",
+        longDescEn: "Automated tech watch Discord bot designed for the Google Developer Group Marseille. It daily scans multiple RSS sources (Google Developers, Hacker News, etc.), generates summaries in French via Google Gemini AI, and posts them in dedicated channels. The backend architecture includes a local SQLite database for article deduplication, scheduled scraping jobs (cron), and native slash commands for administration and member interaction.",
+        featuresFr: ["Scraping automatique sur 12+ sources RSS", "Génération de résumés IA avec points clés via l'API Gemini", "Publication planifiée et déduplication via SQLite", "Création automatique de fils de discussion et commandes slash interactives"],
+        featuresEn: ["Automatic scraping of 12+ RSS sources", "AI summaries with key points generated via Gemini API", "Scheduled publishing and deduplication via SQLite", "Automatic thread creation and interactive slash commands"]
     },
     {
         id: "pocket-piano",
         name: "Pocket-Piano",
         image: "/Portfolio/assets/pocket-piano-1.png",
         images: ["/Portfolio/assets/pocket-piano-1.png", "/Portfolio/assets/pocket-piano-2.png", "/Portfolio/assets/pocket-piano-3.png"],
-        desc: "Application de piano virtuel professionnelle haute performance avec synthèse sonore et fonctionnalités cloud.",
+        descFr: "Application de piano virtuel professionnelle haute performance avec synthèse sonore et fonctionnalités cloud.",
+        descEn: "Professional high-performance virtual piano app with sound synthesis and cloud features.",
         tech: "React 19 / TypeScript / Vite / Tone.js / Firebase",
         color: "#4A90E2",
-        role: "Créateur & Développeur Full-Stack",
+        roleFr: "Créateur & Développeur Full-Stack",
+        roleEn: "Creator & Full-Stack Developer",
         icon: "lucide:music",
         github: "https://github.com/Moussandou/Pocket-Piano",
         link: "https://pocket-piano-moussandou.web.app/",
         featured: true,
-        longDesc: "Pocket Piano est une application de piano virtuel haute performance conçue pour le web moderne. Elle combine une synthèse sonore à faible latence via Tone.js avec des fonctionnalités cloud (Firebase), offrant une expérience musicale immersive directement dans le navigateur. L'interface premium intègre le support MIDI, l'enregistrement MP3 et un système de gamification complet avec progression et récompenses.",
-        features: ["Audio haute fidélité avec Tone.js et synthèse sonore à faible latence", "Synchronisation cloud via Firebase (Auth, Firestore, Hosting)", "Support MIDI pour claviers externes avec sensibilité à la vélocité", "Enregistreur interne haute qualité et export au format MP3", "Système de gamification (XP, streaks, badges) pour encourager la pratique", "Interface Premium : Dark mode, Glassmorphism et support multilingue (FR/EN)"]
+        longDescFr: "Pocket Piano est une application de piano virtuel haute performance conçue pour le web moderne. Elle combine une synthèse sonore à faible latence via Tone.js avec des fonctionnalités cloud (Firebase), offrant une expérience musicale immersive directement dans le navigateur. L'interface premium intègre le support MIDI, l'enregistrement MP3 et un système de gamification complet avec progression et récompenses.",
+        longDescEn: "Pocket Piano is a high-performance virtual piano application designed for the modern web. It combines low-latency sound synthesis via Tone.js with cloud features (Firebase), offering an immersive musical experience directly in the browser. The premium interface integrates MIDI support, MP3 recording, and a complete gamification system with progression and rewards.",
+        featuresFr: ["Audio haute fidélité avec Tone.js et synthèse sonore à faible latence", "Synchronisation cloud via Firebase (Auth, Firestore, Hosting)", "Support MIDI pour claviers externes avec sensibilité à la vélocité", "Enregistreur interne haute qualité et export au format MP3", "Système de gamification (XP, streaks, badges) pour encourager la pratique", "Interface Premium : Dark mode, Glassmorphism et support multilingue (FR/EN)"],
+        featuresEn: ["High-fidelity audio with Tone.js and low-latency sound synthesis", "Cloud sync via Firebase (Auth, Firestore, Hosting)", "MIDI support for external keyboards with velocity sensitivity", "Internal high-quality recorder and MP3 export", "Gamification system (XP, streaks, badges) to encourage practice", "Premium Interface: Dark mode, Glassmorphism, and multilingual support (FR/EN)"]
     },
     {
         id: "spritelab",
         name: "SpriteLab",
-        desc: "Outil de Gestion Spritesheet. Découper, animer et organiser des spritesheets.",
+        descFr: "Outil de Gestion Spritesheet. Découper, animer et organiser des spritesheets.",
+        descEn: "Spritesheet Management Tool. Slice, animate and organize spritesheets.",
         tech: "React 18 / TypeScript / Vite",
         color: "#8A2BE2",
-        role: "Creator & Full-Stack Developer",
+        roleFr: "Créateur & Développeur Full-Stack",
+        roleEn: "Creator & Full-Stack Developer",
         icon: "lucide:layers",
         link: "https://moussandou.github.io/SpriteLab/",
         github: "https://github.com/Moussandou/SpriteLab",
         image: '/Portfolio/assets/spritelab-logo.png',
         images: ['/Portfolio/assets/spritelab-1.png', '/Portfolio/assets/spritelab-2.png', '/Portfolio/assets/spritelab-3.png', '/Portfolio/assets/spritelab-4.png'],
         featured: true,
-        longDesc: "SpriteLab est une solution open-source conçue pour simplifier le flux de travail des développeurs de jeux 2D. Cette application permet de découper, animer, et gérer facilement des feuilles de sprites complètes. J'ai conçu cette plateforme pour répondre à mes propres besoins de développement de jeu, et l'ai rendue accessible à tous avec une interface utilisateur fluide, réactive et intuitive.",
-        features: ["Découpage automatique de sprites", "Création et prévisualisation d'animations fluides", "Exportation sous différents formats standards", "Sauvegarde de session locale et interface drag & drop"]
+        longDescFr: "SpriteLab est une solution open-source conçue pour simplifier le flux de travail des développeurs de jeux 2D. Cette application permet de découper, animer, et gérer facilement des feuilles de sprites complètes. J'ai conçu cette plateforme pour répondre à mes propres besoins de développement de jeu, et l'ai rendue accessible à tous avec une interface utilisateur fluide, réactive et intuitive.",
+        longDescEn: "SpriteLab is an open-source solution designed to simplify the workflow of 2D game developers. This application allows you to easily slice, animate, and manage complete spritesheets. I designed this platform to meet my own game development needs, and made it accessible to everyone with a fluid, responsive, and intuitive UI.",
+        featuresFr: ["Découpage automatique de sprites", "Création et prévisualisation d'animations fluides", "Exportation sous différents formats standards", "Sauvegarde de session locale et interface drag & drop"],
+        featuresEn: ["Automatic sprite slicing", "Smooth animation creation and preview", "Export to various standard formats", "Local session saving and drag & drop interface"]
     },
     {
         id: "blentertuto",
         name: "BlenderTuto",
-        desc: "Plateforme d'apprentissage interactive pour l'animation 3D.",
+        descFr: "Plateforme d'apprentissage interactive pour l'animation 3D.",
+        descEn: "Interactive learning platform for 3D animation.",
         tech: "React 18 / Vite / Firebase",
         color: "#E87D0D",
-        role: "Full-Stack Creator",
+        roleFr: "Créateur Full-Stack",
+        roleEn: "Full-Stack Creator",
         icon: "lucide:box",
         image: '/Portfolio/assets/blender-tuto-1.png',
         images: ['/Portfolio/assets/blender-tuto-1.png', '/Portfolio/assets/blender-tuto-2.png', '/Portfolio/assets/blender-tuto-3.png', '/Portfolio/assets/blender-tuto-4.png', '/Portfolio/assets/blender-tuto-5.png', '/Portfolio/assets/blender-tuto-6.png'],
         link: "https://blender-tuto-site-34489.web.app/",
         featured: true,
-        longDesc: "BlenderTuto est une toute nouvelle interface dédiée à l'apprentissage interactif de la modélisation et de l'animation 3D sur Blender. La plateforme réunit vidéos, astuces, raccourcis et quiz pour offrir un apprentissage ludique et progressif aux étudiants.",
-        features: ["Lecteur vidéo personnalisé intégré", "Système d'authentification et suivi de la progression", "Base de données NoSQL via Firebase pour les cours", "Design responsive orienté mobile-first"]
+        longDescFr: "BlenderTuto est une toute nouvelle interface dédiée à l'apprentissage interactif de la modélisation et de l'animation 3D sur Blender. La plateforme réunit vidéos, astuces, raccourcis et quiz pour offrir un apprentissage ludique et progressif aux étudiants.",
+        longDescEn: "BlenderTuto is a brand new interface dedicated to interactive learning of 3D modeling and animation in Blender. The platform brings together videos, tips, shortcuts, and quizzes to offer fun and progressive learning for students.",
+        featuresFr: ["Lecteur vidéo personnalisé intégré", "Système d'authentification et suivi de la progression", "Base de données NoSQL via Firebase pour les cours", "Design responsive orienté mobile-first"],
+        featuresEn: ["Integrated custom video player", "Authentication system and progress tracking", "NoSQL database via Firebase for courses", "Mobile-first responsive design"]
     },
     {
         id: "bambubuddy",
         name: "Bambu Buddy",
-        desc: "Gestion d'impression 3D - Suivi de filaments et calcul de coûts.",
+        descFr: "Gestion d'impression 3D - Suivi de filaments et calcul de coûts.",
+        descEn: "3D Printing Management - Filament tracker and cost estimation.",
         tech: "React / TypeScript / Tauri",
         color: "#5DADE2",
-        role: "Full-Stack Developer & Creator",
+        roleFr: "Développeur & Créateur Full-Stack",
+        roleEn: "Full-Stack Developer & Creator",
         icon: "lucide:printer",
         image: '/Portfolio/assets/bambu-buddy-1.png',
         images: ['/Portfolio/assets/bambu-buddy-1.png', '/Portfolio/assets/bambu-buddy-2.png', '/Portfolio/assets/bambu-buddy-3.png'],
         link: "https://bambu-buddy.web.app",
         github: "https://github.com/moussandou/bambu-buddy",
         featured: true,
-        longDesc: "Bambu Buddy est un projet d'outil de bureau et web permettant le suivi, l'estimation de durée et de coûts liés à l'impression 3D. Idéal pour les makers qui cherchent à gérer leur stock de filaments de manière précise.",
-        features: ["Application multi-plateforme via Tauri", "Calculateurs de coûts personnalisables et gestion des bobines", "Tableaux de bord des durées d'impression et statistiques"]
+        longDescFr: "Bambu Buddy est un projet d'outil de bureau et web permettant le suivi, l'estimation de durée et de coûts liés à l'impression 3D. Idéal pour les makers qui cherchent à gérer leur stock de filaments de manière précise.",
+        longDescEn: "Bambu Buddy is a desktop and web tool project enabling tracking, duration, and cost estimation for 3D printing. Ideal for makers seeking to manage their filament stock precisely.",
+        featuresFr: ["Application multi-plateforme via Tauri", "Calculateurs de coûts personnalisables et gestion des bobines", "Tableaux de bord des durées d'impression et statistiques"],
+        featuresEn: ["Multi-platform application via Tauri", "Customizable cost calculators and spool management", "Print duration dashboards and statistics"]
     },
     {
         id: "rtype",
         name: "R-Type",
-        desc: "Jeu arcade multijoueur géré par un serveur C++.",
+        descFr: "Jeu arcade multijoueur géré par un serveur C++.",
+        descEn: "Multiplayer arcade game powered by a C++ server.",
         tech: "C++ SFML",
         color: "#85C1E9",
-        role: "Développeur Graphique SFML",
+        roleFr: "Développeur Graphique SFML",
+        roleEn: "SFML Graphic Developer",
         icon: "lucide:gamepad-2",
         video: '/Portfolio/assets/rtype.mp4',
         featured: false,
-        longDesc: "R-Type est un clone multijoueur du célèbre jeu d'arcade, entièrement développé en C++ avec l'architecture logicielle ECS (Entity-Component-System). Le projet met l'accent sur un protocole réseau performant, permettant à plusieurs joueurs de s'affronter simultanément sans latence perceptible.",
-        features: ["Architecture réseau client-serveur propriétaire UDP", "Motel de conception ECS complet conçu from scratch", "Rendu graphique optimisé avec la SFML en C++", "Gestion avancée de l'intelligence artificielle ennemie"]
+        longDescFr: "R-Type est un clone multijoueur du célèbre jeu d'arcade, entièrement développé en C++ avec l'architecture logicielle ECS (Entity-Component-System). Le projet met l'accent sur un protocole réseau performant, permettant à plusieurs joueurs de s'affronter simultanément sans latence perceptible.",
+        longDescEn: "R-Type is a multiplayer clone of the famous arcade game, fully developed in C++ using the ECS (Entity-Component-System) software architecture. The project emphasizes a high-performance network protocol, allowing multiple players to compete simultaneously without noticeable latency.",
+        featuresFr: ["Architecture réseau client-serveur propriétaire UDP", "Motel de conception ECS complet conçu from scratch", "Rendu graphique optimisé avec la SFML en C++", "Gestion avancée de l'intelligence artificielle ennemie"],
+        featuresEn: ["Proprietary UDP client-server network architecture", "Complete ECS design pattern built from scratch", "Optimized graphic rendering with SFML in C++", "Advanced enemy AI management"]
     },
     {
         id: "jeb",
         name: "JEB",
-        desc: "Plateforme Incubateur - Dashboard admin et intégration API.",
+        descFr: "Plateforme Incubateur - Dashboard admin et intégration API.",
+        descEn: "Incubator Platform - Admin dashboard and API integration.",
         tech: "React",
         color: "#5DADE2",
-        role: "Développeur Frontend",
+        roleFr: "Développeur Frontend",
+        roleEn: "Frontend Developer",
         icon: "lucide:rocket",
         image: '/Portfolio/assets/jeb.png',
         featured: false,
-        longDesc: "Participation au développement front-end d'un tableau de bord de gestion pour un incubateur. Cette plateforme permet d'interagir facilement avec l'API interne afin d'administrer les inscriptions, événements et les startups hébergées.",
-        features: ["Implémentation de tableaux de données dynamiques", "Intégration et sécurisation via des requêtes API REST (JWT)", "Architecture de code fortement modulaire sous React"]
+        longDescFr: "Participation au développement front-end d'un tableau de bord de gestion pour un incubateur. Cette plateforme permet d'interagir facilement avec l'API interne afin d'administrer les inscriptions, événements et les startups hébergées.",
+        longDescEn: "Contribution to the front-end development of a management dashboard for an incubator. This platform allows easy interaction with the internal API to administer registrations, events, and hosted startups.",
+        featuresFr: ["Implémentation de tableaux de données dynamiques", "Intégration et sécurisation via des requêtes API REST (JWT)", "Architecture de code fortement modulaire sous React"],
+        featuresEn: ["Implementation of dynamic data tables", "Integration and security via REST API requests (JWT)", "Highly modular code architecture under React"]
     },
     {
         id: "mooc-autonomie",
         name: "Mooc Autonomie",
-        desc: "Plateforme d'apprentissage pour l'autonomie numérique.",
+        descFr: "Plateforme d'apprentissage pour l'autonomie numérique.",
+        descEn: "Learning platform for digital autonomy.",
         tech: "WordPress",
         color: "#85C1E9",
-        role: "Développeur Web",
+        roleFr: "Développeur Web",
+        roleEn: "Web Developer",
         link: "https://autonomie-numerique.fr",
         icon: "lucide:globe",
         image: '/Portfolio/assets/icom1.png',
         images: ['/Portfolio/assets/icom1.png', '/Portfolio/assets/icom2.png', '/Portfolio/assets/icom3.png'],
         featured: false,
-        longDesc: "Mooc Autonomie est une formation en ligne asynchrone pour l'apprentissage du numérique par des publics éloignés ou en insertion, élaborée pour garantir un fonctionnement hors-ligne, fluide et accessible à toutes et tous.",
-        features: ["Conception et structuration CMS via WordPress", "Optimisation SEO et de l'accessibilité", "Déploiement, maintenance et sécurisation du serveur web"]
+        longDescFr: "Mooc Autonomie est une formation en ligne asynchrone pour l'apprentissage du numérique par des publics éloignés ou en insertion, élaborée pour garantir un fonctionnement hors-ligne, fluide et accessible à toutes et tous.",
+        longDescEn: "Mooc Autonomie is an asynchronous online course for digital learning by distant or integrating audiences, designed to ensure offline, smooth, and accessible operations for everyone.",
+        featuresFr: ["Conception et structuration CMS via WordPress", "Optimisation SEO et de l'accessibilité", "Déploiement, maintenance et sécurisation du serveur web"],
+        featuresEn: ["CMS design and structuring via WordPress", "SEO and accessibility optimization", "Deployment, maintenance, and security of the web server"]
     }
 ];

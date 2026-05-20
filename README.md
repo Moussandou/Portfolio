@@ -9,7 +9,6 @@
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=blue)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
-![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)
 
 <br/>
 
@@ -106,7 +105,7 @@ src/
 ├── context/            # Global State (Theme, Sound, Achievements)
 ├── data/               # Static Data (Projects, Experience)
 ├── hooks/              # Custom React Hooks
-├── lib/                # Utilities & Firebase Config
+├── lib/                # Utilities
 └── styles/             # Global Styles & Tailwind Config
 ```
 

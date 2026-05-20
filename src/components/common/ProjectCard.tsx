@@ -3,6 +3,7 @@ import { cn } from '../../lib/utils';
 import { Project, projects } from '../../data/projects';
 import { ExternalLink, Github, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useI18n } from '../../context/I18nContext';
 
 interface ProjectCardProps {
   project: Project;
@@ -12,6 +13,7 @@ interface ProjectCardProps {
 export function ProjectCard({ project, className }: ProjectCardProps) {
   const navigate = useNavigate();
   const [currentImgIdx, setCurrentImgIdx] = useState(0);
+  const { language } = useI18n();
 
   const imagesList = project.images?.length ? project.images : (project.image ? [project.image] : []);
 
@@ -24,6 +26,8 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
     e.stopPropagation();
     setCurrentImgIdx((prev) => (prev - 1 + imagesList.length) % imagesList.length);
   };
+
+  const desc = language === 'fr' ? project.descFr : project.descEn;
 
   return (
     <div 
@@ -125,7 +129,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
         {/* Description - Bottom anchored */}
         <div className="mt-auto">
           <p className="text-[11px] text-white/80 line-clamp-2 leading-relaxed font-medium">
-            {project.desc}
+            {desc}
           </p>
         </div>
       </div>
@@ -134,6 +138,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
 }
 
 export function AllProjectsCard({ className, onClick }: { className?: string; onClick: () => void }) {
+  const { t } = useI18n();
   // Filter only projects with images or videos
   const imageProjects = projects.filter(p => p.image || p.video);
   // Duplicate the list EXACTLY ONCE to create a perfect two-part seamless loop
@@ -182,10 +187,10 @@ export function AllProjectsCard({ className, onClick }: { className?: string; on
 
       {/* Glass Content Overlay - High Contrast */}
       <div className="relative z-10 px-8 py-5 rounded-[2.5rem] bg-white/70 backdrop-blur-2xl border border-white/50 shadow-2xl flex flex-col items-center gap-1 group-hover:scale-105 transition-transform duration-500 ring-1 ring-white/10">
-        <p className="text-2xl font-black text-[#8D4074] font-display uppercase tracking-tight">Voir mes travaux</p>
+        <p className="text-2xl font-black text-[#8D4074] font-display uppercase tracking-tight">{t('common.projectCard.view_my_work')}</p>
         <div className="flex items-center gap-2.5">
           <div className="h-[2px] w-5 bg-[#8D4074]/30" />
-          <p className="text-[11px] text-[#8D4074]/70 uppercase tracking-[0.3em] font-black">Full Portfolio</p>
+          <p className="text-[11px] text-[#8D4074]/70 uppercase tracking-[0.3em] font-black">{t('common.projectCard.full_portfolio')}</p>
           <div className="h-[2px] w-5 bg-[#8D4074]/30" />
         </div>
       </div>

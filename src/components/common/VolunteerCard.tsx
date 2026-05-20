@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { volunteering } from '../../data/education';
 import { cn } from '../../lib/utils';
 import { Heart, Users, ChevronRight, ChevronLeft } from 'lucide-react';
+import { useI18n } from '../../context/I18nContext';
 
 export function VolunteerCard({ className }: { className?: string }) {
+  const { t, language } = useI18n();
   const [current, setCurrent] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -33,7 +35,7 @@ export function VolunteerCard({ className }: { className?: string }) {
       <div className="relative z-10 flex items-center justify-between mb-6">
         <span className="text-xs font-black uppercase tracking-[0.3em] text-white/40 font-display flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-white/30" />
-          Impact & Communauté
+          {t('common.volunteerCard.impact_community')}
         </span>
         <Heart size={20} className="text-white/20" />
       </div>
@@ -41,50 +43,56 @@ export function VolunteerCard({ className }: { className?: string }) {
       {/* Content Slideshow */}
       <div className="relative z-10 flex-1 min-h-[0px] w-full flex flex-col justify-center">
         <div className="relative h-full w-full">
-          {volunteering.map((vol, idx) => (
-            <div 
-              key={vol.id} 
-              className={cn(
-                "absolute inset-0 flex flex-col justify-center transition-all duration-700 ease-in-out",
-                idx === current 
-                  ? "opacity-100 translate-x-0 pointer-events-auto" 
-                  : idx < current 
-                    ? "opacity-0 -translate-x-8 pointer-events-none" 
-                    : "opacity-0 translate-x-8 pointer-events-none"
-              )}
-            >
-              <div className="flex gap-6 items-start mb-6">
-                <div className="flex-shrink-0 w-16 h-16 rounded-[20px] bg-white/90 flex items-center justify-center ring-2 ring-white/10 overflow-hidden shadow-2xl">
-                  {vol.logo ? (
-                    <img src={vol.logo} alt={vol.organization} className="w-full h-full object-contain p-1.5 group-hover:scale-110 transition-transform duration-700" />
-                  ) : (
-                    <Users size={32} className="text-white/40" />
+          {volunteering.map((vol, idx) => {
+            const role = language === 'fr' ? vol.roleFr : vol.roleEn;
+            const description = language === 'fr' ? vol.descriptionFr : vol.descriptionEn;
+            const points = language === 'fr' ? vol.pointsFr : vol.pointsEn;
+
+            return (
+              <div 
+                key={vol.id} 
+                className={cn(
+                  "absolute inset-0 flex flex-col justify-center transition-all duration-700 ease-in-out",
+                  idx === current 
+                    ? "opacity-100 translate-x-0 pointer-events-auto" 
+                    : idx < current 
+                      ? "opacity-0 -translate-x-8 pointer-events-none" 
+                      : "opacity-0 translate-x-8 pointer-events-none"
+                )}
+              >
+                <div className="flex gap-6 items-start mb-6">
+                  <div className="flex-shrink-0 w-16 h-16 rounded-[20px] bg-white/90 flex items-center justify-center ring-2 ring-white/10 overflow-hidden shadow-2xl">
+                    {vol.logo ? (
+                      <img src={vol.logo} alt={vol.organization} className="w-full h-full object-contain p-1.5 group-hover:scale-110 transition-transform duration-700" />
+                    ) : (
+                      <Users size={32} className="text-white/40" />
+                    )}
+                  </div>
+                  <div className="flex-1 min-w-0 pt-1">
+                    <h4 className="text-lg font-black text-white mb-1 tracking-tight leading-tight">{role}</h4>
+                    <p className="text-sm font-bold text-[#D8B4E2] bg-white/10 inline-block px-3 py-1 rounded-full">{vol.organization}</p>
+                  </div>
+                </div>
+                
+                <div className="flex-1 min-h-0">
+                  <p className="text-sm text-white/80 font-medium leading-relaxed italic border-l-2 border-white/20 pl-4 mb-5">
+                    "{description}"
+                  </p>
+                  
+                  {points && (
+                    <ul className="space-y-2.5">
+                      {points.slice(0, 3).map((p, i) => (
+                        <li key={i} className="flex items-start gap-3 text-[13px] text-white/60 font-medium leading-relaxed">
+                          <div className="w-1.5 h-1.5 rounded-full bg-white/30 mt-1.5 shrink-0" />
+                          {p}
+                        </li>
+                      ))}
+                    </ul>
                   )}
                 </div>
-                <div className="flex-1 min-w-0 pt-1">
-                  <h4 className="text-lg font-black text-white mb-1 tracking-tight leading-tight">{vol.role}</h4>
-                  <p className="text-sm font-bold text-[#D8B4E2] bg-white/10 inline-block px-3 py-1 rounded-full">{vol.organization}</p>
-                </div>
               </div>
-              
-              <div className="flex-1 min-h-0">
-                <p className="text-sm text-white/80 font-medium leading-relaxed italic border-l-2 border-white/20 pl-4 mb-5">
-                  "{vol.description}"
-                </p>
-                
-                {vol.points && (
-                  <ul className="space-y-2.5">
-                    {vol.points.slice(0, 3).map((p, i) => (
-                      <li key={i} className="flex items-start gap-3 text-[13px] text-white/60 font-medium leading-relaxed">
-                        <div className="w-1.5 h-1.5 rounded-full bg-white/30 mt-1.5 shrink-0" />
-                        {p}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 

@@ -2,11 +2,13 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { projects } from '../data/projects';
 import { ArrowLeft, ExternalLink, Github, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useI18n } from '../context/I18nContext';
 
 export function ProjectDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [currentImgIdx, setCurrentImgIdx] = useState(0);
+  const { t, language } = useI18n();
   
   const project = projects.find(p => p.id === id);
 
@@ -18,16 +20,21 @@ export function ProjectDetail() {
   if (!project) {
     return (
       <div className="min-h-[70vh] flex flex-col items-center justify-center relative z-10">
-        <h1 className="text-4xl font-bold font-display text-[#8D4074]">Projet introuvable</h1>
+        <h1 className="text-4xl font-bold font-display text-[#8D4074]">{t('projectDetail.not_found')}</h1>
         <button 
           onClick={() => navigate('/projects')}
           className="mt-6 px-6 py-2 bg-[#8D4074] text-white rounded-full font-medium"
         >
-          Retour aux projets
+          {t('projectDetail.back_projects')}
         </button>
       </div>
     );
   }
+
+  const role = language === 'fr' ? project.roleFr : project.roleEn;
+  const desc = language === 'fr' ? project.descFr : project.descEn;
+  const longDesc = language === 'fr' ? project.longDescFr : project.longDescEn;
+  const features = language === 'fr' ? project.featuresFr : project.featuresEn;
 
   return (
     <>
@@ -37,7 +44,7 @@ export function ProjectDetail() {
           className="group flex items-center gap-2 text-[#8D4074] font-display font-medium mb-8 hover:translate-x-[-4px] transition-transform"
         >
           <ArrowLeft size={20} />
-          <span className="uppercase tracking-widest text-sm">Retour</span>
+          <span className="uppercase tracking-widest text-sm">{t('projectList.back')}</span>
         </button>
 
         <div className="flex flex-col gap-12">
@@ -45,7 +52,7 @@ export function ProjectDetail() {
           <div className="flex flex-col gap-6">
             <div className="flex flex-wrap items-center gap-3">
               <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-white" style={{ backgroundColor: project.color }}>
-                {project.role}
+                {role}
               </span>
               <span className="text-sm font-bold uppercase tracking-[0.2em] text-[#8D4074]/60 font-display">
                 {project.tech}
@@ -55,20 +62,20 @@ export function ProjectDetail() {
               {project.name}
             </h1>
             <p className="text-xl text-[#5a2848]/80 font-medium max-w-3xl leading-relaxed">
-              {project.desc}
+              {desc}
             </p>
 
             <div className="flex gap-4 mt-2">
               {project.github && (
                 <a href={project.github} target="_blank" rel="noopener noreferrer" 
                   className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-[#2a1a22] text-white hover:bg-[#8D4074] transition-colors shadow-lg font-medium">
-                  <Github size={18} /> Voir le code
+                  <Github size={18} /> {t('projectDetail.view_code')}
                 </a>
               )}
               {project.link && (
                 <a href={project.link} target="_blank" rel="noopener noreferrer" 
                   className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white text-[#2a1a22] hover:text-[#8D4074] transition-colors shadow-lg font-medium border border-[#2a1a22]/10">
-                  <ExternalLink size={18} /> Visiter le site
+                  <ExternalLink size={18} /> {t('projectDetail.visit_site')}
                 </a>
               )}
             </div>
@@ -145,19 +152,19 @@ export function ProjectDetail() {
           {/* Details */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-4">
             <div className="md:col-span-2 space-y-8">
-              {project.longDesc && (
+              {longDesc && (
                 <section>
-                  <h2 className="text-3xl font-bold text-[#2a1a22] font-display mb-6">À propos du projet</h2>
+                  <h2 className="text-3xl font-bold text-[#2a1a22] font-display mb-6">{t('projectDetail.about_project')}</h2>
                   <p className="text-[#5a2848]/80 leading-relaxed text-lg whitespace-pre-line">
-                    {project.longDesc}
+                    {longDesc}
                   </p>
                 </section>
               )}
-              {project.features && project.features.length > 0 && (
+              {features && features.length > 0 && (
                 <section>
-                  <h2 className="text-3xl font-bold text-[#2a1a22] font-display mb-6">Fonctionnalités Clés</h2>
+                  <h2 className="text-3xl font-bold text-[#2a1a22] font-display mb-6">{t('projectDetail.key_features')}</h2>
                   <ul className="space-y-4">
-                    {project.features.map((feature, i) => (
+                    {features.map((feature, i) => (
                       <li key={i} className="flex gap-4 items-start">
                         <div className="w-6 h-6 rounded-full bg-[#E5A5C8] flex items-center justify-center shrink-0 mt-0.5">
                           <div className="w-2 h-2 rounded-full bg-white" />

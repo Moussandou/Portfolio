@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { experiences } from '../../data/experience';
 import { cn } from '../../lib/utils';
 import { Briefcase, Calendar, MapPin, Trophy, Target, Sparkles } from 'lucide-react';
+import { useI18n } from '../../context/I18nContext';
 
 export function ExperienceCard({ className }: { className?: string }) {
+  const { t, language } = useI18n();
   const [activeId, setActiveId] = useState(experiences[0].id);
 
   return (
@@ -20,7 +22,7 @@ export function ExperienceCard({ className }: { className?: string }) {
       <div className="relative z-10 flex items-center justify-between mb-6 sm:mb-8 shrink-0">
         <span className="text-xs font-black uppercase tracking-[0.3em] text-[#8D4074]/50 font-display flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-[#8D4074]/40" />
-          Expériences
+          {t('common.experienceCard.experiences')}
         </span>
         <div className="flex gap-1.5 opacity-50">
           <div className="w-1.5 h-1.5 rounded-full bg-[#8D4074]/40" />
@@ -37,6 +39,7 @@ export function ExperienceCard({ className }: { className?: string }) {
           <div className="flex md:flex-col gap-2 min-w-max md:min-w-0 pr-4 md:pr-2">
             {experiences.map((exp) => {
               const isActive = activeId === exp.id;
+              const period = language === 'fr' ? exp.periodFr : exp.periodEn;
               return (
                 <button
                   key={exp.id}
@@ -72,7 +75,7 @@ export function ExperienceCard({ className }: { className?: string }) {
                       "text-[10px] sm:text-[11px] font-semibold truncate flex items-center gap-1",
                       isActive ? "text-white/70" : "text-[#8D4074]/60"
                     )}>
-                      {exp.period}
+                      {period}
                     </span>
                   </div>
                 </button>
@@ -89,81 +92,91 @@ export function ExperienceCard({ className }: { className?: string }) {
 
         {/* RIGHT COLUMN: Details View */}
         <div className="relative w-full md:w-[65%] flex-1 min-h-[250px] md:min-h-[0px] overflow-hidden">
-          {experiences.map((exp) => (
-            <div 
-              key={exp.id} 
-              className={cn(
-                "absolute inset-0 flex flex-col pt-2 md:pt-0 overflow-y-auto pr-2 custom-scrollbar transition-all duration-500",
-                activeId === exp.id 
-                  ? "opacity-100 translate-y-0 pointer-events-auto" 
-                  : "opacity-0 translate-y-8 pointer-events-none"
-              )}
-            >
-              {/* Role & Badges */}
-              <div className="mb-5 sm:mb-6 shrink-0">
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-[#3a1a2a] tracking-tight leading-none mb-3">
-                  {exp.role}
-                </h3>
-                <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[10px] sm:text-xs font-bold text-[#8D4074]">
-                  <span className="bg-[#8D4074]/10 px-2.5 py-1 rounded-md uppercase tracking-wider">{exp.type}</span>
-                  <span className="flex items-center gap-1 bg-white/40 px-2.5 py-1 rounded-md"><MapPin size={12}/> {exp.location}</span>
-                  <span className="flex items-center gap-1 bg-white/40 px-2.5 py-1 rounded-md md:hidden"><Calendar size={12}/> {exp.period}</span>
+          {experiences.map((exp) => {
+            const role = language === 'fr' ? exp.roleFr : exp.roleEn;
+            const type = language === 'fr' ? exp.typeFr : exp.typeEn;
+            const period = language === 'fr' ? exp.periodFr : exp.periodEn;
+            const description = language === 'fr' ? exp.descriptionFr : exp.descriptionEn;
+            const points = language === 'fr' ? exp.pointsFr : exp.pointsEn;
+            const achievements = language === 'fr' ? exp.achievementsFr : exp.achievementsEn;
+            const skills = language === 'fr' ? exp.skillsFr : exp.skillsEn;
+
+            return (
+              <div 
+                key={exp.id} 
+                className={cn(
+                  "absolute inset-0 flex flex-col pt-2 md:pt-0 overflow-y-auto pr-2 custom-scrollbar transition-all duration-500",
+                  activeId === exp.id 
+                    ? "opacity-100 translate-y-0 pointer-events-auto" 
+                    : "opacity-0 translate-y-8 pointer-events-none"
+                )}
+              >
+                {/* Role & Badges */}
+                <div className="mb-5 sm:mb-6 shrink-0">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-[#3a1a2a] tracking-tight leading-none mb-3">
+                    {role}
+                  </h3>
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[10px] sm:text-xs font-bold text-[#8D4074]">
+                    <span className="bg-[#8D4074]/10 px-2.5 py-1 rounded-md uppercase tracking-wider">{type}</span>
+                    <span className="flex items-center gap-1 bg-white/40 px-2.5 py-1 rounded-md"><MapPin size={12}/> {exp.location}</span>
+                    <span className="flex items-center gap-1 bg-white/40 px-2.5 py-1 rounded-md md:hidden"><Calendar size={12}/> {period}</span>
+                  </div>
+                </div>
+
+                {/* Description summary */}
+                <p className="text-xs sm:text-sm font-medium text-[#5a2848]/80 mb-6 italic border-l-2 border-[#8D4074] pl-4 shrink-0">
+                  "{description}"
+                </p>
+
+                <div className="flex-1 space-y-6">
+                  {/* Key Points */}
+                  {points && points.length > 0 && (
+                    <div>
+                      <h4 className="flex items-center gap-2 text-xs font-black uppercase text-[#8D4074]/60 tracking-widest mb-3">
+                        <Target size={14} /> {t('common.experienceCard.key_missions')}
+                      </h4>
+                      <ul className="grid gap-2.5">
+                        {points.map((point, i) => (
+                          <li key={i} className="flex items-start gap-3 text-[13px] sm:text-sm font-medium text-[#3a1a2a]">
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#8D4074]/40 mt-1.5 shrink-0" />
+                            <span className="leading-relaxed">{point}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Achievements */}
+                  {achievements && achievements.length > 0 && (
+                    <div className="bg-white/30 rounded-2xl p-4 sm:p-5 ring-1 ring-white/50">
+                      <h4 className="flex items-center gap-2 text-xs font-black uppercase text-[#8D4074] tracking-widest mb-3">
+                        <Trophy size={14} className="text-[#8D4074]" /> {t('common.experienceCard.achievements')}
+                      </h4>
+                      <ul className="grid gap-2.5">
+                        {achievements.map((ach, i) => (
+                          <li key={i} className="flex items-start gap-3 text-[12px] sm:text-[13px] font-bold text-[#3a1a2a]">
+                            <Sparkles size={14} className="text-[#8D4074] mt-0.5 shrink-0" />
+                            <span className="leading-relaxed">{ach}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Skills tags */}
+                  {skills && skills.length > 0 && (
+                    <div className="pt-2 flex flex-wrap gap-2 pb-4">
+                      {skills.map((skill, i) => (
+                        <span key={i} className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-lg bg-white/50 text-[#8D4074] shadow-sm">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
-
-              {/* Description summary */}
-              <p className="text-xs sm:text-sm font-medium text-[#5a2848]/80 mb-6 italic border-l-2 border-[#8D4074] pl-4 shrink-0">
-                "{exp.description}"
-              </p>
-
-              <div className="flex-1 space-y-6">
-                {/* Key Points */}
-                {exp.points && exp.points.length > 0 && (
-                  <div>
-                    <h4 className="flex items-center gap-2 text-xs font-black uppercase text-[#8D4074]/60 tracking-widest mb-3">
-                      <Target size={14} /> Missions clés
-                    </h4>
-                    <ul className="grid gap-2.5">
-                      {exp.points.map((point, i) => (
-                        <li key={i} className="flex items-start gap-3 text-[13px] sm:text-sm font-medium text-[#3a1a2a]">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#8D4074]/40 mt-1.5 shrink-0" />
-                          <span className="leading-relaxed">{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Achievements */}
-                {exp.achievements && exp.achievements.length > 0 && (
-                  <div className="bg-white/30 rounded-2xl p-4 sm:p-5 ring-1 ring-white/50">
-                    <h4 className="flex items-center gap-2 text-xs font-black uppercase text-[#8D4074] tracking-widest mb-3">
-                      <Trophy size={14} className="text-[#8D4074]" /> Succès
-                    </h4>
-                    <ul className="grid gap-2.5">
-                      {exp.achievements.map((ach, i) => (
-                        <li key={i} className="flex items-start gap-3 text-[12px] sm:text-[13px] font-bold text-[#3a1a2a]">
-                          <Sparkles size={14} className="text-[#8D4074] mt-0.5 shrink-0" />
-                          <span className="leading-relaxed">{ach}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* Skills tags */}
-                {exp.skills && exp.skills.length > 0 && (
-                  <div className="pt-2 flex flex-wrap gap-2 pb-4">
-                    {exp.skills.map((skill, i) => (
-                      <span key={i} className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-lg bg-white/50 text-[#8D4074] shadow-sm">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
       </div>

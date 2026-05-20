@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { BentoGrid } from './components/layout/BentoGrid';
 import { Header } from './components/layout/Header';
 import { Clouds } from './components/decorative/Clouds';
@@ -12,6 +12,7 @@ import { EducationCard } from './components/common/EducationCard';
 import { VolunteerCard } from './components/common/VolunteerCard';
 import { Contact } from './pages/Contact';
 import { cn } from './lib/utils';
+import { I18nProvider, useI18n } from './context/I18nContext';
 import { MapPin, Sparkles, Code2, GraduationCap, Github, Linkedin, Instagram, Mail, FileText } from 'lucide-react';
 
 /* ── Decorative SVGs ──────────────────────────── */
@@ -35,11 +36,10 @@ const COLORS = {
   blush:      '#F2D4E4',
 };
 
-
-
 function Home() {
   const navigate = useNavigate();
   const mainFeatured = projects.slice(0, 2);
+  const { t } = useI18n();
 
   return (
     <>
@@ -57,20 +57,20 @@ function Home() {
                 </div>
                 <div className="px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-md flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#5a2848]/80">
                   <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                  Disponible pour projets
+                  {t('home.available')}
                 </div>
               </div>
               
               <div className="mt-8">
                 <h1 className="text-5xl md:text-6xl font-bold leading-[0.85] text-[#5a2848] font-display tracking-tight">
-                  Développeur
+                  {t('home.role')}
                 </h1>
                 <div className="mt-6 flex flex-wrap gap-4">
                   <div className="flex items-center gap-2 text-xs font-semibold text-[#8D4074]/80">
-                    <MapPin size={14} /> Marseille, France
+                    <MapPin size={14} /> {t('home.location')}
                   </div>
                   <div className="flex items-center gap-2 text-xs font-semibold text-[#8D4074]/80">
-                    <GraduationCap size={14} /> Étudiant à Epitech
+                    <GraduationCap size={14} /> {t('home.epitech_student')}
                   </div>
                   <div className="relative flex items-center gap-2 text-xs font-semibold text-[#8D4074]/80 mt-2 w-[calc(100%+1rem)] md:w-full">
                     <Code2 size={14} className="shrink-0" /> 
@@ -86,7 +86,7 @@ function Home() {
                   </div>
                 </div>
                 <p className="mt-6 text-[13px] font-medium text-[#8D4074]/80 max-w-sm leading-relaxed border-l-[3px] border-[#8D4074]/30 pl-4 py-1">
-                  Je suis étudiant en 3ᵉ année à Epitech, où je développe mes compétences en informatique à travers des projets concrets, innovants et orientés impact.
+                  {t('home.bio')}
                 </p>
               </div>
             </div>
@@ -112,7 +112,7 @@ function Home() {
                 </div>
               </div>
               <h2 className="text-xl font-bold text-[#8D4074] font-display tracking-tight">Moussandou</h2>
-              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-[#5a2848]/40 mt-1">Développeur</p>
+              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-[#5a2848]/40 mt-1">{t('home.role')}</p>
               
               <div className="mt-4 flex flex-wrap justify-center gap-2">
                 <a href="https://github.com/Moussandou" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-xl bg-[#8D4074]/10 flex items-center justify-center text-[#8D4074] hover:bg-[#8D4074] hover:text-white transition-all shadow-sm">
@@ -130,7 +130,7 @@ function Home() {
               </div>
 
               <a href="/Portfolio/assets/CV_Moussandou_Mroivili.pdf" target="_blank" rel="noopener noreferrer" className="mt-4 w-full max-w-[180px] py-2 rounded-xl bg-white/50 flex items-center justify-center gap-2 text-[#8D4074] font-bold text-xs hover:bg-white hover:shadow-md transition-all">
-                <FileText size={14} /> Consulter mon CV
+                <FileText size={14} /> {t('home.cv_btn')}
               </a>
             </div>
           </div>
@@ -163,10 +163,10 @@ function Home() {
             <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-500" />
             <div className="absolute top-0 w-full h-1/2 bg-gradient-to-b from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-display tracking-tight group-hover:scale-105 transition-transform duration-500">
-              Travaillons ensemble
+              {t('home.work_together_title')}
             </h2>
             <p className="mt-4 text-sm sm:text-base font-bold text-white/80 max-w-lg mx-auto leading-relaxed group-hover:-translate-y-1 transition-transform duration-500 delay-75">
-              Cliquez ici pour obtenir mon CV complet, mon email et mes réseaux sociaux !
+              {t('home.work_together_desc')}
             </p>
           </div>
 
@@ -184,18 +184,20 @@ function Home() {
 
 export default function App() {
   return (
-    <BrowserRouter basename="/Portfolio">
-      <div className="min-h-screen bg-[#F5E6EE]">
-        <Clouds />
-        <Header />
-        
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/projects" element={<ProjectList />} />
-          <Route path="/projects/:id" element={<ProjectDetail />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <HashRouter>
+      <I18nProvider>
+        <div className="min-h-screen bg-[#F5E6EE]">
+          <Clouds />
+          <Header />
+          
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/projects" element={<ProjectList />} />
+            <Route path="/projects/:id" element={<ProjectDetail />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </div>
+      </I18nProvider>
+    </HashRouter>
   );
 }

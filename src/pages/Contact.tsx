@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { Mail, MapPin, Download, Github, Linkedin, Instagram, Send, FileText, ArrowLeft, CheckCircle2, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { cn } from '../lib/utils';
+import { useI18n } from '../context/I18nContext';
 
 export function Contact() {
+  const { t, language } = useI18n();
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
@@ -12,15 +14,15 @@ export function Contact() {
     e.preventDefault();
     setIsSending(true);
 
-    // Simulate a short delay for animation, then open user's default email client
+    const defaultSubject = language === 'fr' ? 'Prise de contact' : 'Contact request';
+
     setTimeout(() => {
-      const mailtoLink = `mailto:moussandou.mroivili@epitech.eu?subject=${encodeURIComponent(`[Portfolio] ${formData.subject || 'Prise de contact'}`)}&body=${encodeURIComponent(`Nom: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
+      const mailtoLink = `mailto:moussandou.mroivili@epitech.eu?subject=${encodeURIComponent(`[Portfolio] ${formData.subject || defaultSubject}`)}&body=${encodeURIComponent(`Nom: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`)}`;
       window.open(mailtoLink, '_blank');
       
       setIsSending(false);
       setIsSent(true);
       
-      // Reset after a few seconds
       setTimeout(() => {
         setIsSent(false);
         setFormData({ name: '', email: '', subject: '', message: '' });
@@ -42,13 +44,13 @@ export function Contact() {
           to="/" 
           className="inline-flex items-center gap-2 text-sm font-bold text-[#8D4074] hover:text-[#5a2848] transition-colors mb-6 bg-white/40 hover:bg-white/60 px-4 py-2 rounded-xl"
         >
-          <ArrowLeft size={16} /> Retour à l'accueil
+          <ArrowLeft size={16} /> {t('contact.back_home')}
         </Link>
         <h1 className="text-4xl md:text-5xl font-black text-[#3a1a2a] font-display tracking-tight">
-          Entrons en contact
+          {t('contact.title')}
         </h1>
         <p className="mt-4 text-[#8D4074]/80 text-sm md:text-base max-w-xl font-medium leading-relaxed">
-          Que ce soit pour une opportunité professionnelle, un projet freelance, ou simplement pour échanger sur le code, je serai ravi de vous lire !
+          {t('contact.desc')}
         </p>
       </div>
 
@@ -63,7 +65,7 @@ export function Contact() {
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-white/20 rounded-full blur-3xl group-hover:bg-white/30 transition-colors duration-700" />
             
             <h2 className="text-sm font-black uppercase tracking-[0.2em] text-[#8D4074]/60 mb-8 font-display">
-              Mes Coordonnées
+              {t('contact.coordinates')}
             </h2>
             
             <div className="space-y-6 relative z-10">
@@ -82,15 +84,15 @@ export function Contact() {
                   <MapPin size={20} />
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-[#8D4074]/60 uppercase tracking-wider mb-1">Localisation</p>
-                  <p className="text-sm sm:text-base font-bold text-[#3a1a2a]">Marseille, France</p>
+                  <p className="text-xs font-bold text-[#8D4074]/60 uppercase tracking-wider mb-1">{t('contact.location')}</p>
+                  <p className="text-sm sm:text-base font-bold text-[#3a1a2a]">{t('home.location')}</p>
                 </div>
               </div>
             </div>
 
             {/* Social Links */}
             <div className="mt-10 pt-8 border-t border-[#8D4074]/10">
-              <p className="text-xs font-bold text-[#8D4074]/60 uppercase tracking-wider mb-4">Réseaux Sociaux</p>
+              <p className="text-xs font-bold text-[#8D4074]/60 uppercase tracking-wider mb-4">{t('contact.socials')}</p>
               <div className="flex gap-4">
                 <a 
                   href="https://github.com/Moussandou" 
@@ -125,20 +127,20 @@ export function Contact() {
              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
              
              <div className="w-16 h-16 rounded-2xl bg-white/10 shrink-0 flex items-center justify-center ring-1 ring-white/20">
-               <FileText size={28} className="text-white/90" />
+                <FileText size={28} className="text-white/90" />
              </div>
              
              <div className="flex-1 text-center sm:text-left">
-               <h3 className="text-xl font-bold font-display mb-2">Curriculum Vitae</h3>
-               <p className="text-sm text-white/70 mb-5 leading-relaxed">Retrouvez en détail l'ensemble de mon parcours, mes compétences et mes technos favorites au grand complet.</p>
-               <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
-                  <a href="/Portfolio/assets/cv.pdf" target="_blank" className="bg-white text-[#8D4074] px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-white/90 transition-colors flex items-center gap-2 shadow-sm">
-                    <ExternalLink size={16} /> Voir mon CV
+                <h3 className="text-xl font-bold font-display mb-2">{t('contact.cv')}</h3>
+                <p className="text-sm text-white/70 mb-5 leading-relaxed">{t('contact.cv_desc')}</p>
+                <div className="flex flex-wrap gap-3 justify-center sm:justify-start">
+                  <a href="/Portfolio/assets/CV_Moussandou_Mroivili.pdf" target="_blank" className="bg-white text-[#8D4074] px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-white/90 transition-colors flex items-center gap-2 shadow-sm">
+                    <ExternalLink size={16} /> {t('contact.view_cv')}
                   </a>
-                  <a href="/Portfolio/assets/cv.pdf" download className="bg-white/10 text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-white/20 transition-colors ring-1 ring-white/20 flex items-center gap-2">
-                    <Download size={16} /> Télécharger
+                  <a href="/Portfolio/assets/CV_Moussandou_Mroivili.pdf" download className="bg-white/10 text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-white/20 transition-colors ring-1 ring-white/20 flex items-center gap-2">
+                    <Download size={16} /> {t('contact.download')}
                   </a>
-               </div>
+                </div>
              </div>
           </div>
 
@@ -148,14 +150,14 @@ export function Contact() {
         <div className="lg:col-span-7">
           <div className="bg-white/50 backdrop-blur-xl border border-white/60 rounded-3xl p-8 sm:p-10 shadow-lg h-full">
              <h2 className="text-2xl font-black text-[#5a2848] font-display tracking-tight mb-2">
-               Envoyer un message
+               {t('contact.send_message')}
              </h2>
-             <p className="text-sm text-[#8D4074]/80 mb-8 font-medium">Je m'efforce de répondre dans les plus brefs délais !</p>
+             <p className="text-sm text-[#8D4074]/80 mb-8 font-medium">{t('contact.respond_fast')}</p>
              
              <form onSubmit={handleSubmit} className="space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="space-y-2">
-                    <label htmlFor="name" className="text-xs font-bold text-[#8D4074] uppercase tracking-wider ml-1">Nom / Prénom</label>
+                    <label htmlFor="name" className="text-xs font-bold text-[#8D4074] uppercase tracking-wider ml-1">{t('contact.label_name')}</label>
                     <input 
                       type="text" 
                       id="name"
@@ -163,12 +165,12 @@ export function Contact() {
                       required
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="Jean Dupont"
+                      placeholder={t('contact.placeholder_name')}
                       className="w-full bg-white/70 border border-white/80 rounded-2xl px-5 py-3.5 text-sm text-[#3a1a2a] placeholder-[#8D4074]/30 focus:outline-none focus:ring-2 focus:ring-[#8D4074]/50 transition-all"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-xs font-bold text-[#8D4074] uppercase tracking-wider ml-1">Adresse Email</label>
+                    <label htmlFor="email" className="text-xs font-bold text-[#8D4074] uppercase tracking-wider ml-1">{t('contact.label_email')}</label>
                     <input 
                       type="email" 
                       id="email"
@@ -183,7 +185,7 @@ export function Contact() {
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="subject" className="text-xs font-bold text-[#8D4074] uppercase tracking-wider ml-1">Sujet de la demande</label>
+                  <label htmlFor="subject" className="text-xs font-bold text-[#8D4074] uppercase tracking-wider ml-1">{t('contact.label_subject')}</label>
                   <input 
                     type="text" 
                     id="subject"
@@ -191,20 +193,20 @@ export function Contact() {
                     required
                     value={formData.subject}
                     onChange={handleChange}
-                    placeholder="Proposition de collaboration..."
+                    placeholder={t('contact.placeholder_subject')}
                     className="w-full bg-white/70 border border-white/80 rounded-2xl px-5 py-3.5 text-sm text-[#3a1a2a] placeholder-[#8D4074]/30 focus:outline-none focus:ring-2 focus:ring-[#8D4074]/50 transition-all"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="message" className="text-xs font-bold text-[#8D4074] uppercase tracking-wider ml-1">Votre message</label>
+                  <label htmlFor="message" className="text-xs font-bold text-[#8D4074] uppercase tracking-wider ml-1">{t('contact.label_message')}</label>
                   <textarea 
                     id="message"
                     name="message"
                     required
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Détaillez votre projet ou votre demande ici..."
+                    placeholder={t('contact.placeholder_message')}
                     rows={5}
                     className="w-full bg-white/70 border border-white/80 rounded-2xl px-5 py-4 text-sm text-[#3a1a2a] placeholder-[#8D4074]/30 focus:outline-none focus:ring-2 focus:ring-[#8D4074]/50 transition-all resize-none custom-scrollbar"
                   />
@@ -225,16 +227,16 @@ export function Contact() {
                       <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                     ) : isSent ? (
                       <>
-                        <CheckCircle2 size={18} className="animate-in zoom-in duration-300" /> Préparation terminée
+                        <CheckCircle2 size={18} className="animate-in zoom-in duration-300" /> {t('contact.btn_prep_done')}
                       </>
                     ) : (
                       <>
-                        <Send size={18} /> Préparer l'email
+                        <Send size={18} /> {t('contact.btn_prep_email')}
                       </>
                     )}
                   </button>
                   <p className="text-[11px] font-medium text-[#8D4074]/50 mt-4 max-w-sm">
-                    * Ce formulaire préparera un email dans votre client mail par défaut avec les informations saisies pré-remplies.
+                    {t('contact.form_footer')}
                   </p>
                 </div>
              </form>
