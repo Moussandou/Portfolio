@@ -119,6 +119,17 @@ export const education: Education[] = [
 
 export const certifications: Certification[] = [
   {
+    id: 'hec-entrepreneuriat',
+    title: "Certificat Entrepreneuriat IA",
+    issuer: "HEC Paris",
+    date: "2026",
+    descriptionFr: "Formation intensive à l'entrepreneuriat appliqué à l'intelligence artificielle.",
+    descriptionEn: "Intensive training in entrepreneurship applied to artificial intelligence.",
+    skillsFr: ["IA", "Entrepreneuriat", "Business Model", "Innovation"],
+    skillsEn: ["AI", "Entrepreneurship", "Business Model", "Innovation"],
+    logo: "/Portfolio/assets/logos/hec.png"
+  },
+  {
     id: 'inovgames',
     title: "I-NOVGAMES 2025-2026",
     issuer: "Campus d'Excellence Industrie du futur",
@@ -152,6 +163,17 @@ export const certifications: Certification[] = [
     skillsFr: ["IA", "LLMs", "RAG", "Agentic Workflows"],
     skillsEn: ["AI", "LLMs", "RAG", "Agentic Workflows"],
     logo: "/Portfolio/assets/logos/hacktogone.jpg"
+  },
+  {
+    id: 'cambridge-b2',
+    title: "Anglais B2",
+    issuer: "Cambridge Assessment English",
+    date: "2023",
+    descriptionFr: "Certification officielle en langue anglaise niveau B2 du cadre européen (CECRL).",
+    descriptionEn: "Official English language certification at B2 level of the European framework (CEFR).",
+    skillsFr: ["Anglais", "Communication", "B2 CECRL"],
+    skillsEn: ["English", "Communication", "B2 CEFR"],
+    logo: "/Portfolio/assets/logos/cambridge.png"
   }
 ];
 
@@ -181,23 +203,37 @@ export const volunteering: Volunteer[] = [
   },
   {
     id: 'article1',
-    roleFr: "Bénévole Étudiant",
-    roleEn: "Student Volunteer",
+    roleFr: "Mentor Bénévole",
+    roleEn: "Volunteer Mentor",
     organization: "Article 1",
-    periodFr: "2024 - 2025",
-    periodEn: "2024 - 2025",
-    descriptionFr: "Accompagnement de lycéens issus de milieux modestes pour favoriser l'égalité des chances.",
-    descriptionEn: "Supporting high schoolers from low-income backgrounds to promote equal opportunities.",
+    periodFr: "nov. 2025",
+    periodEn: "Nov. 2025",
+    descriptionFr: "Accompagnement d'étudiants sur les parcours d'études supérieures lors de forums d'orientation.",
+    descriptionEn: "Mentoring students on higher education pathways during orientation forums.",
     pointsFr: [
-      "Partage d'expérience sur le parcours en école d'informatique",
-      "Aide à l'orientation et à la préparation des dossiers de candidature",
-      "Animation de sessions d'ateliers 'Inspirer' en milieu scolaire"
+      "Accompagnement d'étudiants sur les parcours d'études supérieures",
+      "Participation à des forums d'orientation"
     ],
     pointsEn: [
-      "Sharing experience about the computer science curriculum",
-      "Assisting with academic orientation and application files preparation",
-      "Facilitating 'Inspirer' workshop sessions in schools"
+      "Mentoring students on higher education pathways",
+      "Participation in orientation forums"
     ],
     logo: "/Portfolio/assets/logos/a1.png"
+  },
+  {
+    id: 'olivier-bleu',
+    roleFr: "Coordinateur Bénévole",
+    roleEn: "Volunteer Coordinator",
+    organization: "L'Olivier Bleu",
+    periodFr: "janv. - févr. 2023",
+    periodEn: "Jan. - Feb. 2023",
+    descriptionFr: "Organisation de maraudes en soutien aux personnes en situation de précarité.",
+    descriptionEn: "Organizing outreach patrols to support people in precarious situations.",
+    pointsFr: [
+      "Organisation de maraudes en soutien aux personnes en situation de précarité"
+    ],
+    pointsEn: [
+      "Organizing outreach patrols to support people in precarious situations"
+    ]
   }
 ];
