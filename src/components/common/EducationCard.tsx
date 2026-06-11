@@ -11,7 +11,7 @@ export function EducationCard({ className }: { className?: string }) {
   return (
     <div className={cn(
       "bento-card group flex flex-col p-8 overflow-hidden relative",
-      "bg-[#A85D8E] text-white shadow-2xl border-none",
+      "bg-[#8E63B8] text-white shadow-2xl border-none",
       className
     )}
     >
@@ -31,7 +31,7 @@ export function EducationCard({ className }: { className?: string }) {
             onClick={() => setActiveTab('formation')}
             className={cn(
               "px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider transition-all duration-300",
-              activeTab === 'formation' ? "bg-white text-[#A85D8E] shadow-sm" : "text-white/60 hover:text-white hover:bg-white/5"
+              activeTab === 'formation' ? "bg-white text-[#8E63B8] shadow-sm" : "text-white/60 hover:text-white hover:bg-white/5"
             )}
           >
             {t('common.educationCard.education')}
@@ -40,7 +40,7 @@ export function EducationCard({ className }: { className?: string }) {
             onClick={() => setActiveTab('certifications')}
             className={cn(
               "px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider transition-all duration-300",
-              activeTab === 'certifications' ? "bg-white text-[#A85D8E] shadow-sm" : "text-white/60 hover:text-white hover:bg-white/5"
+              activeTab === 'certifications' ? "bg-white text-[#8E63B8] shadow-sm" : "text-white/60 hover:text-white hover:bg-white/5"
             )}
           >
             {t('common.educationCard.certifications')}

@@ -102,7 +102,7 @@ export function GithubCard({ className }: GithubCardProps) {
             href="https://github.com/Moussandou" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="group/btn w-full py-2.5 rounded-xl bg-white text-[#24292e] text-[10px] font-black uppercase tracking-[0.15em] flex items-center justify-center gap-2 hover:bg-[#8D4074] hover:text-white transition-all active:scale-[0.97] shadow-lg font-display"
+            className="group/btn w-full py-2.5 rounded-xl bg-white text-[#24292e] text-[10px] font-black uppercase tracking-[0.15em] flex items-center justify-center gap-2 hover:bg-[#6D4499] hover:text-white transition-all active:scale-[0.97] shadow-lg font-display"
           >
             <span>{t('common.githubCard.view_profile')}</span>
             <ExternalLink size={13} className="group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />

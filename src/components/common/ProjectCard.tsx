@@ -88,15 +88,17 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
                   />
                   {imagesList.length > 1 && (
                     <div className="absolute inset-0 flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button 
+                      <button
                         onClick={handlePrevImg}
-                        className="p-1 rounded-full bg-black/50 hover:bg-black/70 text-white backdrop-blur-sm transition-all"
+                        aria-label="Previous image"
+                        className="p-1 rounded-full bg-black/50 hover:bg-black/70 text-white backdrop-blur-sm transition-all active:scale-90"
                       >
                         <ChevronLeft size={16} />
                       </button>
-                      <button 
+                      <button
                         onClick={handleNextImg}
-                        className="p-1 rounded-full bg-black/50 hover:bg-black/70 text-white backdrop-blur-sm transition-all"
+                        aria-label="Next image"
+                        className="p-1 rounded-full bg-black/50 hover:bg-black/70 text-white backdrop-blur-sm transition-all active:scale-90"
                       >
                         <ChevronRight size={16} />
                       </button>
@@ -119,7 +121,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
             {/* Added overlay for better click signifier */}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
             <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-               <div className="bg-white/90 backdrop-blur-sm p-1.5 rounded-lg text-[#8D4074]">
+               <div className="bg-white/90 backdrop-blur-sm p-1.5 rounded-lg text-[#6D4499]">
                  <ExternalLink size={14} />
                </div>
             </div>
@@ -187,11 +189,11 @@ export function AllProjectsCard({ className, onClick }: { className?: string; on
 
       {/* Glass Content Overlay - High Contrast */}
       <div className="relative z-10 px-8 py-5 rounded-[2.5rem] bg-white/70 backdrop-blur-2xl border border-white/50 shadow-2xl flex flex-col items-center gap-1 group-hover:scale-105 transition-transform duration-500 ring-1 ring-white/10">
-        <p className="text-2xl font-black text-[#8D4074] font-display uppercase tracking-tight">{t('common.projectCard.view_my_work')}</p>
+        <p className="text-2xl font-black text-[#6D4499] font-display uppercase tracking-tight">{t('common.projectCard.view_my_work')}</p>
         <div className="flex items-center gap-2.5">
-          <div className="h-[2px] w-5 bg-[#8D4074]/30" />
-          <p className="text-[11px] text-[#8D4074]/70 uppercase tracking-[0.3em] font-black">{t('common.projectCard.full_portfolio')}</p>
-          <div className="h-[2px] w-5 bg-[#8D4074]/30" />
+          <div className="h-[2px] w-5 bg-[#6D4499]/30" />
+          <p className="text-[11px] text-[#6D4499]/70 uppercase tracking-[0.3em] font-black">{t('common.projectCard.full_portfolio')}</p>
+          <div className="h-[2px] w-5 bg-[#6D4499]/30" />
         </div>
       </div>
     </button>

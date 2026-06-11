@@ -27,7 +27,7 @@ export const projects: Project[] = [
         descFr: "Anime & Manga Tracker avec gamification (XP, classements).",
         descEn: "Anime & Manga Tracker with gamification (XP, leaderboards).",
         tech: "React / Firebase / Jikan API",
-        color: "#A85D8E",
+        color: "#8E63B8",
         roleFr: "Développeur",
         roleEn: "Developer",
         icon: "lucide:tv",

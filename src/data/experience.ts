@@ -144,7 +144,7 @@ export const experiences: Experience[] = [
     skillsEn: ["Community", "Node.js", "Discord API", "Google Tech"]
   },
   {
-    id: ‘lacordaire’,
+    id: 'lacordaire',
     roleFr: "Enseignant en Informatique",
     roleEn: "Computer Science Teacher",
     company: "École Lacordaire",

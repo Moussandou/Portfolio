@@ -5,9 +5,9 @@
 @tailwind utilities;
 
 :root {
-  --candy: #E5A5C8;
-  --grape: #8D4074;
-  --violet: #6B3FA0;
+  --candy: #C5A8E9;
+  --grape: #6D4499;
+  --violet: #4F2D7F;
   --radius: 22px;
 }
 
@@ -16,8 +16,8 @@
     border-color: rgba(255, 255, 255, 0.08);
   }
   body {
-    background: #F5E6EE;
-    color: #2a1a22;
+    background: #F1ECF9;
+    color: #241536;
     font-family: 'Quicksand', sans-serif;
     font-size: 15px;
     -webkit-font-smoothing: antialiased;
@@ -47,13 +47,32 @@
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--grape); border-radius: 8px; }
-::selection { background: rgba(141, 64, 116, 0.3); }
+::selection { background: rgba(109, 68, 153, 0.3); }
 html { scroll-behavior: smooth; }
+
+/* Inner scrollable areas (cards, form textarea) */
+.custom-scrollbar { scrollbar-width: thin; scrollbar-color: rgba(109, 68, 153, 0.35) transparent; }
+.custom-scrollbar::-webkit-scrollbar { width: 4px; height: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(109, 68, 153, 0.35); border-radius: 8px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(109, 68, 153, 0.55); }
+
+@media (max-width: 767px) {
+  .hide-scrollbar-mobile { scrollbar-width: none; -ms-overflow-style: none; }
+  .hide-scrollbar-mobile::-webkit-scrollbar { display: none; }
+}
+
+/* ── Focus visibility ────────────────────────── */
+:focus-visible {
+  outline: 2px solid rgba(109, 68, 153, 0.6);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
 
 /* ── Stagger ─────────────────────────────────── */
 @keyframes slide-up {
-  from { opacity: 0; transform: translateY(18px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(18px) scale(0.985); filter: blur(3px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 }
 .stagger-children > * {
   animation: slide-up 0.4s ease-out both;
@@ -101,4 +120,67 @@ html { scroll-behavior: smooth; }
 }
 .animate-scroll-down {
   animation: scroll-down 20s linear infinite;
+}
+
+/* ── Page enter (sub-pages) ─────────────────── */
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.page-enter {
+  animation: page-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.page-enter-delayed {
+  animation: page-enter 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+}
+
+/* ── Twinkle (decorative stars) ─────────────── */
+@keyframes twinkle {
+  0%, 100% { opacity: 1; transform: scale(1) rotate(0deg); }
+  50% { opacity: 0.45; transform: scale(0.82) rotate(18deg); }
+}
+.animate-twinkle {
+  animation: twinkle 3.2s ease-in-out infinite;
+}
+
+/* ── Skills marquee (hero chips) ────────────── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 22s linear infinite;
+  will-change: transform;
+}
+.marquee-mask:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* ── Gentle float (badges, accents) ─────────── */
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0) rotate(12deg); }
+  50% { transform: translateY(-4px) rotate(8deg); }
+}
+.animate-float-soft {
+  animation: float-soft 4s ease-in-out infinite;
+}
+
+/* ── Reduced motion ─────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cloud-drift-rtl,
+  .cloud-drift-ltr,
+  .animate-scroll-up,
+  .animate-scroll-down,
+  .animate-marquee,
+  .animate-twinkle,
+  .animate-float-soft {
+    animation: none !important;
+  }
+  .stagger-children > *,
+  .page-enter,
+  .page-enter-delayed {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+  }
 }

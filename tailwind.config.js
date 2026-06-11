@@ -38,8 +38,8 @@ export default {
           foreground: "var(--accent-foreground)",
         },
         candy: {
-          fog: "#E5A5C8",
-          pulse: "#8D4074",
+          fog: "#C5A8E9",
+          pulse: "#6D4499",
           pastel: {
             pink: "#FBCFE8",
             purple: "#E9D5FF",

@@ -11,23 +11,23 @@ export function ExperienceCard({ className }: { className?: string }) {
   return (
     <div className={cn(
       "bento-card group flex flex-col p-6 sm:p-8 overflow-hidden relative",
-      "bg-[#F0C4DB] shadow-inner border-none",
+      "bg-[#E3D4F5] shadow-inner border-none",
       className
     )}
     >
       {/* Background Decoration */}
-      <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#8D4074]/5 rounded-full blur-3xl pointer-events-none transition-transform duration-1000 group-hover:scale-110" />
+      <div className="absolute -top-32 -right-32 w-96 h-96 bg-[#6D4499]/5 rounded-full blur-3xl pointer-events-none transition-transform duration-1000 group-hover:scale-110" />
       
       {/* Header */}
       <div className="relative z-10 flex items-center justify-between mb-6 sm:mb-8 shrink-0">
-        <span className="text-xs font-black uppercase tracking-[0.3em] text-[#8D4074]/50 font-display flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-[#8D4074]/40" />
+        <span className="text-xs font-black uppercase tracking-[0.3em] text-[#6D4499]/50 font-display flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-[#6D4499]/40" />
           {t('common.experienceCard.experiences')}
         </span>
         <div className="flex gap-1.5 opacity-50">
-          <div className="w-1.5 h-1.5 rounded-full bg-[#8D4074]/40" />
-          <div className="w-1.5 h-1.5 rounded-full bg-[#8D4074]/60" />
-          <div className="w-1.5 h-1.5 rounded-full bg-[#8D4074]" />
+          <div className="w-1.5 h-1.5 rounded-full bg-[#6D4499]/40" />
+          <div className="w-1.5 h-1.5 rounded-full bg-[#6D4499]/60" />
+          <div className="w-1.5 h-1.5 rounded-full bg-[#6D4499]" />
         </div>
       </div>
 
@@ -47,8 +47,8 @@ export function ExperienceCard({ className }: { className?: string }) {
                   className={cn(
                     "flex items-center gap-3 sm:gap-4 p-3 rounded-2xl sm:rounded-3xl transition-all duration-300 text-left relative overflow-hidden group/btn flex-shrink-0 md:flex-shrink",
                     isActive 
-                      ? "bg-[#8D4074] text-white shadow-xl scale-100 ring-4 ring-[#8D4074]/20" 
-                      : "bg-white/40 hover:bg-white/60 text-[#8D4074] hover:scale-[1.02] scale-100"
+                      ? "bg-[#6D4499] text-white shadow-xl scale-100 ring-4 ring-[#6D4499]/20" 
+                      : "bg-white/40 hover:bg-white/60 text-[#6D4499] hover:scale-[1.02] scale-100"
                   )}
                 >
                   {/* Active Indicator Bar (Desktop) */}
@@ -64,7 +64,7 @@ export function ExperienceCard({ className }: { className?: string }) {
                     {exp.logo ? (
                       <img src={exp.logo} alt={exp.company} className="w-full h-full object-contain p-1.5" />
                     ) : (
-                      <Briefcase size={20} className={isActive ? "text-[#8D4074]" : "text-[#8D4074]/60"} />
+                      <Briefcase size={20} className={isActive ? "text-[#6D4499]" : "text-[#6D4499]/60"} />
                     )}
                   </div>
                   
@@ -73,7 +73,7 @@ export function ExperienceCard({ className }: { className?: string }) {
                     <span className="font-bold text-[13px] sm:text-sm truncate leading-tight mb-0.5">{exp.company}</span>
                     <span className={cn(
                       "text-[10px] sm:text-[11px] font-semibold truncate flex items-center gap-1",
-                      isActive ? "text-white/70" : "text-[#8D4074]/60"
+                      isActive ? "text-white/70" : "text-[#6D4499]/60"
                     )}>
                       {period}
                     </span>
@@ -85,10 +85,10 @@ export function ExperienceCard({ className }: { className?: string }) {
         </div>
 
         {/* Vertical Divider (Desktop only) */}
-        <div className="hidden md:block w-px bg-gradient-to-b from-[#8D4074]/0 via-[#8D4074]/10 to-[#8D4074]/0 shrink-0" />
+        <div className="hidden md:block w-px bg-gradient-to-b from-[#6D4499]/0 via-[#6D4499]/10 to-[#6D4499]/0 shrink-0" />
         
         {/* Horizontal Divider (Mobile only) */}
-        <div className="block md:hidden h-px bg-gradient-to-r from-[#8D4074]/0 via-[#8D4074]/10 to-[#8D4074]/0 shrink-0 -my-2" />
+        <div className="block md:hidden h-px bg-gradient-to-r from-[#6D4499]/0 via-[#6D4499]/10 to-[#6D4499]/0 shrink-0 -my-2" />
 
         {/* RIGHT COLUMN: Details View */}
         <div className="relative w-full md:w-[65%] flex-1 min-h-[250px] md:min-h-[0px] overflow-hidden">
@@ -113,18 +113,18 @@ export function ExperienceCard({ className }: { className?: string }) {
               >
                 {/* Role & Badges */}
                 <div className="mb-5 sm:mb-6 shrink-0">
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-[#3a1a2a] tracking-tight leading-none mb-3">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-[#2E1B45] tracking-tight leading-none mb-3">
                     {role}
                   </h3>
-                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[10px] sm:text-xs font-bold text-[#8D4074]">
-                    <span className="bg-[#8D4074]/10 px-2.5 py-1 rounded-md uppercase tracking-wider">{type}</span>
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[10px] sm:text-xs font-bold text-[#6D4499]">
+                    <span className="bg-[#6D4499]/10 px-2.5 py-1 rounded-md uppercase tracking-wider">{type}</span>
                     <span className="flex items-center gap-1 bg-white/40 px-2.5 py-1 rounded-md"><MapPin size={12}/> {exp.location}</span>
                     <span className="flex items-center gap-1 bg-white/40 px-2.5 py-1 rounded-md md:hidden"><Calendar size={12}/> {period}</span>
                   </div>
                 </div>
 
                 {/* Description summary */}
-                <p className="text-xs sm:text-sm font-medium text-[#5a2848]/80 mb-6 italic border-l-2 border-[#8D4074] pl-4 shrink-0">
+                <p className="text-xs sm:text-sm font-medium text-[#3B2356]/80 mb-6 italic border-l-2 border-[#6D4499] pl-4 shrink-0">
                   "{description}"
                 </p>
 
@@ -132,13 +132,13 @@ export function ExperienceCard({ className }: { className?: string }) {
                   {/* Key Points */}
                   {points && points.length > 0 && (
                     <div>
-                      <h4 className="flex items-center gap-2 text-xs font-black uppercase text-[#8D4074]/60 tracking-widest mb-3">
+                      <h4 className="flex items-center gap-2 text-xs font-black uppercase text-[#6D4499]/60 tracking-widest mb-3">
                         <Target size={14} /> {t('common.experienceCard.key_missions')}
                       </h4>
                       <ul className="grid gap-2.5">
                         {points.map((point, i) => (
-                          <li key={i} className="flex items-start gap-3 text-[13px] sm:text-sm font-medium text-[#3a1a2a]">
-                            <div className="w-1.5 h-1.5 rounded-full bg-[#8D4074]/40 mt-1.5 shrink-0" />
+                          <li key={i} className="flex items-start gap-3 text-[13px] sm:text-sm font-medium text-[#2E1B45]">
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#6D4499]/40 mt-1.5 shrink-0" />
                             <span className="leading-relaxed">{point}</span>
                           </li>
                         ))}
@@ -149,13 +149,13 @@ export function ExperienceCard({ className }: { className?: string }) {
                   {/* Achievements */}
                   {achievements && achievements.length > 0 && (
                     <div className="bg-white/30 rounded-2xl p-4 sm:p-5 ring-1 ring-white/50">
-                      <h4 className="flex items-center gap-2 text-xs font-black uppercase text-[#8D4074] tracking-widest mb-3">
-                        <Trophy size={14} className="text-[#8D4074]" /> {t('common.experienceCard.achievements')}
+                      <h4 className="flex items-center gap-2 text-xs font-black uppercase text-[#6D4499] tracking-widest mb-3">
+                        <Trophy size={14} className="text-[#6D4499]" /> {t('common.experienceCard.achievements')}
                       </h4>
                       <ul className="grid gap-2.5">
                         {achievements.map((ach, i) => (
-                          <li key={i} className="flex items-start gap-3 text-[12px] sm:text-[13px] font-bold text-[#3a1a2a]">
-                            <Sparkles size={14} className="text-[#8D4074] mt-0.5 shrink-0" />
+                          <li key={i} className="flex items-start gap-3 text-[12px] sm:text-[13px] font-bold text-[#2E1B45]">
+                            <Sparkles size={14} className="text-[#6D4499] mt-0.5 shrink-0" />
                             <span className="leading-relaxed">{ach}</span>
                           </li>
                         ))}
@@ -167,7 +167,7 @@ export function ExperienceCard({ className }: { className?: string }) {
                   {skills && skills.length > 0 && (
                     <div className="pt-2 flex flex-wrap gap-2 pb-4">
                       {skills.map((skill, i) => (
-                        <span key={i} className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-lg bg-white/50 text-[#8D4074] shadow-sm">
+                        <span key={i} className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-lg bg-white/50 text-[#6D4499] shadow-sm">
                           {skill}
                         </span>
                       ))}

@@ -2,27 +2,27 @@ import { cn } from '../../lib/utils';
 
 const CLOUDS = [
   // Row 1 — drifts right to left, slight downward angle (top area)
-  { size: 180, top: '6%',   delay: '0s',    duration: '45s', opacity: 0.18, color: '#E5A5C8', row: 1 },
-  { size: 120, top: '10%',  delay: '-12s',   duration: '38s', opacity: 0.12, color: '#C48AAE', row: 1 },
-  { size: 200, top: '3%',   delay: '-25s',   duration: '52s', opacity: 0.15, color: '#9B6BC2', row: 1 },
-  { size: 90,  top: '14%',  delay: '-35s',   duration: '40s', opacity: 0.10, color: '#8D4074', row: 1 },
-  { size: 150, top: '8%',   delay: '-8s',    duration: '48s', opacity: 0.13, color: '#6B3FA0', row: 1 },
-  { size: 110, top: '18%',  delay: '-20s',   duration: '35s', opacity: 0.09, color: '#F0C4DB', row: 1 },
+  { size: 180, top: '6%',   delay: '0s',    duration: '45s', opacity: 0.18, color: '#C5A8E9', row: 1 },
+  { size: 120, top: '10%',  delay: '-12s',   duration: '38s', opacity: 0.12, color: '#B79AD9', row: 1 },
+  { size: 200, top: '3%',   delay: '-25s',   duration: '52s', opacity: 0.15, color: '#8E6FC4', row: 1 },
+  { size: 90,  top: '14%',  delay: '-35s',   duration: '40s', opacity: 0.10, color: '#6D4499', row: 1 },
+  { size: 150, top: '8%',   delay: '-8s',    duration: '48s', opacity: 0.13, color: '#4F2D7F', row: 1 },
+  { size: 110, top: '18%',  delay: '-20s',   duration: '35s', opacity: 0.09, color: '#E3D4F5', row: 1 },
   // Row 2 — drifts left to right (middle area)
-  { size: 170, top: '35%',  delay: '-3s',    duration: '46s', opacity: 0.11, color: '#A85D8E', row: 2 },
-  { size: 140, top: '40%',  delay: '-15s',   duration: '42s', opacity: 0.14, color: '#E5A5C8', row: 2 },
-  { size: 100, top: '38%',  delay: '-28s',   duration: '50s', opacity: 0.08, color: '#9B6BC2', row: 2 },
-  { size: 190, top: '32%',  delay: '-38s',   duration: '55s', opacity: 0.10, color: '#C48AAE', row: 2 },
+  { size: 170, top: '35%',  delay: '-3s',    duration: '46s', opacity: 0.11, color: '#8E63B8', row: 2 },
+  { size: 140, top: '40%',  delay: '-15s',   duration: '42s', opacity: 0.14, color: '#C5A8E9', row: 2 },
+  { size: 100, top: '38%',  delay: '-28s',   duration: '50s', opacity: 0.08, color: '#8E6FC4', row: 2 },
+  { size: 190, top: '32%',  delay: '-38s',   duration: '55s', opacity: 0.10, color: '#B79AD9', row: 2 },
   // Row 3 — drifts right to left (bottom area)
-  { size: 160, top: '60%',  delay: '-5s',    duration: '50s', opacity: 0.14, color: '#8D4074', row: 1 },
-  { size: 130, top: '65%',  delay: '-18s',   duration: '42s', opacity: 0.10, color: '#E5A5C8', row: 1 },
-  { size: 220, top: '55%',  delay: '-30s',   duration: '55s', opacity: 0.12, color: '#6B3FA0', row: 1 },
-  { size: 100, top: '70%',  delay: '-40s',   duration: '36s', opacity: 0.08, color: '#A85D8E', row: 1 },
-  { size: 145, top: '58%',  delay: '-22s',   duration: '44s', opacity: 0.11, color: '#F0C4DB', row: 1 },
+  { size: 160, top: '60%',  delay: '-5s',    duration: '50s', opacity: 0.14, color: '#6D4499', row: 1 },
+  { size: 130, top: '65%',  delay: '-18s',   duration: '42s', opacity: 0.10, color: '#C5A8E9', row: 1 },
+  { size: 220, top: '55%',  delay: '-30s',   duration: '55s', opacity: 0.12, color: '#4F2D7F', row: 1 },
+  { size: 100, top: '70%',  delay: '-40s',   duration: '36s', opacity: 0.08, color: '#8E63B8', row: 1 },
+  { size: 145, top: '58%',  delay: '-22s',   duration: '44s', opacity: 0.11, color: '#E3D4F5', row: 1 },
   // Row 4 — drifts left to right (very bottom)
-  { size: 175, top: '82%',  delay: '-10s',   duration: '48s', opacity: 0.13, color: '#9B6BC2', row: 2 },
-  { size: 115, top: '88%',  delay: '-32s',   duration: '40s', opacity: 0.09, color: '#8D4074', row: 2 },
-  { size: 200, top: '85%',  delay: '-45s',   duration: '53s', opacity: 0.11, color: '#C48AAE', row: 2 },
+  { size: 175, top: '82%',  delay: '-10s',   duration: '48s', opacity: 0.13, color: '#8E6FC4', row: 2 },
+  { size: 115, top: '88%',  delay: '-32s',   duration: '40s', opacity: 0.09, color: '#6D4499', row: 2 },
+  { size: 200, top: '85%',  delay: '-45s',   duration: '53s', opacity: 0.11, color: '#B79AD9', row: 2 },
 ];
 
 function CloudSVG({ size, color }: { size: number; color: string }) {

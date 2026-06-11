@@ -22,7 +22,7 @@ export function VolunteerCard({ className }: { className?: string }) {
     <div 
       className={cn(
         "bento-card group flex flex-col p-8 overflow-hidden relative",
-        "bg-[#6B3FA0] text-white shadow-inner border-none",
+        "bg-[#4F2D7F] text-white shadow-inner border-none",
         className
       )}
       onMouseEnter={() => setIsHovered(true)}
@@ -70,7 +70,7 @@ export function VolunteerCard({ className }: { className?: string }) {
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="text-base font-black text-white tracking-tight leading-tight">{role}</h4>
-                    <p className="text-xs font-bold text-[#D8B4E2] bg-white/10 inline-block px-2.5 py-0.5 rounded-full mt-1">{vol.organization}</p>
+                    <p className="text-xs font-bold text-[#CBB3EC] bg-white/10 inline-block px-2.5 py-0.5 rounded-full mt-1">{vol.organization}</p>
                   </div>
                 </div>
                 
@@ -113,15 +113,17 @@ export function VolunteerCard({ className }: { className?: string }) {
         </div>
         
         <div className="flex items-center gap-1 opacity-50 hover:opacity-100 transition-opacity">
-          <button 
+          <button
             onClick={() => setCurrent(prev => (prev === 0 ? volunteering.length - 1 : prev - 1))}
-            className="p-1.5 hover:bg-white/10 rounded-full transition-colors"
+            aria-label="Previous"
+            className="p-1.5 hover:bg-white/10 rounded-full transition-all active:scale-90"
           >
             <ChevronLeft size={16} />
           </button>
-          <button 
+          <button
             onClick={() => setCurrent(prev => (prev + 1) % volunteering.length)}
-            className="p-1.5 hover:bg-white/10 rounded-full transition-colors"
+            aria-label="Next"
+            className="p-1.5 hover:bg-white/10 rounded-full transition-all active:scale-90"
           >
             <ChevronRight size={16} />
           </button>

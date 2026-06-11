@@ -41,7 +41,7 @@ export function BentoGrid({ children, className }: BentoGridProps) {
       if (card === hoveredCard) {
         card.style.transform = `scale(${HOVER_SCALE})`;
         card.style.zIndex = '10';
-        card.style.boxShadow = '0 24px 64px rgba(141, 64, 116, 0.3)';
+        card.style.boxShadow = '0 24px 64px rgba(109, 68, 153, 0.3)';
         card.style.filter = '';
         return;
       }
@@ -78,6 +78,12 @@ export function BentoGrid({ children, className }: BentoGridProps) {
     const grid = gridRef.current;
     if (!grid) return;
 
+    // Skip the magnetic effect on touch devices and for reduced-motion users
+    if (!window.matchMedia('(hover: hover)').matches ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
     const onMove = (e: MouseEvent) => {
       const el = (e.target as HTMLElement).closest('.bento-card') as HTMLElement | null;
       if (!el) {
@@ -109,13 +115,14 @@ export function BentoGrid({ children, className }: BentoGridProps) {
   useEffect(() => {
     const grid = gridRef.current;
     if (!grid) return;
+    // Wait for the longest stagger delay (0.36s) + duration (0.4s) before clearing
     const timer = setTimeout(() => {
       grid.classList.remove('stagger-children');
       // Also clear any residual animation on cards
       grid.querySelectorAll<HTMLElement>('.bento-card').forEach((card) => {
         card.style.animation = 'none';
       });
-    }, 600);
+    }, 800);
     return () => clearTimeout(timer);
   }, []);
 
@@ -123,7 +130,7 @@ export function BentoGrid({ children, className }: BentoGridProps) {
     <div
       ref={gridRef}
       className={cn(
-        "grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 auto-rows-[160px] gap-8 max-w-[1080px] mx-auto stagger-children",
+        "grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 auto-rows-[160px] gap-6 md:gap-8 max-w-[1080px] mx-auto stagger-children",
         className
       )}
     >
