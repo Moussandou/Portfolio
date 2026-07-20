@@ -68,6 +68,29 @@ export const education: Education[] = [
     logo: "/Portfolio/assets/logos/epitech.png"
   },
   {
+    id: 'hec-paris-edu',
+    school: "HEC Paris",
+    degreeFr: "Certificat Entrepreneuriat IA",
+    degreeEn: "AI Entrepreneurship Certificate",
+    periodFr: "Avr. - Mai 2026",
+    periodEn: "Apr. - May 2026",
+    descriptionFr: "Formation intensive à l'entrepreneuriat appliqué aux technologies d'IA et création de projet.",
+    descriptionEn: "Intensive training in entrepreneurship applied to AI technologies and project creation.",
+    pointsFr: [
+      "Modèles d'affaires pour l'intelligence artificielle",
+      "Pitch investisseurs et stratégies d'incubation",
+      "Conception produit Privacy by Design"
+    ],
+    pointsEn: [
+      "AI-driven business models",
+      "Investor pitching & incubation strategies",
+      "Privacy by Design product strategy"
+    ],
+    skillsFr: ["IA", "Entrepreneuriat", "Pitch", "Business Model"],
+    skillsEn: ["AI", "Entrepreneurship", "Pitching", "Business Model"],
+    logo: "/Portfolio/assets/logos/hec.png"
+  },
+  {
     id: 'yeungnam',
     school: "Yeungnam University (Corée du Sud)",
     degreeFr: "Échange Académique d'un an",
