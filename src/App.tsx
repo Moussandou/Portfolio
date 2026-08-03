@@ -6,6 +6,7 @@ import { Home } from './pages/Home';
 import { ProjectList } from './pages/ProjectList';
 import { ProjectDetail } from './pages/ProjectDetail';
 import { Contact } from './pages/Contact';
+import { Recommendations } from './pages/Recommendations';
 import { I18nProvider } from './context/I18nContext';
 
 /* Scrolls back to the top whenever the route changes */
@@ -30,6 +31,7 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<ProjectList />} />
             <Route path="/projects/:id" element={<ProjectDetail />} />
+            <Route path="/recommendations" element={<Recommendations />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </div>

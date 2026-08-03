@@ -63,7 +63,7 @@ export function Header() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-4">
             <nav className="flex items-center gap-1">
-              {([['/', 'header.home'], ['/projects', 'header.projects'], ['/contact', 'header.contact']] as const).map(([path, key]) => (
+              {([['/', 'header.home'], ['/projects', 'header.projects'], ['/recommendations', 'header.recommendations'], ['/contact', 'header.contact']] as const).map(([path, key]) => (
                 <Link
                   key={path}
                   to={path}
@@ -126,7 +126,7 @@ export function Header() {
             />
             <div className="absolute top-full left-0 right-0 mt-2 p-4 bg-[#F1ECF9]/95 backdrop-blur-xl border border-[#6D4499]/10 rounded-2xl shadow-xl flex flex-col gap-4 md:hidden z-50 animate-in fade-in slide-in-from-top-4 duration-300">
             <nav className="flex flex-col gap-1">
-              {([['/', 'header.home'], ['/projects', 'header.projects'], ['/contact', 'header.contact']] as const).map(([path, key]) => (
+              {([['/', 'header.home'], ['/projects', 'header.projects'], ['/recommendations', 'header.recommendations'], ['/contact', 'header.contact']] as const).map(([path, key]) => (
                 <Link
                   key={path}
                   to={path}
