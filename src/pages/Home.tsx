@@ -1,10 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { BentoGrid } from '../components/layout/BentoGrid';
-import { ProjectCard, AllProjectsCard } from '../components/common/ProjectCard';
-import { projects } from '../data/projects';
 import { GithubCard } from '../components/common/GithubCard';
 import { StatusCard } from '../components/common/StatusCard';
 import { JourneySection } from '../components/sections/JourneySection';
+import { FeaturedProjectsSection } from '../components/sections/FeaturedProjectsSection';
 import { cn } from '../lib/utils';
 import { useI18n } from '../context/I18nContext';
 import { MapPin, Sparkles, Code2, GraduationCap, Github, Linkedin, Instagram, Mail, FileText, ArrowRight } from 'lucide-react';
@@ -32,7 +31,6 @@ const COLORS = {
 
 export function Home() {
   const navigate = useNavigate();
-  const mainFeatured = projects.slice(0, 2);
   const { t } = useI18n();
 
   return (
@@ -134,23 +132,17 @@ export function Home() {
             </div>
           </div>
 
-          {/* Row 2: Featured Projects (4 + 2) */}
-          <ProjectCard project={mainFeatured[0]} className="row-span-2 md:col-span-4 md:row-span-2" />
-          <GithubCard className="row-span-2 md:col-span-2 md:row-span-2" />
-
-          {/* Row 3: Featured 2 (2) */}
-          <ProjectCard project={mainFeatured[1]} className="row-span-2 md:col-span-2 md:row-span-2" />
-
-          {/* Row 4: All Projects (2) */}
-          <AllProjectsCard className="row-span-2 md:col-span-2 md:row-span-2" onClick={() => navigate('/projects')} />
-          {/* Row 5: Status Card (2) */}
-          <div className="row-span-2 md:col-span-2 md:row-span-2 bento-card" style={{ background: COLORS.blush }}>
+          {/* Row 2: GitHub (3) + Status (3) */}
+          <GithubCard className="row-span-2 md:col-span-3 md:row-span-2" />
+          <div className="row-span-2 md:col-span-3 md:row-span-2 bento-card" style={{ background: COLORS.blush }}>
             <StatusCard />
           </div>
 
         </BentoGrid>
 
         <JourneySection />
+
+        <FeaturedProjectsSection />
 
         {/* Contact (6) */}
         <div
