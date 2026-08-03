@@ -157,7 +157,7 @@ export function Home() {
           onClick={() => navigate('/contact')}
           className={cn(
             "bento-card relative overflow-hidden cursor-pointer group flex flex-col items-center justify-center p-8 sm:p-12 text-center",
-            "row-span-2 md:col-span-6 md:row-span-2 border-none shadow-xl"
+            "mt-20 md:mt-28 border-none shadow-xl"
           )}
           style={{ background: COLORS.candy }}
         >
