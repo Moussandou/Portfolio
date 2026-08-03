@@ -7,6 +7,8 @@ export interface Award {
   date: string;
   descFr: string;
   descEn: string;
+  skillsFr?: string[];
+  skillsEn?: string[];
   link?: string;
   logo?: string;
   organizationId?: string;
@@ -82,6 +84,8 @@ export const awards: Award[] = [
     date: "mai 2026",
     descFr: "Programme intensif de 6 semaines sur le campus HEC Paris : de l'identification du problème au pitch devant jury.",
     descEn: "Six-week intensive program on the HEC Paris campus: from problem identification to the final pitch before a jury.",
+    skillsFr: ["IA", "Entrepreneuriat", "Business Model", "Innovation"],
+    skillsEn: ["AI", "Entrepreneurship", "Business Model", "Innovation"],
     logo: '/Portfolio/assets/logos/hec.png',
     organizationId: 'hec',
   },
@@ -94,6 +98,8 @@ export const awards: Award[] = [
     date: "2026",
     descFr: "Programme de formation avancée en systèmes embarqués et microélectronique industrielle.",
     descEn: "Advanced training program in embedded systems and industrial microelectronics.",
+    skillsFr: ["STM32", "C Embarqué", "Microélectronique", "IoT"],
+    skillsEn: ["STM32", "Embedded C", "Microelectronics", "IoT"],
     link: "https://openbadgefactory.com/obv3/credentials/76aab2385d47cff39e93f7acf06f19e657319a78.html",
     logo: '/Portfolio/assets/logos/st.png',
     organizationId: 'epitech',
@@ -107,6 +113,8 @@ export const awards: Award[] = [
     date: "2025",
     descFr: "Formation à l'acquisition d'affaires, la gestion de comptes et la stratégie de croissance.",
     descEn: "Training in business acquisition, account management and growth strategy.",
+    skillsFr: ["Business Acquisition", "Pitching", "CRM", "Négociation"],
+    skillsEn: ["Business Acquisition", "Pitching", "CRM", "Negotiation"],
     logo: '/Portfolio/assets/logos/mantu.jpg',
   },
   {
@@ -118,6 +126,8 @@ export const awards: Award[] = [
     date: "2025",
     descFr: "Développement d'agents autonomes intelligents lors d'une compétition intensive de 48 h.",
     descEn: "Building intelligent autonomous agents during an intensive 48-hour competition.",
+    skillsFr: ["IA", "LLMs", "RAG", "Agentic Workflows"],
+    skillsEn: ["AI", "LLMs", "RAG", "Agentic Workflows"],
     link: "https://credsverse.com/credentials/bf1ccad0-62b9-4c5a-abf1-2c8ef6adacfd",
     logo: '/Portfolio/assets/logos/hacktogone.jpg',
   },
@@ -130,6 +140,8 @@ export const awards: Award[] = [
     date: "2023",
     descFr: "Certification officielle en langue anglaise, niveau B2 du cadre européen (CECRL).",
     descEn: "Official English language certification, level B2 of the European framework (CEFR).",
+    skillsFr: ["Anglais", "Communication", "B2 CECRL"],
+    skillsEn: ["English", "Communication", "B2 CEFR"],
     logo: '/Portfolio/assets/logos/cambridge.png',
   },
 ];
