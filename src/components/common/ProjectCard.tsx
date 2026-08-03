@@ -21,7 +21,7 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
     e.stopPropagation();
     setCurrentImgIdx((prev) => (prev + 1) % imagesList.length);
   };
-  
+
   const handlePrevImg = (e: React.MouseEvent) => {
     e.stopPropagation();
     setCurrentImgIdx((prev) => (prev - 1 + imagesList.length) % imagesList.length);
@@ -30,115 +30,115 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
   const desc = language === 'fr' ? project.descFr : project.descEn;
 
   return (
-    <div 
+    <div
       onClick={() => navigate(`/projects/${project.id}`)}
-      className={cn("bento-card group h-full flex flex-col justify-between overflow-hidden cursor-pointer hover:shadow-2xl transition-all duration-300", className)}
+      className={cn(
+        'bento-card hover-lift group h-full p-0 overflow-hidden cursor-pointer relative',
+        className
+      )}
       style={{ background: project.color }}
     >
-      <div className="relative z-10 flex flex-col h-full">
-        {/* Header: Title & Links */}
-        <div className="flex justify-between items-start mb-3">
-          <div className="max-w-[70%]">
-            <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/50 mb-1 font-display">
-              {project.tech}
-            </p>
-            <h3 className="text-xl font-black text-white font-display leading-tight group-hover:translate-x-1 transition-transform duration-300">
-              {project.name}
-            </h3>
+      {/* Full-bleed visual */}
+      <div className="absolute inset-0">
+        {project.video ? (
+          <video
+            src={project.video}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover object-top"
+          />
+        ) : imagesList.length > 0 ? (
+          <img
+            src={imagesList[currentImgIdx]}
+            alt={project.name}
+            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <span className="text-5xl font-black font-display text-white/25 uppercase">
+              {project.name.charAt(0)}
+            </span>
           </div>
-          
-          <div className="flex gap-1.5">
-            {project.github && (
-              <a href={project.github} target="_blank" rel="noopener noreferrer" 
-                onClick={(e) => e.stopPropagation()}
-                className="p-2 rounded-xl bg-white/15 hover:bg-white/25 text-white/80 hover:text-white transition-all shadow-sm relative z-20">
-                <Github size={14} />
-              </a>
-            )}
-            {project.link && (
-              <a href={project.link} target="_blank" rel="noopener noreferrer" 
-                onClick={(e) => e.stopPropagation()}
-                className="p-2 rounded-xl bg-white/15 hover:bg-white/25 text-white/80 hover:text-white transition-all shadow-sm relative z-20">
-                <ExternalLink size={14} />
-              </a>
-            )}
-          </div>
-        </div>
+        )}
+      </div>
 
-        {/* Project Image/Video/Visual Frame - Always Present */}
-        <div className="relative flex-1 min-h-0 mb-4 group-hover:scale-[1.02] transition-transform duration-500 ease-out">
-          <div className="absolute inset-x-2 bottom-0 top-2 bg-black/15 rounded-2xl blur-lg transition-all group-hover:blur-xl opacity-0 group-hover:opacity-100" />
-          <div className="relative h-full w-full bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 overflow-hidden shadow-xl ring-1 ring-white/10 flex items-center justify-center">
-            {project.video ? (
-              <video 
-                src={project.video}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-contain"
+      {/* Legibility gradient */}
+      <div className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-black/85 via-black/45 to-transparent pointer-events-none" />
+
+      {/* External links */}
+      <div className="absolute top-3 right-3 z-20 flex gap-1.5">
+        {project.github && (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            aria-label={`${project.name} — GitHub`}
+            className="p-2 rounded-xl bg-black/40 backdrop-blur-md hover:bg-black/60 text-white/90 hover:text-white transition-all"
+          >
+            <Github size={14} />
+          </a>
+        )}
+        {project.link && (
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            aria-label={`${project.name} — site`}
+            className="p-2 rounded-xl bg-black/40 backdrop-blur-md hover:bg-black/60 text-white/90 hover:text-white transition-all"
+          >
+            <ExternalLink size={14} />
+          </a>
+        )}
+      </div>
+
+      {/* Carousel controls */}
+      {imagesList.length > 1 && (
+        <>
+          <div className="absolute inset-y-0 inset-x-0 z-20 flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <button
+              onClick={handlePrevImg}
+              aria-label="Previous image"
+              className="pointer-events-auto p-1.5 rounded-full bg-black/55 hover:bg-black/75 text-white backdrop-blur-sm transition-all active:scale-90"
+            >
+              <ChevronLeft size={16} />
+            </button>
+            <button
+              onClick={handleNextImg}
+              aria-label="Next image"
+              className="pointer-events-auto p-1.5 rounded-full bg-black/55 hover:bg-black/75 text-white backdrop-blur-sm transition-all active:scale-90"
+            >
+              <ChevronRight size={16} />
+            </button>
+          </div>
+          <div className="absolute top-3 left-3 z-20 flex gap-1">
+            {imagesList.map((_, i) => (
+              <span
+                key={i}
+                className={cn(
+                  'h-1 rounded-full transition-all',
+                  i === currentImgIdx ? 'w-4 bg-white' : 'w-1.5 bg-white/45'
+                )}
               />
-            ) : imagesList.length > 0 ? (
-              <>
-                <img 
-                  src={imagesList[currentImgIdx]} 
-                  alt={project.name} 
-                  className="w-full h-full object-contain transition-all duration-500 scale-100 group-hover:scale-105" 
-                />
-                {imagesList.length > 1 && (
-                  <div className="absolute inset-0 flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button
-                      onClick={handlePrevImg}
-                      aria-label="Previous image"
-                      className="p-1 rounded-full bg-black/50 hover:bg-black/70 text-white backdrop-blur-sm transition-all active:scale-90"
-                    >
-                      <ChevronLeft size={16} />
-                    </button>
-                    <button
-                      onClick={handleNextImg}
-                      aria-label="Next image"
-                      className="p-1 rounded-full bg-black/50 hover:bg-black/70 text-white backdrop-blur-sm transition-all active:scale-90"
-                    >
-                      <ChevronRight size={16} />
-                    </button>
-                  </div>
-                )}
-                {/* Dots indicator */}
-                {imagesList.length > 1 && (
-                  <div className="absolute bottom-2 inset-x-0 flex justify-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    {imagesList.map((_, i) => (
-                      <div 
-                        key={i} 
-                        className={cn("w-1.5 h-1.5 rounded-full transition-all", i === currentImgIdx ? "bg-white scale-125" : "bg-white/40")}
-                      />
-                    ))}
-                  </div>
-                )}
-              </>
-            ) : (
-              <div className="flex flex-col items-center justify-center p-4 text-center">
-                <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white mb-2 shadow-inner">
-                  <span className="text-xl font-bold font-display uppercase">{project.name.charAt(0)}</span>
-                </div>
-                <span className="text-[10px] font-black text-white/70 uppercase tracking-widest font-display">{project.tech}</span>
-              </div>
-            )}
+            ))}
           </div>
-          {/* Added overlay for better click signifier */}
-          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-          <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-             <div className="bg-white/90 backdrop-blur-sm p-1.5 rounded-lg text-[#6D4499]">
-               <ExternalLink size={14} />
-             </div>
-          </div>
-        </div>
+        </>
+      )}
 
-        {/* Description - Bottom anchored */}
-        <div className="mt-auto">
-          <p className="text-[11px] text-white/80 line-clamp-2 leading-relaxed font-medium">
-            {desc}
-          </p>
-        </div>
+      {/* Text over the image */}
+      <div className="relative z-10 mt-auto p-5">
+        <p className="text-[9px] font-black uppercase tracking-[0.2em] text-white/65 mb-1 font-display">
+          {project.tech}
+        </p>
+        <h3 className="text-xl font-black text-white font-display leading-tight">
+          {project.name}
+        </h3>
+        <p className="mt-1.5 text-[11px] text-white/80 line-clamp-2 leading-relaxed font-medium">
+          {desc}
+        </p>
       </div>
     </div>
   );
@@ -146,13 +146,11 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
 
 export function AllProjectsCard({ className, onClick }: { className?: string; onClick: () => void }) {
   const { t } = useI18n();
-  // Filter only projects with images or videos
   const imageProjects = projects.filter(p => p.image || p.video);
-  // Duplicate the list EXACTLY ONCE to create a perfect two-part seamless loop
   const doubledList = [...imageProjects, ...imageProjects];
 
   return (
-    <button 
+    <button
       onClick={onClick}
       className={cn(
         "bento-card group flex flex-col items-center justify-center text-center p-0 cursor-pointer overflow-hidden relative border-none",
@@ -164,13 +162,13 @@ export function AllProjectsCard({ className, onClick }: { className?: string; on
       <div className="absolute inset-0 flex p-1 overflow-hidden bg-white">
         {[0, 1, 2, 3, 4].map((colIndex) => {
           const isUp = colIndex % 2 === 0;
-          const duration = 12 + (colIndex * 2); // Smooth: 12s to 20s
-          
+          const duration = 12 + (colIndex * 2);
+
           return (
-            <div 
-              key={`col-${colIndex}`} 
+            <div
+              key={`col-${colIndex}`}
               className={cn(
-                "flex-1 flex flex-col px-0.5", // Individual padding for column separation
+                "flex-1 flex flex-col px-0.5",
                 isUp ? "animate-scroll-up" : "animate-scroll-down"
               )}
               style={{ animationDuration: `${duration}s` }}
@@ -188,7 +186,7 @@ export function AllProjectsCard({ className, onClick }: { className?: string; on
           );
         })}
       </div>
-      
+
       {/* Subtle depth vignette */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-white/5 pointer-events-none" />
 
