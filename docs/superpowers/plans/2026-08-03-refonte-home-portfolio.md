@@ -255,6 +255,8 @@ export interface Award {
   date: string;
   descFr: string;
   descEn: string;
+  skillsFr?: string[];
+  skillsEn?: string[];
   link?: string;
   logo?: string;
   organizationId?: string;
@@ -1891,6 +1893,21 @@ export function AwardsSection() {
             <h3 className="text-[13px] font-black leading-snug text-[#3B2356] line-clamp-3">
               {fr ? award.titleFr : award.titleEn}
             </h3>
+            {(() => {
+              const skills = fr ? award.skillsFr : award.skillsEn;
+              return skills && skills.length > 0 ? (
+                <div className="flex flex-wrap gap-1 mt-2">
+                  {skills.map((s) => (
+                    <span
+                      key={s}
+                      className="px-1.5 py-0.5 text-[8px] font-black uppercase tracking-wider rounded-full bg-[#6D4499]/12 text-[#6D4499]"
+                    >
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              ) : null;
+            })()}
             <p className="mt-auto pt-3 text-[10px] font-black uppercase tracking-[0.15em] text-[#6D4499]/55">
               {award.issuer} · {award.date}
             </p>
