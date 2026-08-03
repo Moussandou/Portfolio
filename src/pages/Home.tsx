@@ -3,10 +3,8 @@ import { BentoGrid } from '../components/layout/BentoGrid';
 import { ProjectCard, AllProjectsCard } from '../components/common/ProjectCard';
 import { projects } from '../data/projects';
 import { GithubCard } from '../components/common/GithubCard';
-import { ExperienceCard } from '../components/common/ExperienceCard';
-import { EducationCard } from '../components/common/EducationCard';
-import { VolunteerCard } from '../components/common/VolunteerCard';
 import { StatusCard } from '../components/common/StatusCard';
+import { JourneySection } from '../components/sections/JourneySection';
 import { cn } from '../lib/utils';
 import { useI18n } from '../context/I18nContext';
 import { MapPin, Sparkles, Code2, GraduationCap, Github, Linkedin, Instagram, Mail, FileText, ArrowRight } from 'lucide-react';
@@ -140,45 +138,44 @@ export function Home() {
           <ProjectCard project={mainFeatured[0]} className="row-span-2 md:col-span-4 md:row-span-2" />
           <GithubCard className="row-span-2 md:col-span-2 md:row-span-2" />
 
-          {/* Row 3: Experience (4) + Featured 2 (2) */}
-          <ExperienceCard className="row-span-3 md:col-span-4 md:row-span-2" />
+          {/* Row 3: Featured 2 (2) */}
           <ProjectCard project={mainFeatured[1]} className="row-span-2 md:col-span-2 md:row-span-2" />
 
-          {/* Row 4: All Projects (2) + Education (4) */}
+          {/* Row 4: All Projects (2) */}
           <AllProjectsCard className="row-span-2 md:col-span-2 md:row-span-2" onClick={() => navigate('/projects')} />
-          <EducationCard className="row-span-2 md:col-span-4 md:row-span-2" />
-          {/* Row 5: Volunteer (4) + Status Card (2) */}
-          <VolunteerCard className="row-span-2 md:col-span-4 md:row-span-2" />
+          {/* Row 5: Status Card (2) */}
           <div className="row-span-2 md:col-span-2 md:row-span-2 bento-card" style={{ background: COLORS.blush }}>
             <StatusCard />
           </div>
 
-          {/* Row 6: Contact (6) */}
-          <div
-            onClick={() => navigate('/contact')}
-            className={cn(
-              "bento-card relative overflow-hidden cursor-pointer group flex flex-col items-center justify-center p-8 sm:p-12 text-center",
-              "row-span-2 md:col-span-6 md:row-span-2 border-none shadow-xl"
-            )}
-            style={{ background: COLORS.candy }}
-          >
-            <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-500" />
-            <div className="absolute top-0 w-full h-1/2 bg-gradient-to-b from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            <Star className="absolute top-6 left-8 text-white/30 animate-twinkle" />
-            <Star className="absolute bottom-8 right-10 text-white/20 animate-twinkle [animation-delay:1.8s]" />
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-display tracking-tight group-hover:scale-105 transition-transform duration-500">
-              {t('home.work_together_title')}
-            </h2>
-            <p className="mt-4 text-sm sm:text-base font-bold text-white/80 max-w-lg mx-auto leading-relaxed group-hover:-translate-y-1 transition-transform duration-500 delay-75">
-              {t('home.work_together_desc')}
-            </p>
-            <div className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/25 backdrop-blur-md text-white text-xs font-black uppercase tracking-widest group-hover:bg-white group-hover:text-[#6D4499] transition-colors duration-300">
-              {t('header.contact')}
-              <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
-            </div>
-          </div>
-
         </BentoGrid>
+
+        <JourneySection />
+
+        {/* Contact (6) */}
+        <div
+          onClick={() => navigate('/contact')}
+          className={cn(
+            "bento-card relative overflow-hidden cursor-pointer group flex flex-col items-center justify-center p-8 sm:p-12 text-center",
+            "row-span-2 md:col-span-6 md:row-span-2 border-none shadow-xl"
+          )}
+          style={{ background: COLORS.candy }}
+        >
+          <div className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-500" />
+          <div className="absolute top-0 w-full h-1/2 bg-gradient-to-b from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+          <Star className="absolute top-6 left-8 text-white/30 animate-twinkle" />
+          <Star className="absolute bottom-8 right-10 text-white/20 animate-twinkle [animation-delay:1.8s]" />
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white font-display tracking-tight group-hover:scale-105 transition-transform duration-500">
+            {t('home.work_together_title')}
+          </h2>
+          <p className="mt-4 text-sm sm:text-base font-bold text-white/80 max-w-lg mx-auto leading-relaxed group-hover:-translate-y-1 transition-transform duration-500 delay-75">
+            {t('home.work_together_desc')}
+          </p>
+          <div className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/25 backdrop-blur-md text-white text-xs font-black uppercase tracking-widest group-hover:bg-white group-hover:text-[#6D4499] transition-colors duration-300">
+            {t('header.contact')}
+            <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform duration-300" />
+          </div>
+        </div>
       </main>
 
       <footer className="py-10 text-center">
