@@ -73,52 +73,78 @@ export function BrandCard({ organization, className }: BrandCardProps) {
     <div
       style={brandStyle(brand)}
       className={cn(
-        'brand-card hover-lift',
+        'brand-card hover-lift relative overflow-hidden',
         brand.texture === 'grid' && 'brand-card--texture-grid',
         brand.texture === 'dots' && 'brand-card--texture-dots',
         className
       )}
     >
+      {/* Background Media: Video or Cover Image */}
+      {organization.id === 'hec' && (
+        <div className="absolute inset-0 z-0 opacity-25 pointer-events-none">
+          <video
+            src="/Portfolio/assets/pep.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#06427C] via-[#06427C]/80 to-transparent" />
+        </div>
+      )}
+
+      {organization.id === 'taker' && (
+        <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+          <img
+            src="/Portfolio/assets/logos/taker.jpg"
+            alt=""
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#10243D] via-[#10243D]/80 to-transparent" />
+        </div>
+      )}
+
       <div className="brand-card__texture" aria-hidden="true" />
 
       <div className="relative z-10 flex flex-col h-full">
         <div className="flex items-start justify-between gap-3 mb-4">
           <BrandAvatar brand={brand} />
           <span
-            className="text-[10px] font-black uppercase tracking-[0.18em] pt-1"
+            className="text-[11px] font-black uppercase tracking-[0.18em] pt-1 opacity-90"
             style={{ color: 'var(--brand-muted)' }}
           >
             {fr ? organization.periodFr : organization.periodEn}
           </span>
         </div>
 
-        <h3 className="text-xl font-black leading-tight" style={{ color: 'var(--brand-fg)' }}>
+        <h3 className="text-xl md:text-2xl font-black leading-tight" style={{ color: 'var(--brand-fg)' }}>
           {brand.name}
         </h3>
-        <p className="text-[12px] font-semibold mt-1 mb-4" style={{ color: 'var(--brand-muted)' }}>
+        <p className="text-[13px] font-bold mt-1 mb-4 leading-snug" style={{ color: 'var(--brand-muted)' }}>
           {fr ? organization.headlineFr : organization.headlineEn}
         </p>
 
-        <ul className="space-y-1.5 flex-1 min-h-0">
+        <ul className="space-y-2 flex-1 min-h-0">
           {items.map((item) => {
             const content = (
               <>
                 {item.kind === 'award' && (
-                  <AwardIcon size={13} className="shrink-0 mt-0.5" style={{ color: 'var(--brand-accent)' }} />
+                  <AwardIcon size={14} className="shrink-0 mt-0.5" style={{ color: 'var(--brand-accent)' }} />
                 )}
                 {item.kind === 'article' && (
-                  <Newspaper size={13} className="shrink-0 mt-0.5" style={{ color: 'var(--brand-accent)' }} />
+                  <Newspaper size={14} className="shrink-0 mt-0.5" style={{ color: 'var(--brand-accent)' }} />
                 )}
                 {item.kind === 'role' && (
                   <span
-                    className="shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full"
+                    className="shrink-0 mt-1.5 w-2 h-2 rounded-full"
                     style={{ background: 'var(--brand-accent)' }}
                   />
                 )}
-                <span className="text-[12px] font-semibold leading-snug" style={{ color: 'var(--brand-fg)' }}>
+                <span className="text-[13px] font-bold leading-snug" style={{ color: 'var(--brand-fg)' }}>
                   {item.label}
                 </span>
-                {item.url && <ExternalLink size={11} className="shrink-0 mt-0.5 opacity-60" />}
+                {item.url && <ExternalLink size={12} className="shrink-0 mt-0.5 opacity-70" />}
               </>
             );
 
@@ -129,7 +155,7 @@ export function BrandCard({ organization, className }: BrandCardProps) {
                     href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-start gap-2 hover:opacity-75 transition-opacity"
+                    className="flex items-start gap-2 hover:opacity-80 transition-opacity"
                   >
                     {content}
                   </a>
@@ -146,10 +172,10 @@ export function BrandCard({ organization, className }: BrandCardProps) {
             {allSkills.map((s) => (
               <span
                 key={s}
-                className="px-2 py-0.5 text-[9px] font-black uppercase tracking-wider rounded-full"
+                className="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider rounded-full"
                 style={{
                   color: 'var(--brand-fg)',
-                  background: 'color-mix(in srgb, var(--brand-accent) 22%, transparent)',
+                  background: 'color-mix(in srgb, var(--brand-accent) 30%, transparent)',
                 }}
               >
                 {s}

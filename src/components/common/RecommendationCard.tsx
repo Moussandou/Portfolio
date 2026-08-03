@@ -54,7 +54,7 @@ export function RecommendationCard({ reco, expandable = false, className }: Reco
             !expanded && (expandable ? 'line-clamp-4' : 'line-clamp-3')
           )}
         >
-          {reco.text}
+          {language === 'fr' && reco.textFr ? reco.textFr : reco.text}
         </p>
       </div>
 

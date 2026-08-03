@@ -30,20 +30,20 @@ export const experiences: Experience[] = [
     periodFr: "avr. 2026 - aujourd'hui",
     periodEn: "Apr. 2026 - Present",
     location: "Marseille",
-    descriptionFr: "Développement d'applications mobiles en équipe agile sur des projets clients réels.",
-    descriptionEn: "Mobile application development in an agile team on real client projects.",
+    descriptionFr: "Développement d'applications web & mobiles en équipe agile sur des projets clients réels (ex: Subsidium, outils internes et applications React Native).",
+    descriptionEn: "Web & mobile application development in an agile team on real client projects (e.g. Subsidium, internal tools, and React Native apps).",
     pointsFr: [
-      "Développement d'applications mobiles avec React Native",
-      "Renforcement TypeScript/JS sur des projets clients réels",
-      "Travail en équipe agile"
+      "Développement d'applications mobiles avec React Native et TypeScript",
+      "Conception et intégration d'interfaces web complexes (Subsidium)",
+      "Pratiques agiles, revue de code, optimisation de la qualité de code et du SEO"
     ],
     pointsEn: [
-      "Mobile app development with React Native",
-      "TypeScript/JS strengthening on real client projects",
-      "Agile team collaboration"
+      "Mobile app development using React Native and TypeScript",
+      "Design and integration of complex web interfaces (Subsidium)",
+      "Agile practices, code reviews, code quality optimization and SEO"
     ],
-    skillsFr: ["React Native", "TypeScript", "Agile"],
-    skillsEn: ["React Native", "TypeScript", "Agile"]
+    skillsFr: ["React Native", "TypeScript", "React", "SEO", "Agile"],
+    skillsEn: ["React Native", "TypeScript", "React", "SEO", "Agile"]
   },
   {
     id: 'bingeki-founder',
@@ -123,25 +123,27 @@ export const experiences: Experience[] = [
     id: 'gdg',
     roleFr: "Développeur Bénévole",
     roleEn: "Volunteer Developer",
-    company: "GDG Aix-Marseille",
-    typeFr: "Bénévolat / Communauté",
-    typeEn: "Volunteering / Community",
+    company: "GDG Marseille",
+    typeFr: "Bénévolat / Communauté Google",
+    typeEn: "Volunteering / Google Community",
     periodFr: "mars 2026 - aujourd'hui",
     periodEn: "Mar. 2026 - Present",
-    location: "Aix-Marseille",
+    location: "Marseille",
     logo: "/Portfolio/assets/logos/gdg.png",
-    descriptionFr: "Google Developer Group (GDG) Aix-Marseille : Contribution à des initiatives communautaires et projets collaboratifs.",
-    descriptionEn: "Google Developer Group (GDG) Aix-Marseille: Contribution to community initiatives and collaborative projects.",
+    descriptionFr: "Google Developer Group (GDG) Marseille : Développeur actif au sein de la communauté officielle des développeurs Google à Marseille.",
+    descriptionEn: "Google Developer Group (GDG) Marseille: Active developer within the official Google developer community in Marseille.",
     pointsFr: [
-      "Développement d’un Job Board pour la communauté tech locale",
-      "Création d’un bot Discord relayant automatiquement les actualités Google en temps réel via API"
+      "Développement d’un Job Board centralisant les offres tech de la région marseillaise",
+      "Création d’un bot Discord automatisé relayant les actualités Google/Tech en temps réel",
+      "Participation à l'organisation et au soutien technique des événements de la communauté"
     ],
     pointsEn: [
-      "Built a Job Board for the local tech community",
-      "Created a Discord bot automatically relaying Google news in real time via API"
+      "Developed a Job Board centralizing tech jobs/internships in the Marseille region",
+      "Created an automated Discord bot relaying real-time Google/Tech news updates",
+      "Participated in organizing and providing technical support for community events"
     ],
-    skillsFr: ["Communauté", "Node.js", "Discord API", "Tech Google"],
-    skillsEn: ["Community", "Node.js", "Discord API", "Google Tech"]
+    skillsFr: ["Google Tech", "Node.js", "Python", "Discord API", "Communauté"],
+    skillsEn: ["Google Tech", "Node.js", "Python", "Discord API", "Community"]
   },
   {
     id: 'lacordaire',

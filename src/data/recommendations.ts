@@ -9,6 +9,7 @@ export interface Recommendation {
   relationLabelEn: string;
   date: string;
   text: string;
+  textFr?: string;
   photo?: string;
   initials: string;
 }
@@ -23,6 +24,7 @@ export const recommendations: Recommendation[] = [
     relationLabelEn: 'Mentor — HEC Paris',
     date: '11 juin 2026',
     text: "I've been coaching Moussandou during the HEC Paris Entrepreneurship certificate, as part of a multi-background team. Moussandou showed high curiosity in learning from fields that aren't originally in his tech background: market research, problem identification, ICP definition and was then able to translate the solution the group has imagined into a vibrant MVP in less than 2 weeks. A great example of a modern tech profile: curious, willing to understand before executing at fast pace. Congrats!",
+    textFr: "J'ai eu le plaisir de coacher Moussandou pendant le certificat d'entrepreneuriat d'HEC Paris au sein d'une équipe pluridisciplinaire. Moussandou a fait preuve d'une grande curiosité pour apprendre dans des domaines qui ne relèvent pas de son bagage tech initial : étude de marché, identification des problèmes, définition de l'ICP. Il a ensuite su traduire la solution imaginée par le groupe en un MVP remarquable en moins de 2 semaines. Un excellent exemple de profil tech moderne : curieux, désireux de comprendre avant d'exécuter à un rythme rapide. Félicitations !",
     initials: 'RL',
   },
   {
@@ -34,6 +36,7 @@ export const recommendations: Recommendation[] = [
     relationLabelEn: 'Mentor — HEC Paris',
     date: '10 juin 2026',
     text: "Moussandou was part of the AI Entrepreneurship certificate @HEC and he definitely stood out. His tech abilities helped him build a great MVP for his team. He was more than happy to get out of his comfort zone and talk to potential users to understand and validate a problem. He will go on to achieve great things if he keeps the same resilience and builder mentality at the age of AI.",
+    textFr: "Moussandou a fait partie du certificat AI Entrepreneurship d'HEC et il s'est vraiment démarqué. Ses compétences techniques lui ont permis de concevoir un excellent MVP pour son équipe. Il a été ravi de sortir de sa zone de confort et d'échanger avec de futurs utilisateurs pour comprendre et valider le problème. Il accomplira de grandes choses s'il conserve cette résilience et cette mentalité de bâtisseur à l'ère de l'IA.",
     initials: 'MR',
   },
   {
@@ -45,6 +48,7 @@ export const recommendations: Recommendation[] = [
     relationLabelEn: 'Mentor — Epitech',
     date: '28 mai 2026',
     text: "During his three years of study at Epitech, Moussandou demonstrated a natural talent for leading a project team; he knows how to unite and guide a team to high performance and creative solutions to solve problems. He embodies excellent values for a Team Builder: cooperation, quality relationship, open-mind, proactive approach, creative solutions and above all, active listening. If I were recruiting a Team Leader, he would be on my shortlist!",
+    textFr: "Durant ses trois années d'études à Epitech, Moussandou a démontré un talent naturel pour piloter des équipes projet ; il sait fédérer et guider une équipe vers de hautes performances et des solutions créatives. Il incarne d'excellentes valeurs de Team Builder : coopération, relations de qualité, ouverture d'esprit, proactivité, solutions créatives et surtout une écoute active. Si je devais recruter un Team Leader, il serait en haut de ma liste !",
     photo: '/Portfolio/assets/reco/isabelle-gastaldi.png',
     initials: 'IG',
   },

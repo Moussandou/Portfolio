@@ -87,7 +87,7 @@ export const brands: Record<string, Brand> = {
   },
   gdg: {
     id: 'gdg',
-    name: 'GDG Aix-Marseille',
+    name: 'GDG Marseille',
     logo: '/Portfolio/assets/logos/gdg.png',
     bg: '#FFFFFF',
     fg: '#202124',
@@ -103,6 +103,7 @@ export const brands: Record<string, Brand> = {
   devid: {
     id: 'devid',
     name: 'Dev-id',
+    logo: '/Portfolio/assets/logos/devid.webp',
     bg: '#0E2A33',
     fg: '#FFFFFF',
     muted: 'rgba(255,255,255,0.65)',

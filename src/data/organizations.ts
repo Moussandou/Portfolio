@@ -35,8 +35,8 @@ export const organizations: Organization[] = [
   {
     id: 'yeungnam',
     brandId: 'yeungnam',
-    headlineFr: "Échange académique d'un an",
-    headlineEn: "One-year academic exchange",
+    headlineFr: "Échange académique 🇰🇷 — 4e année",
+    headlineEn: "Academic exchange 🇰🇷 — 4th year",
     periodFr: "2026 — 2027",
     periodEn: "2026 — 2027",
     educationIds: ['yeungnam'],
@@ -99,8 +99,8 @@ export const organizations: Organization[] = [
   {
     id: 'gdg',
     brandId: 'gdg',
-    headlineFr: "Développeur bénévole",
-    headlineEn: "Volunteer Developer",
+    headlineFr: "Développeur bénévole — Google Developer Group",
+    headlineEn: "Volunteer Developer — Google Developer Group",
     periodFr: "mars 2026 — aujourd'hui",
     periodEn: "Mar. 2026 — Present",
     educationIds: [],
