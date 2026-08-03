@@ -294,18 +294,24 @@ Les cartes ne sont **pas** cliquables dans leur ensemble : il n'existe pas de pa
 
 ### 5.3 Projets phares
 
+Trois projets retenus, choisis par l'auteur : `bingeki`, `pep`, `gameboy-sp`.
+
 ```
 ┌──────────────────────────┐ ┌────────────┐
-│  BINGEKI (4)  brutalist  │ │ SEORAK (2) │
+│  BINGEKI (4)  brutalist  │ │   PEP  (2) │
 └──────────────────────────┘ └────────────┘
 ┌────────────┐ ┌──────────────────────────┐
-│  PEP   (2) │ │  → TOUS MES PROJETS (4)  │
+│ GAMEBOY(2) │ │  → TOUS MES PROJETS (4)  │
 └────────────┘ └──────────────────────────┘
 ```
 
 Bingeki applique son design system documenté : `radius: 0`, bordure noire 4px, ombre décalée
 `8px 8px 0 #000`, hot pink et cyan. Sa capture est en plein cadre avec le traitement décrit en
-§5.7. La carte affiche aussi le rôle « Fondateur & Développeur principal · déc. 2025 → ».
+§5.8. La carte affiche aussi le rôle « Fondateur & Développeur principal · déc. 2025 → ».
+
+Pep (projet HEC, visuel vidéo `pep.mp4`) et GameBoy Advance SP Online (`#3A9EFF`, 3 captures)
+utilisent `ProjectCard` avec leur `color` déjà définie dans `projects.ts` — seul Bingeki a une
+entrée dédiée dans `brands.ts`, parce que c'est le seul dont tu as un design system formalisé.
 
 `AllProjectsCard` est conservée et renvoie vers `/projects`, page inchangée.
 
