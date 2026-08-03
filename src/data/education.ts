@@ -14,19 +14,6 @@ export interface Education {
   logo?: string;
 }
 
-export interface Certification {
-  id: string;
-  title: string;
-  issuer: string;
-  date: string;
-  link?: string;
-  descriptionFr?: string;
-  descriptionEn?: string;
-  skillsFr: string[];
-  skillsEn: string[];
-  logo?: string;
-}
-
 export interface Volunteer {
   id: string;
   roleFr: string;
@@ -137,66 +124,6 @@ export const education: Education[] = [
     skillsFr: ["Python", "Algorithmique", "Réseaux", "Maths"],
     skillsEn: ["Python", "Algorithms", "Networks", "Maths"],
     logo: "/Portfolio/assets/logos/saint-ex.jpg"
-  }
-];
-
-export const certifications: Certification[] = [
-  {
-    id: 'hec-entrepreneuriat',
-    title: "Certificat Entrepreneuriat IA",
-    issuer: "HEC Paris",
-    date: "2026",
-    descriptionFr: "Formation intensive à l'entrepreneuriat appliqué à l'intelligence artificielle.",
-    descriptionEn: "Intensive training in entrepreneurship applied to artificial intelligence.",
-    skillsFr: ["IA", "Entrepreneuriat", "Business Model", "Innovation"],
-    skillsEn: ["AI", "Entrepreneurship", "Business Model", "Innovation"],
-    logo: "/Portfolio/assets/logos/hec.png"
-  },
-  {
-    id: 'inovgames',
-    title: "I-NOVGAMES 2025-2026",
-    issuer: "Campus d'Excellence Industrie du futur",
-    date: "2026",
-    descriptionFr: "Programme de formation avancée en systèmes embarqués et microélectronique industrielle.",
-    descriptionEn: "Advanced training program in embedded systems and industrial microelectronics.",
-    link: "https://openbadgefactory.com/obv3/credentials/76aab2385d47cff39e93f7acf06f19e657319a78.html",
-    skillsFr: ["STM32", "C Embarqué", "Microélectronique", "IoT"],
-    skillsEn: ["STM32", "Embedded C", "Microelectronics", "IoT"],
-    logo: "/Portfolio/assets/logos/st.jpg"
-  },
-  {
-    id: 'mantu',
-    title: "The Mantu Manager Program",
-    issuer: "Mantu",
-    date: "2025",
-    descriptionFr: "Formation à l'acquisition d'affaires, la gestion de comptes et la stratégie de croissance.",
-    descriptionEn: "Training in business acquisition, account management, and growth strategy.",
-    skillsFr: ["Business Acquisition", "Pitching", "CRM", "Négociation"],
-    skillsEn: ["Business Acquisition", "Pitching", "CRM", "Negotiation"],
-    logo: "/Portfolio/assets/logos/mantu.jpg"
-  },
-  {
-    id: 'hacktogone',
-    title: "Hackathon Agent AI (HACKTOGONE)",
-    issuer: "HACKTOGONE",
-    date: "2025",
-    descriptionFr: "Développement d'agents autonomes intelligents lors d'une compétition intensive de 48h.",
-    descriptionEn: "Development of intelligent autonomous agents during an intensive 48-hour competition.",
-    link: "https://credsverse.com/credentials/bf1ccad0-62b9-4c5a-abf1-2c8ef6adacfd",
-    skillsFr: ["IA", "LLMs", "RAG", "Agentic Workflows"],
-    skillsEn: ["AI", "LLMs", "RAG", "Agentic Workflows"],
-    logo: "/Portfolio/assets/logos/hacktogone.jpg"
-  },
-  {
-    id: 'cambridge-b2',
-    title: "Anglais B2",
-    issuer: "Cambridge Assessment English",
-    date: "2023",
-    descriptionFr: "Certification officielle en langue anglaise niveau B2 du cadre européen (CECRL).",
-    descriptionEn: "Official English language certification at B2 level of the European framework (CEFR).",
-    skillsFr: ["Anglais", "Communication", "B2 CECRL"],
-    skillsEn: ["English", "Communication", "B2 CEFR"],
-    logo: "/Portfolio/assets/logos/cambridge.png"
   }
 ];
 

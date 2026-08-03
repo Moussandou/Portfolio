@@ -1,8 +1,11 @@
 import { useState } from 'react';
-import { education, certifications } from '../../data/education';
+import { education } from '../../data/education';
+import { awards } from '../../data/awards';
 import { cn } from '../../lib/utils';
 import { GraduationCap, Award, ScrollText, Calendar, ExternalLink } from 'lucide-react';
 import { useI18n } from '../../context/I18nContext';
+
+const certifications = awards.filter((a) => a.type === 'certification');
 
 export function EducationCard({ className }: { className?: string }) {
   const { t, language } = useI18n();
@@ -105,6 +108,7 @@ export function EducationCard({ className }: { className?: string }) {
             )}
           >
             {certifications.map((cert) => {
+              const title = language === 'fr' ? cert.titleFr : cert.titleEn;
               return (
                 <div key={cert.id} className="group/cert flex items-center justify-between gap-4 p-3 -mx-3 rounded-2xl hover:bg-white/5 transition-all outline-none">
                   <div className="flex items-center gap-4 min-w-0">
@@ -116,7 +120,7 @@ export function EducationCard({ className }: { className?: string }) {
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h4 className="text-[13px] font-bold text-white leading-tight truncate mb-1">{cert.title}</h4>
+                      <h4 className="text-[13px] font-bold text-white leading-tight truncate mb-1">{title}</h4>
                       <p className="text-[11px] font-medium text-white/50 truncate border-b border-transparent inline-block pb-0.5">{cert.issuer} · {cert.date}</p>
                     </div>
                   </div>
