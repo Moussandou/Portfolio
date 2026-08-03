@@ -112,13 +112,13 @@ export function BrandCard({ organization, className }: BrandCardProps) {
       )}
 
       {organization.id === 'devid' && (
-        <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <div className="absolute inset-0 z-0 opacity-15 pointer-events-none flex items-center justify-end pr-4">
           <img
-            src="/Portfolio/assets/devid-1.png"
-            alt="Dev-id project"
-            className="w-full h-full object-cover"
+            src="/Portfolio/assets/devid-white.webp"
+            alt="Dev-id Brand Identity"
+            className="w-48 h-48 object-contain translate-x-8"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33] via-[#0E2A33]/85 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33] via-[#0E2A33]/70 to-transparent" />
         </div>
       )}
 
