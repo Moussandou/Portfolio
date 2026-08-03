@@ -42,7 +42,7 @@ export function Home() {
         <BentoGrid>
 
           {/* Row 1: Extended Hero (4) + Bio (2) */}
-          <div className={cn("bento-card", "row-span-2 md:col-span-4 md:row-span-2")}
+          <div className={cn("bento-card", "min-h-[360px] md:min-h-0 md:col-span-4 md:row-span-2")}
             style={{ background: COLORS.candy }}>
             <div className="h-full flex flex-col justify-between">
               <div className="flex justify-between items-start">
@@ -67,7 +67,7 @@ export function Home() {
                   <div className="flex items-center gap-2 text-xs font-semibold text-[#6D4499]/80">
                     <GraduationCap size={14} /> {t('home.epitech_student')}
                   </div>
-                  <div className="relative flex items-center gap-2 text-xs font-semibold text-[#6D4499]/80 mt-2 w-[calc(100%+1rem)] md:w-full marquee-mask">
+                  <div className="relative flex items-center gap-2 text-xs font-semibold text-[#6D4499]/80 mt-2 w-full max-w-full marquee-mask">
                     <Code2 size={14} className="shrink-0" />
                     <div className="overflow-hidden pr-8">
                       <div className="flex whitespace-nowrap w-max animate-marquee">
@@ -92,7 +92,7 @@ export function Home() {
             </div>
           </div>
 
-          <div className={cn("bento-card items-center justify-center text-center", "row-span-2 md:col-span-2 md:row-span-2")}
+          <div className={cn("bento-card items-center justify-center text-center", "min-h-[300px] md:min-h-0 md:col-span-2 md:row-span-2")}
             style={{ background: COLORS.blush }}>
             <div className="flex flex-col items-center w-full px-4">
               <div className="relative mb-4 group cursor-pointer" onClick={() => navigate('/projects')}>
@@ -136,8 +136,8 @@ export function Home() {
           </div>
 
           {/* Row 2: GitHub (3) + Status (3) */}
-          <GithubCard className="row-span-2 md:col-span-3 md:row-span-2" />
-          <div className="row-span-2 md:col-span-3 md:row-span-2 bento-card" style={{ background: COLORS.blush }}>
+          <GithubCard className="min-h-[260px] md:min-h-0 md:col-span-3 md:row-span-2" />
+          <div className="min-h-[260px] md:min-h-0 md:col-span-3 md:row-span-2 bento-card" style={{ background: COLORS.blush }}>
             <StatusCard />
           </div>
 

@@ -22,11 +22,11 @@ export function JourneySection() {
         <BrandCard
           key={org.id}
           organization={org}
-          className={`row-span-2 ${SPAN_CLASS[org.span]}`}
+          className={`min-h-[320px] md:min-h-0 md:row-span-2 ${SPAN_CLASS[org.span]}`}
         />
       ))}
 
-      <div className="row-span-2 md:col-span-6 md:row-span-1 bento-card bg-white/45 justify-center">
+      <div className="col-span-1 md:col-span-6 md:row-span-1 bento-card bg-white/45 justify-center py-6">
         <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#6D4499]/50 mb-3">
           {t('sections.other_experiences')}
         </p>

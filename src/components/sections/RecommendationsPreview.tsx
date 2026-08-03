@@ -21,12 +21,12 @@ export function RecommendationsPreview() {
         <RecommendationCard
           key={reco.id}
           reco={reco}
-          className="row-span-2 md:col-span-2 md:row-span-2"
+          className="min-h-[220px] md:min-h-0 md:col-span-2 md:row-span-2"
         />
       ))}
       <button
         onClick={() => navigate('/recommendations')}
-        className="bento-card hover-lift row-span-1 md:col-span-6 md:row-span-1 bg-[#C5A8E9] items-center justify-center flex-row gap-2 group"
+        className="bento-card hover-lift col-span-1 md:col-span-6 md:row-span-1 bg-[#C5A8E9] items-center justify-center flex-row gap-2 group py-4"
       >
         <span className="text-sm font-black text-white uppercase tracking-widest">
           {t('sections.recos_cta')}

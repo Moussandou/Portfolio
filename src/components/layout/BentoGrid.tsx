@@ -27,7 +27,7 @@ export function BentoGrid({ children, className }: BentoGridProps) {
     <div
       ref={gridRef}
       className={cn(
-        'grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 auto-rows-[160px] gap-6 md:gap-8 max-w-[1080px] mx-auto stagger-children',
+        'grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 auto-rows-auto md:auto-rows-[160px] gap-6 md:gap-8 max-w-[1080px] mx-auto stagger-children',
         className
       )}
     >

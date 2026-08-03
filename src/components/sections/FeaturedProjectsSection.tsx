@@ -25,11 +25,11 @@ export function FeaturedProjectsSection() {
         <ProjectCard
           key={project.id}
           project={project}
-          className={`row-span-2 ${SPANS[project.id]}`}
+          className={`h-[280px] md:h-auto md:row-span-2 ${SPANS[project.id]}`}
         />
       ))}
       <AllProjectsCard
-        className="row-span-2 md:col-span-4 md:row-span-2"
+        className="h-[280px] md:h-auto md:col-span-4 md:row-span-2"
         onClick={() => navigate('/projects')}
       />
     </Section>

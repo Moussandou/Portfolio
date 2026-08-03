@@ -15,7 +15,7 @@ export function ArticlesSection() {
           href={article.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="bento-card hover-lift group p-0 row-span-2 md:col-span-2 md:row-span-2 bg-[#E9DEF8] overflow-hidden"
+          className="bento-card hover-lift group p-0 min-h-[280px] md:min-h-0 md:col-span-2 md:row-span-2 bg-[#E9DEF8] overflow-hidden"
         >
           <div className="relative flex-1 min-h-0 w-full bg-[#6D4499]/10">
             {article.image ? (
