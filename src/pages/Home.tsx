@@ -4,6 +4,7 @@ import { GithubCard } from '../components/common/GithubCard';
 import { StatusCard } from '../components/common/StatusCard';
 import { JourneySection } from '../components/sections/JourneySection';
 import { FeaturedProjectsSection } from '../components/sections/FeaturedProjectsSection';
+import { AwardsSection } from '../components/sections/AwardsSection';
 import { cn } from '../lib/utils';
 import { useI18n } from '../context/I18nContext';
 import { MapPin, Sparkles, Code2, GraduationCap, Github, Linkedin, Instagram, Mail, FileText, ArrowRight } from 'lucide-react';
@@ -143,6 +144,8 @@ export function Home() {
         <JourneySection />
 
         <FeaturedProjectsSection />
+
+        <AwardsSection />
 
         {/* Contact (6) */}
         <div
