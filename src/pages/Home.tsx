@@ -6,6 +6,7 @@ import { JourneySection } from '../components/sections/JourneySection';
 import { FeaturedProjectsSection } from '../components/sections/FeaturedProjectsSection';
 import { AwardsSection } from '../components/sections/AwardsSection';
 import { ArticlesSection } from '../components/sections/ArticlesSection';
+import { RecommendationsPreview } from '../components/sections/RecommendationsPreview';
 import { cn } from '../lib/utils';
 import { useI18n } from '../context/I18nContext';
 import { MapPin, Sparkles, Code2, GraduationCap, Github, Linkedin, Instagram, Mail, FileText, ArrowRight } from 'lucide-react';
@@ -150,7 +151,8 @@ export function Home() {
 
         <ArticlesSection />
 
-        {/* Contact (6) */}
+        <RecommendationsPreview />
+
         <div
           onClick={() => navigate('/contact')}
           className={cn(
