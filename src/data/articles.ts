@@ -23,7 +23,7 @@ export const articles: Article[] = [
     excerptFr: "L'équipe Epitech Marseille remporte le Design Prize avec MedBuddy, un hub intelligent qui centralise les données d'objets connectés pour libérer les infirmiers à domicile de la collecte manuelle.",
     excerptEn: "The Epitech Marseille team wins the Design Prize with MedBuddy, a smart hub centralising connected-device data to free home-care nurses from manual data collection.",
     url: "https://www.epitech.eu/2026/04/09/epitech-laureat-i-novgames-projet-etudiant-innovant-sante/",
-    image: "/Portfolio/assets/bambu-buddy-1.png",
+    image: "/Portfolio/assets/medbuddy-article.jpg",
     organizationId: 'epitech',
   },
   {

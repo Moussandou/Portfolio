@@ -10,7 +10,6 @@ import { brandStyle } from './brandStyle';
 import { BrandAvatar } from './BrandAvatar';
 import { Award as AwardIcon, Newspaper, ExternalLink } from 'lucide-react';
 
-const MAX_ITEMS = 5;
 
 interface BrandCardProps {
   organization: Organization;
@@ -30,19 +29,26 @@ export function BrandCard({ organization, className }: BrandCardProps) {
   const fr = language === 'fr';
 
   const roleItems: CardItem[] = [
-    ...organization.educationIds.map((id): CardItem | null => {
+    ...organization.educationIds.flatMap((id): CardItem[] => {
       const e = education.find((x) => x.id === id);
-      return e ? { key: `edu-${id}`, label: fr ? e.degreeFr : e.degreeEn, kind: 'role' } : null;
+      return e ? [{ key: `edu-${id}`, label: fr ? e.degreeFr : e.degreeEn, kind: 'role' }] : [];
     }),
-    ...organization.experienceIds.map((id): CardItem | null => {
+    ...organization.experienceIds.flatMap((id): CardItem[] => {
       const x = experiences.find((v) => v.id === id);
-      return x ? { key: `exp-${id}`, label: fr ? x.roleFr : x.roleEn, kind: 'role' } : null;
+      if (!x) return [];
+      const roleItem: CardItem = { key: `exp-${id}`, label: fr ? x.roleFr : x.roleEn, kind: 'role' };
+      const pts: CardItem[] = (fr ? x.pointsFr : x.pointsEn).map((pt, idx) => ({
+        key: `exp-pt-${id}-${idx}`,
+        label: pt,
+        kind: 'role',
+      }));
+      return [roleItem, ...pts];
     }),
-    ...organization.volunteerIds.map((id): CardItem | null => {
+    ...organization.volunteerIds.flatMap((id): CardItem[] => {
       const v = volunteering.find((x) => x.id === id);
-      return v ? { key: `vol-${id}`, label: fr ? v.roleFr : v.roleEn, kind: 'role' } : null;
+      return v ? [{ key: `vol-${id}`, label: fr ? v.roleFr : v.roleEn, kind: 'role' }] : [];
     }),
-  ].filter((i): i is CardItem => i !== null);
+  ];
 
   const awardItems: CardItem[] = getAwardsByIds(organization.awardIds).map((a) => ({
     key: `award-${a.id}`,
@@ -58,8 +64,8 @@ export function BrandCard({ organization, className }: BrandCardProps) {
     url: a.url,
   }));
 
-  // Awards and articles carry the most signal — they get the remaining slots first.
-  const items = [...awardItems, ...articleItems, ...roleItems].slice(0, MAX_ITEMS);
+  // Awards and articles carry high signal — combine with roles and points
+  const items = [...awardItems, ...articleItems, ...roleItems].slice(0, 6);
 
   const skills = organization.educationIds
     .map((id) => education.find((e) => e.id === id))
@@ -67,7 +73,7 @@ export function BrandCard({ organization, className }: BrandCardProps) {
   const expSkills = organization.experienceIds
     .map((id) => experiences.find((x) => x.id === id))
     .flatMap((x) => (x ? ((fr ? x.skillsFr : x.skillsEn) ?? []) : []));
-  const allSkills = [...skills, ...expSkills].slice(0, 4);
+  const allSkills = [...skills, ...expSkills].slice(0, 6);
 
   return (
     <div
@@ -95,13 +101,24 @@ export function BrandCard({ organization, className }: BrandCardProps) {
       )}
 
       {organization.id === 'taker' && (
-        <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+        <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
           <img
-            src="/Portfolio/assets/logos/taker.jpg"
-            alt=""
+            src="/Portfolio/assets/taker-cne26.jpg"
+            alt="Taker CNE26"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#10243D] via-[#10243D]/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#10243D] via-[#10243D]/75 to-transparent" />
+        </div>
+      )}
+
+      {organization.id === 'devid' && (
+        <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+          <img
+            src="/Portfolio/assets/devid-1.png"
+            alt="Dev-id project"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0E2A33] via-[#0E2A33]/85 to-transparent" />
         </div>
       )}
 
