@@ -65,68 +65,73 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
           </div>
         </div>
 
-        {/* Project Image/Video in an Enclosure/Frame - FLEXIBLE HEIGHT */}
-        {(imagesList.length > 0 || project.video) && (
-          <div className="relative flex-1 min-h-0 mb-4 group-hover:scale-[1.02] transition-transform duration-500 ease-out">
-            <div className="absolute inset-x-2 bottom-0 top-2 bg-black/15 rounded-2xl blur-lg transition-all group-hover:blur-xl opacity-0 group-hover:opacity-100" />
-            <div className="relative h-full w-full bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 overflow-hidden shadow-xl ring-1 ring-white/10">
-              {project.video ? (
-                <video 
-                  src={project.video}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-contain"
+        {/* Project Image/Video/Visual Frame - Always Present */}
+        <div className="relative flex-1 min-h-0 mb-4 group-hover:scale-[1.02] transition-transform duration-500 ease-out">
+          <div className="absolute inset-x-2 bottom-0 top-2 bg-black/15 rounded-2xl blur-lg transition-all group-hover:blur-xl opacity-0 group-hover:opacity-100" />
+          <div className="relative h-full w-full bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 overflow-hidden shadow-xl ring-1 ring-white/10 flex items-center justify-center">
+            {project.video ? (
+              <video 
+                src={project.video}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-contain"
+              />
+            ) : imagesList.length > 0 ? (
+              <>
+                <img 
+                  src={imagesList[currentImgIdx]} 
+                  alt={project.name} 
+                  className="w-full h-full object-contain transition-all duration-500 scale-100 group-hover:scale-105" 
                 />
-              ) : imagesList.length > 0 ? (
-                <>
-                  <img 
-                    src={imagesList[currentImgIdx]} 
-                    alt={project.name} 
-                    className="w-full h-full object-contain transition-all duration-500 scale-100 group-hover:scale-105" 
-                  />
-                  {imagesList.length > 1 && (
-                    <div className="absolute inset-0 flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <button
-                        onClick={handlePrevImg}
-                        aria-label="Previous image"
-                        className="p-1 rounded-full bg-black/50 hover:bg-black/70 text-white backdrop-blur-sm transition-all active:scale-90"
-                      >
-                        <ChevronLeft size={16} />
-                      </button>
-                      <button
-                        onClick={handleNextImg}
-                        aria-label="Next image"
-                        className="p-1 rounded-full bg-black/50 hover:bg-black/70 text-white backdrop-blur-sm transition-all active:scale-90"
-                      >
-                        <ChevronRight size={16} />
-                      </button>
-                    </div>
-                  )}
-                  {/* Dots indicator */}
-                  {imagesList.length > 1 && (
-                    <div className="absolute bottom-2 inset-x-0 flex justify-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      {imagesList.map((_, i) => (
-                        <div 
-                          key={i} 
-                          className={cn("w-1.5 h-1.5 rounded-full transition-all", i === currentImgIdx ? "bg-white scale-125" : "bg-white/40")}
-                        />
-                      ))}
-                    </div>
-                  )}
-                </>
-              ) : null}
-            </div>
-            {/* Added overlay for better click signifier */}
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-            <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-               <div className="bg-white/90 backdrop-blur-sm p-1.5 rounded-lg text-[#6D4499]">
-                 <ExternalLink size={14} />
-               </div>
-            </div>
+                {imagesList.length > 1 && (
+                  <div className="absolute inset-0 flex items-center justify-between px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button
+                      onClick={handlePrevImg}
+                      aria-label="Previous image"
+                      className="p-1 rounded-full bg-black/50 hover:bg-black/70 text-white backdrop-blur-sm transition-all active:scale-90"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      onClick={handleNextImg}
+                      aria-label="Next image"
+                      className="p-1 rounded-full bg-black/50 hover:bg-black/70 text-white backdrop-blur-sm transition-all active:scale-90"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                )}
+                {/* Dots indicator */}
+                {imagesList.length > 1 && (
+                  <div className="absolute bottom-2 inset-x-0 flex justify-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    {imagesList.map((_, i) => (
+                      <div 
+                        key={i} 
+                        className={cn("w-1.5 h-1.5 rounded-full transition-all", i === currentImgIdx ? "bg-white scale-125" : "bg-white/40")}
+                      />
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className="flex flex-col items-center justify-center p-4 text-center">
+                <div className="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center text-white mb-2 shadow-inner">
+                  <span className="text-xl font-bold font-display uppercase">{project.name.charAt(0)}</span>
+                </div>
+                <span className="text-[10px] font-black text-white/70 uppercase tracking-widest font-display">{project.tech}</span>
+              </div>
+            )}
           </div>
-        )}
+          {/* Added overlay for better click signifier */}
+          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+          <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+             <div className="bg-white/90 backdrop-blur-sm p-1.5 rounded-lg text-[#6D4499]">
+               <ExternalLink size={14} />
+             </div>
+          </div>
+        </div>
 
         {/* Description - Bottom anchored */}
         <div className="mt-auto">

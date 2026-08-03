@@ -85,9 +85,16 @@ Les organisations compactes (ES Digital, Icom'Provence, Lacordaire, Article 1, S
 L'Olivier Bleu) utilisent une entrée `neutral` reprenant la palette violette du site avec un
 liseré d'accent.
 
-`fontKey` mappe sur les familles **déjà chargées** : `display` → Outfit, `mono` → Share Tech
-Mono, `serif` → pile système `ui-serif, Georgia, serif`. Aucune webfont supplémentaire n'est
-ajoutée — le gain visuel ne justifierait pas le coût de chargement.
+`fontKey` mappe sur les familles réellement disponibles. Attention : `tailwind.config.js` déclare
+`outfit`, `inter` et `mono` (Share Tech Mono), mais `globals.css` ne charge que **Fredoka** et
+**Quicksand** — ces trois familles retomberaient silencieusement sur des fallbacks système.
+
+- `display` → Fredoka, via la classe `.font-display` existante
+- `serif` → pile système `ui-serif, Georgia, 'Times New Roman', serif`
+- `mono` → pile système `ui-monospace, SFMono-Regular, Menlo, monospace`
+
+Aucune webfont supplémentaire n'est ajoutée : le gain visuel ne justifierait pas le coût de
+chargement.
 
 Les cartes consomment ces tokens via **CSS custom properties** (`--brand-bg`, `--brand-radius`,
 `--brand-shadow`…) posées en style inline sur la carte. Pas de `switch` par marque dans le JSX :
