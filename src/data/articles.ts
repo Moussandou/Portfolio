@@ -49,7 +49,7 @@ export const articles: Article[] = [
     excerptFr: "Présentation du projet Pep, construit en équipe pluridisciplinaire durant le certificat AI Entrepreneurship de HEC Paris.",
     excerptEn: "Presentation of the Pep project, built by a cross-disciplinary team during the HEC Paris AI Entrepreneurship certificate.",
     url: "https://www.youtube.com/watch?v=UlH2Y2J7o7I",
-    image: "/Portfolio/assets/pip-hec-2.png",
+    image: "/Portfolio/assets/hec-video-thumb.png",
     organizationId: 'hec',
   },
 ];
