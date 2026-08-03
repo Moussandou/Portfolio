@@ -59,8 +59,8 @@ export const education: Education[] = [
     school: "HEC Paris",
     degreeFr: "Certificat Entrepreneuriat IA",
     degreeEn: "AI Entrepreneurship Certificate",
-    periodFr: "Avr. - Mai 2026",
-    periodEn: "Apr. - May 2026",
+    periodFr: "Avr. - Juin 2026",
+    periodEn: "Apr. - Jun. 2026",
     descriptionFr: "Formation intensive à l'entrepreneuriat appliqué aux technologies d'IA et création de projet.",
     descriptionEn: "Intensive training in entrepreneurship applied to AI technologies and project creation.",
     pointsFr: [
